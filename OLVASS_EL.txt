@@ -1,0 +1,40 @@
+SAKK 3D – telepítés iPhone-ra (GitHub Pages + "Főképernyőhöz adás")
+====================================================================
+
+A mappa tartalma (mind a 7 fájl kell, egy helyre):
+  index.html, three.min.js, sw.js, manifest.webmanifest,
+  icon-192.png, icon-512.png, apple-touch-icon.png
+(Ez az OLVASS_EL.txt nem kell a feltöltéshez.)
+
+1. GITHUB TÁROLÓ LÉTREHOZÁSA
+   - github.com -> jobb felül "+" -> "New repository"
+   - Repository name: sakk3d
+   - Public (ingyenes fióknál a GitHub Pages csak nyilvános tárolóval megy)
+   - "Create repository"
+
+2. FÁJLOK FELTÖLTÉSE
+   - Az üres tároló oldalán: "uploading an existing file" link
+     (vagy "Add file" -> "Upload files")
+   - Húzd be a 7 fájlt (a fájlokat, NE a mappát és NE a zipet)
+   - Lent: "Commit changes"
+
+3. GITHUB PAGES BEKAPCSOLÁSA
+   - A tárolóban: "Settings" -> bal oldalt "Pages"
+   - Source: "Deploy from a branch"
+   - Branch: "main", mappa: "/ (root)" -> "Save"
+   - 1-2 perc múlva megjelenik a cím:
+       https://<felhasznalonev>.github.io/sakk3d/
+
+4. IPHONE-RA TELEPÍTÉS
+   - Nyisd meg a fenti címet SAFARIBAN, várd meg, míg a tábla betölt
+   - Megosztás gomb (négyzet felfelé nyíllal) -> "Főképernyőhöz adás" -> "Hozzáadás"
+   - Ezután a főképernyőn lévő ikonról indítsd: teljes képernyőn, appként fut
+   - Egyszer internettel indítsd el; utána internet nélkül is működik
+
+5. FRISSÍTÉS (ha új verziót kapsz)
+   - A tárolóban "Add file" -> "Upload files" -> húzd be az új index.html-t -> "Commit changes"
+   - Az app a következő internetes indításkor letölti az újat
+     (ha elsőre a régi jön, zárd be és indítsd újra)
+
+Csökkentett mód: telefonon automatikusan bekapcsol (nincs árnyék, kisebb felbontás,
+takarékos rajzolás). A Menü -> Grafika résznél átállítható "Teljes"-re is.

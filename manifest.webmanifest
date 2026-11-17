@@ -1,0 +1,17 @@
+{
+  "name": "Sakk 3D",
+  "short_name": "Sakk 3D",
+  "description": "3D sakk klasszikus és középkori témával, tanuló móddal.",
+  "lang": "hu",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#16181b",
+  "theme_color": "#16181b",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
