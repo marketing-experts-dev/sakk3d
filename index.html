@@ -150,7 +150,13 @@ body.learn-off #coachOpts,body.learn-off #coachHead{display:none}
 #voiceSel option{background:#26262a;color:#eee}
 #voiceTipText{margin-top:6px;line-height:1.5;background:var(--card);border-radius:8px;padding:8px}
 #actBar{background:var(--panel);border:1px solid var(--accent);border-radius:14px;padding:12px 14px;box-shadow:0 6px 20px rgba(0,0,0,.45);min-width:240px}
-#actTitle{font-family:var(--head-font);font-weight:700;color:var(--accent);font-size:16px;margin-bottom:4px}
+#actTitle{font-family:var(--head-font);font-weight:700;color:var(--accent);font-size:16px;flex:1;min-width:0}
+.actHead{display:flex;align-items:flex-start;gap:6px;margin-bottom:4px}
+.actHead button{flex:none;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:var(--muted);font-size:13px;line-height:28px;cursor:pointer;margin-top:-3px}
+.actHead button:hover{background:rgba(255,255,255,.2);color:var(--text)}
+#actRead.on{background:var(--accent);color:var(--accent-ink)}
+#actPill{border:1px solid var(--accent);background:var(--panel);color:var(--text);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#actPill[hidden]{display:none}
 #actText{font-size:13.5px;line-height:1.45}
 #actBtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 #actBtns button{border:1px solid var(--panel-border);background:var(--card);border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600;cursor:pointer}
@@ -278,6 +284,11 @@ body.theme-medieval #toast{background:rgba(30,20,10,.92);border-color:rgba(217,1
   #stage{right:calc(72px + env(safe-area-inset-right));bottom:0;left:env(safe-area-inset-left)}
   #bottombar{flex-direction:column;left:auto;top:0;width:calc(72px + env(safe-area-inset-right));height:auto;border-top:0;border-left:1px solid var(--panel-border);padding:calc(6px + env(safe-area-inset-top)) calc(6px + env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) 6px}
   #pill{left:calc(50% - 36px);top:8px;padding:6px 12px;font-size:13px}
+  #actBar{padding:8px 10px;max-width:min(330px,46vw)}
+  #actTitle{font-size:14.5px}
+  #actText{font-size:12.5px;max-height:34vh;overflow:auto}
+  #actBtns{margin-top:7px}
+  #actBtns button{padding:6px 9px;font-size:12.5px}
   #panel{left:auto;right:0;top:0;bottom:0;width:min(360px,70vw);max-height:none;border-radius:0;transform:translateX(105%)}
   #panel.open{transform:none}
 }
@@ -402,7 +413,8 @@ body.act #emojiBar{display:none}
 <div id="stage"><canvas id="c" tabindex="0" aria-label="3D sakktábla"></canvas>
   <div id="evalBar" hidden title="Előnymérő: ki áll jobban"><div id="evalFill"></div><span id="evalLbl">0.0</span></div>
   <div id="coach">
-    <div id="actBar" hidden><div id="actTitle"></div><div id="actText"></div><div id="actBtns"></div></div>
+    <div id="actBar" hidden><div class="actHead"><div id="actTitle"></div><button type="button" id="actRead" title="Feladat felolvasása" aria-label="Feladat felolvasása">🔊</button><button type="button" id="actMin" title="Bezárás (a tábla alatt újra megnyitható)" aria-label="Bezárás">✕</button></div><div id="actText"></div><div id="actBtns"></div></div>
+    <button type="button" id="actPill" hidden title="Feladat megnyitása">📋 <span id="actPillTxt">Feladat</span></button>
     <div id="rateBubble" hidden></div>
     <div class="chip good" id="mateChip" hidden><span id="mateTxt"></span><button id="mateBtn"></button></div>
     <div class="chip bad" id="threatChip" hidden></div>
@@ -687,6 +699,7 @@ body.act #emojiBar{display:none}
 <h2 id="help-7"><span>Tanulóközpont és elemzés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A „Tanulás” gomb nyitja meg a tanulóközpontot, nyolc füllel. Itt mindent a saját tempódban gyakorolhatsz; a félbehagyott játszmád közben megmarad, és kilépéskor visszatér.</p>
 <p>Ha játszma közben indítasz gyakorlást, az app előbb rákérdez, és a gyakorlás végén a „Vissza a játékhoz” gombbal pontosan oda térsz vissza, ahol abbahagytad. Ha valami a félbehagyott játszmád elvesztésével járna – új játék, módváltás, sakkóra-váltás, online játék indítása vagy egy kapott játszma folytatása –, azt is csak megerősítés után teszi meg.</p>
+<p>A feladat leírása a tábla bal felső sarkában jelenik meg. A 🔊 gombbal felolvastathatod; ha a hangot bekapcsoltad, minden új feladatot magától is felolvas. A ✕ gombbal bezárhatod, ha eltakarja a táblát (például elforgatott telefonon). Ilyenkor egy kis „📋 Feladat” gomb marad a helyén, amivel újra megnyithatod. Ha megoldod a feladatot, az eredmény magától előjön.</p>
 <div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány és 21 megszerezhető jelvény.</td></tr></tbody></table></div>
 <p>A pontszám a gép elleni játszmáidból számolódik, 800-ról indul: erősebb gépet legyőzni többet ér, gyengébbtől kikapni többet von le. A napi sorozat minden olyan nappal nő, amikor játszol vagy gyakorolsz.</p>
 <h3>Játszma elemzése</h3>
@@ -4029,7 +4042,7 @@ function relaunch(fn) { if (busy) return; activity = null; fn(); }
 function endActivity(silent) {
   if (!activity) return;
   if (busy && !silent) { activity.cancel = true; setTimeout(() => endActivity(), 150); return; }
-  activity = null; document.body.classList.remove('act'); $('actBar').hidden = true;
+  activity = null; document.body.classList.remove('act'); $('actBar').hidden = true; $('actPill').hidden = true; actUI.min = false; actUI.key = '';
   taskChan.reset();
   const s = stash; stash = null;
   if (silent || !s) return;
@@ -4041,8 +4054,24 @@ function endActivity(silent) {
   if (aiMode()) setTimeout(maybeAiMove, 600);
   Net.flushQueue();
 }
+// A feladat-ablak bezárható (kis „📋 Feladat” gombbá válik), és felolvasható
+const actUI = { min: false, key: '', read: null };
+const actPlain = h => String(h).replace(/<br\s*\/?>/gi, '. ').replace(/<[^>]+>/g, '').replace(/[★☆✓]/g, '').replace(/\p{Extended_Pictographic}\uFE0F?/gu, '').replace(/\s+/g, ' ').trim();
+function actShow() { $('actBar').hidden = actUI.min; $('actPill').hidden = !actUI.min; }
+function actRead(force) {
+  const t = actPlain($('actTitle').innerHTML.replace(/<span[\s\S]*?<\/span>/g, '')), x = actPlain($('actText').innerHTML);
+  Voice.speak(t + (/[.!?]$/.test(t) ? ' ' : '. ') + x, force);
+}
+$('actMin').onclick = () => { actUI.min = true; actShow(); };
+$('actPill').onclick = () => { actUI.min = false; actShow(); };
+$('actRead').onclick = () => { try { if (window.speechSynthesis && speechSynthesis.speaking) { speechSynthesis.cancel(); return; } } catch (e) { /* */ } actRead(true); };
 function setAct(title, text, btns) {
-  $('actBar').hidden = false; $('actTitle').innerHTML = title; $('actText').innerHTML = text;
+  const key = (activity ? activity.type : '') + '|' + actPlain(String(title).replace(/<span[\s\S]*?<\/span>/g, ''));
+  if (key !== actUI.key) { actUI.key = key; actUI.min = false; }   // új feladat vagy eredmény: újra kinyílik
+  $('actTitle').innerHTML = title; $('actText').innerHTML = text;
+  $('actPillTxt').textContent = actPlain(String(title).replace(/<span[\s\S]*?<\/span>/g, '')) || 'Feladat';
+  actShow();
+  if (activity && actUI.read !== activity && activity.type !== 'demo' && activity.type !== 'replay' && activity.type !== 'review') { actUI.read = activity; setTimeout(() => actRead(false), 350); }   // új feladat: felolvassuk, ha a hang be van kapcsolva
   const box = $('actBtns'); box.innerHTML = '';
   (btns || []).forEach(b => { const el = document.createElement('button'); el.textContent = b[0] === 'Kilépés' && stash && stash.moves.length ? '↩ Vissza a játékhoz' : b[0]; if (b[2]) el.className = 'p'; el.onclick = b[1]; box.appendChild(el); });
 }
