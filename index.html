@@ -293,6 +293,9 @@ body:not(.clock-on) #oppSay{top:12px}
 #micBtn.rec{background:#c62828;border-color:#ff8a80;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,72,59,.6)}50%{box-shadow:0 0 0 12px rgba(229,72,59,0)}}
 body.act #emojiBar{display:none}
+.credits{margin:6px 0 4px;font-size:12px;color:var(--muted)}
+.credits summary{cursor:pointer;padding:4px 0}
+.credits p{margin:6px 0;line-height:1.5}
 #overExtra:empty{display:none}
 #overExtra{margin:-6px 0 16px;font-size:13.5px;line-height:1.5;background:var(--card);border-radius:10px;padding:8px 10px}
 .bigcode{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:34px;letter-spacing:.18em;font-weight:700;color:var(--accent);margin:6px 0 4px;user-select:all}
@@ -487,6 +490,10 @@ body.act #emojiBar{display:none}
     <button class="btn" id="btnImport">📥 Betöltés</button>
   </div>
   <p class="hint">Húzással forgatod a táblát, görgővel vagy két ujjal nagyítasz. Bábura koppintva kiválasztod, célmezőre koppintva lépsz.</p>
+  <details class="credits"><summary>Névjegy és licencek</summary>
+    <p>A bábuk, táblák, díszletek, textúrák és hangok saját fejlesztésűek: a program kódból rajzolja és szintetizálja őket, külső kép- vagy hangfájl nincs benne. A klasszikus bábuk a közkincsnek számító Staunton-forma szerint készültek.</p>
+    <p>Felhasznált nyílt forráskódú szoftverek: <b>three.js</b> (© 2010–2021 three.js authors, MIT licenc), <b>PeerJS</b> (© 2015 Michelle Bu és Eric Zhang, MIT licenc). Betűtípusok: <b>Inter</b> és <b>Cinzel</b> (SIL Open Font License).</p>
+  </details>
 </aside>
 
 <nav id="bottombar">
@@ -1467,7 +1474,7 @@ const sideName = c => (c === WHITE ? 'Világos' : 'Sötét');
 
 /* ---------- Beállítások (csak kényelmi tárolás) ---------- */
 const SETTINGS_KEY = 'sakk3d.settings.v1';
-const settings = { theme: 'classic', learn: true, autoRotate: true, anim: true, gfx: 'full', mode: 'two', level: 3, side: 'w', sound: true, fight: 'film', labels: true, rate: true, evalBar: true, matePath: true, threat: true, warn: true, control: false, speak: false, voice: '',
+const settings = { theme: 'classic', learn: true, autoRotate: true, anim: true, gfx: 'full', mode: 'two', level: 3, side: 'w', sound: true, fight: 'film', labels: false, rate: true, evalBar: true, matePath: true, threat: true, warn: true, control: false, speak: false, voice: '',
   view: '3d', clock: '0', persona: 'balanced', autoLevel: false, name: '', tactics: true, think: false, idle: true, voiceCtl: false };
 try { Object.assign(settings, JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}')); } catch (e) { /* nincs tárolás */ }
 if (settings.gfx !== 'lite') settings.gfx = 'full';
@@ -1487,6 +1494,7 @@ const THEMES = {
 const THEME_ORDER = ['classic', 'medieval', 'glass', 'neon', 'japan', 'egypt'];
 if (!THEMES[settings.theme] || settings.theme === '2d') settings.theme = 'classic';
 if (settings.view !== '2d') settings.view = '3d';
+if (!settings.labelsOffV9) { settings.labels = false; settings.labelsOffV9 = 1; saveSettings(); }   // a felülnézeti jelek alapból kikapcsolva
 let VT = settings.view === '2d' ? '2d' : settings.theme;     // a ténylegesen megjelenített téma
 const TH = () => THEMES[VT];
 const isMed = () => THEMES[VT].geo === 'medieval';
@@ -5926,7 +5934,7 @@ function styledMaterials(theme) {
   if (theme === 'glass') {
     return {
       [WHITE]: {
-        body: physOr({ color: 0xe8f5ff, roughness: 0.05, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.04, transparent: true, opacity: 0.56, envMapIntensity: 2.6 }),
+        body: physOr({ color: 0xc8e4ff, roughness: 0.16, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.03, transparent: true, opacity: 0.88, envMapIntensity: 2.4, emissive: 0x5d8fc0, emissiveIntensity: 0.18 }),
         detail: physOr({ color: 0xdfe6ee, roughness: 0.14, metalness: 1, envMapIntensity: 1.5 })
       },
       [BLACK]: {
@@ -5936,10 +5944,10 @@ function styledMaterials(theme) {
     };
   }
   if (theme === 'neon') {
-    const sW = canvasTex(stripeCanvas('#ffffff')), sB = canvasTex(stripeCanvas('#ffffff'));
-    [sW, sB].forEach(t => { t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; });
+    const sB = canvasTex(stripeCanvas('#ffffff'));
+    sB.wrapS = sB.wrapT = THREE.ClampToEdgeWrapping;
     return {
-      [WHITE]: { body: std({ color: 0x14202c, roughness: 0.22, metalness: 0.75, emissive: 0x2ae8ff, emissiveMap: sW, emissiveIntensity: 1.4, envMapIntensity: 1.3 }), detail: std({ color: 0x0a0a10, emissive: 0x2ae8ff, emissiveIntensity: 1.6, roughness: 0.3 }) },
+      [WHITE]: { body: std({ color: 0xc8ffe6, roughness: 0.3, metalness: 0.1, emissive: 0x7dffc6, emissiveIntensity: 0.55, envMapIntensity: 0.8 }), detail: std({ color: 0xffffff, emissive: 0xe8fff4, emissiveIntensity: 1.2, roughness: 0.3 }) },
       [BLACK]: { body: std({ color: 0x1c0f26, roughness: 0.22, metalness: 0.75, emissive: 0xff36d6, emissiveMap: sB, emissiveIntensity: 1.4, envMapIntensity: 1.3 }), detail: std({ color: 0x0a0a10, emissive: 0xff36d6, emissiveIntensity: 1.6, roughness: 0.3 }) }
     };
   }
@@ -5977,8 +5985,8 @@ function buildStyledTheme(theme) {
   let lightMats, darkMats, ts = 0.975, rot = false, frameCv, frameSide, floor, fogC = null;
   const std = o => new THREE.MeshStandardMaterial(o);
   if (theme === 'glass') {
-    lightMats = [std({ color: 0xd8ecf8, roughness: 0.08, metalness: 0.05, envMapIntensity: 1.3 })];
-    darkMats = [std({ color: 0x1a2431, roughness: 0.06, metalness: 0.3, envMapIntensity: 1.2 })];
+    lightMats = [std({ color: 0x33465a, roughness: 0.22, metalness: 0.15, envMapIntensity: 0.65 })];
+    darkMats = [std({ color: 0x0d131b, roughness: 0.1, metalness: 0.3, envMapIntensity: 0.9 })];
     frameCv = styledFrameCanvas({ bg: (c, S) => { c.fillStyle = '#3a4048'; c.fillRect(0, 0, S, S); const r = rng(5); for (let y = 0; y < S; y += 2) { c.fillStyle = 'rgba(255,255,255,' + (r() * 0.05) + ')'; c.fillRect(0, y, S, 1); } }, border: 'rgba(200,230,255,.35)', text: '#cfe6ff', font: '600 38px Inter, Arial, sans-serif' });
     frameSide = std({ color: 0x2c3138, metalness: 0.8, roughness: 0.35 });
     floor = new THREE.Mesh(new THREE.CircleGeometry(40, 64), std({ color: 0x0c1118, roughness: 0.22, metalness: 0.25, envMapIntensity: 0.6 }));
