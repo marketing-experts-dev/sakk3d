@@ -186,6 +186,7 @@ body.learn-off #coachOpts,body.learn-off #coachHead{display:none}
 /* ---------- Modális ablakok ---------- */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50;background:rgba(0,0,0,.45);padding:20px}
 .modal.show{display:flex;animation:fade .2s}
+#confirmModal,#promoModal{z-index:56}   /* a megerősítő kérdés mindig a többi ablak fölött */
 @keyframes fade{from{opacity:0}to{opacity:1}}
 .dialog{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:22px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .dialog h3{font-family:var(--head-font);margin:0 0 8px;font-size:22px;color:var(--accent)}
@@ -4075,7 +4076,7 @@ function lessonBar(done) {
   if (!done) { setAct((a.i + 1) + '. lecke – ' + L.t, L.x + '<br><b>Lépések: ' + a.moves + '</b> (cél: ' + L.par + ')', [['Újra', () => relaunch(() => startLesson(a.i))], ['Kilépés', () => endActivity()]]); return; }
   const st = a.moves <= L.par ? '★★★' : a.moves <= L.par + 2 ? '★★☆' : '★☆☆';
   progress.lessons[a.i] = Math.max(progress.lessons[a.i] || 0, st.split('★').length - 1); saveProgress(); markDay(); Progress.check();
-  Sfx.play('fanfare'); say('Ügyes!');
+  Sfx.play('fanfare'); say('Ügyes!'); cheer();
   setAct('Ügyes! ' + st, a.moves + ' lépésből oldottad meg (a legjobb: ' + L.par + ').',
     [[a.i + 1 < LESSONS.length ? 'Következő lecke' : 'Kész', () => (a.i + 1 < LESSONS.length ? relaunch(() => startLesson(a.i + 1)) : endActivity()), true], ['Újra', () => relaunch(() => startLesson(a.i))], ['Kilépés', () => endActivity()]]);
 }
@@ -4108,7 +4109,7 @@ function puzzleSolved() {
   const a = activity;
   if (a.idx !== undefined) progress.puzzles[a.idx] = 1;
   if (a.lesson !== undefined) progress.lessons[a.lesson] = 3;
-  saveProgress(); markDay(); Progress.check(); say('Megoldva!');
+  saveProgress(); markDay(); Progress.check(); say('Megoldva!'); cheer();
   const next = a.lesson !== undefined
     ? (a.lesson + 1 < LESSONS.length ? ['Következő lecke', () => relaunch(() => startLesson(a.lesson + 1)), true] : ['Kész', () => endActivity(), true])
     : ['Következő feladvány', () => relaunch(() => startPuzzleIdx((a.idx + 1) % PUZZLES.length)), true];
@@ -4784,7 +4785,7 @@ function openShare() {
     $('shareSend').onclick = () => sendText('Sakk 3D játszma', 'Nézd meg ezt a sakkjátszmát!' + (url ? '' : ' Játszmakód (Sakk 3D → Betöltés):\n' + code), url);
     $('shareCopy').onclick = () => { navigator.clipboard && navigator.clipboard.writeText(url || code).then(() => toast('Másolva', 1400)).catch(() => toast('Jelöld ki és másold ki kézzel.', 1800)); };
   }
-  $('importGo').onclick = () => { const t = $('importTxt').value; if (importText(t)) closeModals(); };
+  $('importGo').onclick = () => { const t = $('importTxt').value; closeModals(); importText(t); };   // előbb zárunk, hogy az esetleges megerősítő kérdés látsszon
   $('shareModal').classList.add('show');
 }
 function openImport() { openShare(); setTimeout(() => { const t = $('importTxt'); if (t) t.focus(); }, 50); }
@@ -5724,7 +5725,7 @@ function endgameBar(done, msg) {
   if (done === true) {
     const st = a.moves <= eg.par ? 3 : a.moves <= eg.par + 6 ? 2 : 1;
     progress.endgames[a.i] = Math.max(progress.endgames[a.i] || 0, st); saveProgress(); markDay(); Progress.check();
-    Sfx.play('fanfare'); say('Ügyes!');
+    Sfx.play('fanfare'); say('Ügyes!'); cheer();
     setAct('Sikerült! ' + '★'.repeat(st) + '☆'.repeat(3 - st), (msg || '') + ' ' + a.moves + ' lépésből (cél: ' + eg.par + ').',
       [[a.i + 1 < ENDGAMES.length ? 'Következő' : 'Kész', () => (a.i + 1 < ENDGAMES.length ? relaunch(() => startEndgame(a.i + 1)) : endActivity()), true], ['Újra', () => relaunch(() => startEndgame(a.i))], ['Kilépés', () => endActivity()]]);
     return;
@@ -5787,7 +5788,7 @@ function openingBar(msg, done) {
   if (done) {
     const st = a.errs === 0 ? 3 : a.errs <= 2 ? 2 : 1;
     progress.openings[a.i] = Math.max(progress.openings[a.i] || 0, st); saveProgress(); markDay(); Progress.check();
-    Sfx.play('fanfare'); say('Megtanultad a főváltozatot!');
+    Sfx.play('fanfare'); say('Megtanultad a főváltozatot!'); cheer();
     setAct('📖 ' + o.t + ' – kész! ' + '★'.repeat(st) + '☆'.repeat(3 - st), msg + '<br>Hibák: ' + a.errs + '.', [['Újra', () => relaunch(() => startOpening(a.i)), true], ['Lista', () => { endActivity(); openLearn('openings'); }], ['Kilépés', () => endActivity()]]);
     return;
   }
@@ -5839,7 +5840,7 @@ function extraActivityMove(a, m, color) {
     if (color !== a.human) return;
     const ok = a.type === 'fix' ? progress.mistakes[a.i].ok : a.sol;
     if (ok.indexOf(E.uci(m)) >= 0) {
-      Sfx.play('fanfare'); riseSparkles(sqPos(m.to), 0xffd54a, 40);
+      Sfx.play('fanfare'); riseSparkles(sqPos(m.to), 0xffd54a, 40); cheer();
       if (a.type === 'fix') {
         const x = progress.mistakes[a.i]; x.solved++; progress.fixed++; saveProgress(); markDay(); Progress.check();
         const nx = Mistakes.next(a.i);
@@ -6566,6 +6567,7 @@ async function raiseFallen() {
 }
 
 // Konfetti és lufik a képernyő sarkaiból (külön vászon a 3D jelenet fölött)
+function cheer() { Celebrate.run(true); }   // feladvány/lecke/végjáték sikere
 function celebrateWin(winner) {
   if (!winner || activity || game._celebrated) return;
   if (sideMode() && winner !== humanColor) return;   // csak a győztes képernyőjén
@@ -6575,7 +6577,7 @@ function celebrateWin(winner) {
 const Celebrate = {
   cv: null, raf: 0,
   stop() { cancelAnimationFrame(this.raf); if (this.cv) this.cv.style.display = 'none'; },
-  run() {
+  run(mini) {   // mini: kisebb ünneplés a tanulós feladatok sikeréhez
     if (!this.cv) {
       const c = this.cv = document.createElement('canvas');
       c.id = 'celebrateCv';
@@ -6595,13 +6597,14 @@ const Celebrate = {
           c: COLS[Math.floor(Math.random() * COLS.length)], ph: Math.random() * 6, shape: Math.random() < 0.2 ? 1 : 0, life: 0 });
       }
     };
-    const shots = [
+    let shots = [
       [0, () => { burst(0, Hh, -Math.PI / 3.1, 0.55, 80, S * 1.25); burst(W, Hh, -Math.PI + Math.PI / 3.1, 0.55, 80, S * 1.25); Sfx.play('whoosh'); }],
       [0.18, () => { burst(0, 0, Math.PI / 5, 0.6, 40, S * 0.7); burst(W, 0, Math.PI - Math.PI / 5, 0.6, 40, S * 0.7); }],
       [0.75, () => { burst(0, Hh, -Math.PI / 2.6, 0.5, 60, S * 1.15); burst(W, Hh, -Math.PI + Math.PI / 2.6, 0.5, 60, S * 1.15); Sfx.play('whoosh'); }],
       [1.5, () => { burst(0, Hh, -Math.PI / 3.4, 0.45, 40, S * 1.05); burst(W, Hh, -Math.PI + Math.PI / 3.4, 0.45, 40, S * 1.05); }]
     ];
-    const NB = Math.round((W < 600 ? 9 : 14) * few);
+    if (mini) shots = [shots[0], shots[2]];
+    const NB = Math.round((W < 600 ? 9 : 14) * few * (mini ? 0.45 : 1));
     for (let i = 0; i < NB; i++) {
       const fromLeft = i % 2 === 0, r = (W < 600 ? 22 : 30) + Math.random() * 14;
       balloons.push({ x: fromLeft ? Math.random() * W * 0.35 : W - Math.random() * W * 0.35, y: Hh + r * 2 + Math.random() * 80, r, t0: 0.2 + i * 0.16 + Math.random() * 0.2,
