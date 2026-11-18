@@ -235,6 +235,35 @@ body.theme-medieval #toast{background:rgba(30,20,10,.92);border-color:rgba(217,1
   #coach{top:calc(54px + env(safe-area-inset-top));left:24px}
   #actBar{min-width:0}
 }
+/* ---------- Laptop / tablet: a menü gombnyomásra jön elő (rögzíthető) ---------- */
+#btnPin{display:none}
+.sh-btns{display:flex;gap:8px}
+@media (min-width: 821px) and (min-height: 521px){
+  .sheet-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+  .sheet-head .grab{display:none}
+  .sheet-head button{border:0;background:var(--card);width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
+  .sheet-head button:hover{background:rgba(255,255,255,.14)}
+  #btnPin{display:block}
+  #panel .desk-title{display:none}
+  body.pin-panel #btnClose{display:none}
+  body.pin-panel #btnPin{background:var(--accent);color:#1a1408}
+  body:not(.pin-panel) #stage{right:0}
+  body:not(.pin-panel) #panel{width:min(390px,92vw);transform:translateX(105%);transition:transform .28s ease;z-index:40;box-shadow:-14px 0 44px rgba(0,0,0,.5)}
+  body:not(.pin-panel) #panel.open{transform:none}
+  body:not(.pin-panel) #pill{display:flex;position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:15;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;
+    background:var(--panel);border:1px solid var(--panel-border);font-weight:600;font-size:14px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.35)}
+  body:not(.pin-panel) #pill .dot{width:13px;height:13px}
+  body:not(.pin-panel) #pill.check{border-color:rgba(229,72,59,.8);background:rgba(90,20,16,.92)}
+  body:not(.pin-panel) #bottombar{display:flex;position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:18;background:var(--panel);border:1px solid var(--panel-border);
+    border-radius:16px;padding:6px;gap:4px;box-shadow:0 8px 26px rgba(0,0,0,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  body:not(.pin-panel) #bottombar button{width:76px;height:56px;border:0;background:transparent;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:var(--muted);cursor:pointer}
+  body:not(.pin-panel) #bottombar button .i{font-size:21px;line-height:1;color:var(--text)}
+  body:not(.pin-panel) #bottombar button:hover{background:rgba(255,255,255,.08);color:var(--text)}
+  body:not(.pin-panel) #bottombar button:disabled{opacity:.35}
+  body:not(.pin-panel) #toast{bottom:96px}
+  body:not(.pin-panel) #micBtn{bottom:22px}
+  body:not(.pin-panel) #emojiBar{bottom:22px}
+}
 @media (max-height: 520px) and (orientation: landscape){
   :root{--bar-h:0px}
   #stage{right:calc(72px + env(safe-area-inset-right));bottom:0;left:env(safe-area-inset-left)}
@@ -260,7 +289,7 @@ body.mode-online #rotRow{display:none}
 .obtns .btn{padding:9px 10px;font-size:13.5px}
 .btn[hidden]{display:none}
 .mini{font-size:11.5px;color:var(--muted);line-height:1.45;margin:10px 0 0}
-#clocks{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:6;pointer-events:none}
+#clocks{position:absolute;right:12px;top:60px;display:flex;flex-direction:column;gap:6px;z-index:6;pointer-events:none}
 #clocks[hidden]{display:none}
 .clk{background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;padding:5px 10px;display:flex;align-items:center;gap:8px;min-width:104px;justify-content:space-between;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .clk b{font-variant-numeric:tabular-nums;font-size:19px;letter-spacing:.02em}
@@ -269,10 +298,30 @@ body.mode-online #rotRow{display:none}
 .clk.low b{color:#ff7a6e}
 .clk.flag{background:rgba(120,20,16,.92)}
 #clkBot{order:2}
-#oppSay{position:absolute;right:12px;top:94px;max-width:min(300px,60%);background:var(--panel);border:1px solid var(--accent);border-radius:14px 14px 4px 14px;padding:9px 12px;font-size:13.5px;line-height:1.4;z-index:6;box-shadow:0 6px 18px rgba(0,0,0,.4);animation:fade .25s}
+#oppSay{position:absolute;right:12px;top:142px;max-width:min(300px,60%);background:var(--panel);border:1px solid var(--accent);border-radius:14px 14px 4px 14px;padding:9px 12px;font-size:13.5px;line-height:1.4;z-index:6;box-shadow:0 6px 18px rgba(0,0,0,.4);animation:fade .25s}
 #oppSay[hidden]{display:none}
 #oppSay .who{display:block;font-size:11.5px;color:var(--accent);font-weight:700;margin-bottom:2px}
-body:not(.clock-on) #oppSay{top:12px}
+body:not(.clock-on) #oppSay{top:60px}
+#helpBtn{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--panel-border);background:var(--panel);color:var(--text);
+  font-size:19px;font-weight:700;cursor:pointer;z-index:7;box-shadow:0 4px 12px rgba(0,0,0,.35);font-family:Georgia,serif}
+#helpBtn:hover{border-color:var(--accent);color:var(--accent)}
+.dialog.help{max-width:760px;padding:18px 22px 26px}
+#helpToc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px;padding:2px 0 12px;border-bottom:1px solid var(--panel-border)}
+#helpToc button{border:1px solid var(--panel-border);background:var(--card);color:var(--text);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer}
+#helpToc button:hover{border-color:var(--accent)}
+#helpBody{font-size:14px;line-height:1.6}
+#helpBody h2{font-size:19px;text-transform:none;letter-spacing:0;color:var(--text);margin:24px 0 8px;font-family:var(--head-font);scroll-margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+#helpBody h2 .top{border:0;background:var(--card);color:var(--muted);border-radius:999px;font-size:11.5px;padding:4px 10px;cursor:pointer;font-family:Inter,system-ui,sans-serif;font-weight:500;white-space:nowrap}
+#helpBody h3{font-size:15px;margin:18px 0 6px}
+#helpBody p{margin:0 0 10px}
+#helpBody ul,#helpBody ol{margin:0 0 12px;padding-left:22px}
+#helpBody li{margin:3px 0}
+#helpBody code{background:var(--card);padding:1px 5px;border-radius:4px;font-size:12.5px}
+#helpBody .tblw{overflow-x:auto;margin:0 0 14px}
+#helpBody table{border-collapse:collapse;width:100%;font-size:13px}
+#helpBody th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--panel-border);padding:6px 8px}
+#helpBody td{border-bottom:1px solid rgba(255,255,255,.06);padding:7px 8px;vertical-align:top}
+#helpBody td:first-child{font-weight:600;white-space:nowrap}
 .chip.tac{border-color:rgba(255,176,32,.8)}
 .chip.tac b{color:#ffcf6a}
 .chip.think{flex-direction:column;align-items:stretch;gap:6px;border-color:rgba(120,170,255,.7)}
@@ -313,6 +362,8 @@ body.act #emojiBar{display:none}
 .statrow b{display:block;font-size:20px;color:var(--accent)}
 @media (max-width: 820px), (max-height: 520px){
   #clocks{top:calc(54px + env(safe-area-inset-top));right:10px}
+  #helpBtn{top:calc(10px + env(safe-area-inset-top));right:10px;width:36px;height:36px}
+  #helpBody td:first-child{white-space:normal}
   .clk{min-width:88px;padding:4px 8px}
   .clk b{font-size:16px}
   #oppSay{top:calc(128px + env(safe-area-inset-top))}
@@ -342,6 +393,7 @@ body.act #emojiBar{display:none}
     <div class="chip think" id="thinkChip" hidden></div>
     <div class="chip net" id="netChip" hidden></div>
   </div>
+  <button id="helpBtn" aria-label="Kézikönyv" title="Kézikönyv">?</button>
   <div id="clocks" hidden><div class="clk" id="clkTop"><span class="cn"></span><b>0:00</b></div><div class="clk" id="clkBot"><span class="cn"></span><b>0:00</b></div></div>
   <div id="oppSay" hidden></div>
   <div id="emojiBar" hidden><button data-e="👍">👍</button><button data-e="😮">😮</button><button data-e="😅">😅</button><button data-e="🔥">🔥</button><button data-e="🤝">🤝</button></div>
@@ -352,7 +404,7 @@ body.act #emojiBar{display:none}
 <div id="pill" aria-live="polite"><span class="dot w" id="pillDot"></span><span id="pillText">Világos lép</span></div>
 
 <aside id="panel">
-  <div class="sheet-head"><span class="grab"></span><h1><span class="logo">♞</span>Sakk 3D</h1><button id="btnClose" aria-label="Bezárás">✕</button></div>
+  <div class="sheet-head"><span class="grab"></span><h1><span class="logo">♞</span>Sakk 3D</h1><span class="sh-btns"><button id="btnPin" aria-label="Menü rögzítése" title="Menü rögzítése">📌</button><button id="btnClose" aria-label="Bezárás" title="Bezárás (M)">✕</button></span></div>
   <h1 class="desk-title"><span class="logo">♞</span>Sakk 3D</h1>
 
   <div class="status" id="status"><span class="dot w" id="statusDot"></span><span class="status-text" id="statusText">Világos lép</span></div>
@@ -488,6 +540,7 @@ body.act #emojiBar{display:none}
     <button class="btn" id="btnAnalyze">📊 Elemzés</button>
     <button class="btn" id="btnShare">🔗 Megosztás</button>
     <button class="btn" id="btnImport">📥 Betöltés</button>
+    <button class="btn" id="btnHelp">📘 Kézikönyv</button>
   </div>
   <p class="hint">Húzással forgatod a táblát, görgővel vagy két ujjal nagyítasz. Bábura koppintva kiválasztod, célmezőre koppintva lépsz.</p>
   <details class="credits"><summary>Névjegy és licencek</summary>
@@ -542,6 +595,97 @@ body.act #emojiBar{display:none}
 <div class="modal" id="analysisModal"><div class="dialog big">
   <div class="dlg-head"><h3>Játszma elemzése</h3><button class="x" id="analysisClose" aria-label="Bezárás">✕</button></div>
   <div id="analysisBody"></div>
+</div></div>
+
+<div class="modal" id="helpModal"><div class="dialog big help">
+  <div class="dlg-head"><h3>📘 Kézikönyv</h3><button class="x" id="helpClose" aria-label="Bezárás">✕</button></div>
+  <div id="helpToc"><button data-go="help-1">Áttekintés</button><button data-go="help-2">Telepítés és frissítés</button><button data-go="help-3">Kezelés alapjai</button><button data-go="help-4">Játékmódok</button><button data-go="help-5">Mentés, megosztás, visszajátszás</button><button data-go="help-6">Oktató eszközök játék közben</button><button data-go="help-7">Tanulóközpont és elemzés</button><button data-go="help-8">Látvány és beállítások</button><button data-go="help-9">Gyakori kérdések</button><button data-go="help-10">Névjegy és licencek</button></div>
+  <div id="helpBody"><h2 id="help-1"><span>Áttekintés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A Sakk 3D egy háromdimenziós sakkjáték beépített oktatóval, amely böngészőben fut, és appként telepíthető. Laptopon, iPhone-on és Androidon is működik, internet nélkül is – kivéve az online játékot.</p>
+<ul><li><b>Játék:</b> két játékos egy eszközön, gép ellen 10 szinten és négy játékstílusban, online barátokkal (élő vagy levelezős formában), sakkórával.</li><li><b>Tanulás játék közben:</b> lépésértékelés, tippek, mattút, fenyegetés- és taktikajelzés, figyelmeztetés hibás lépés előtt, felolvasás.</li><li><b>Tanulóközpont:</b> szabályok 3D bemutatókkal, leckék, mattfeladványok, taktikai feladványok, megnyitás- és végjáték-tréner, saját hibák gyűjteménye, pontszám és jelvények.</li><li><b>Látvány:</b> hat 3D téma, egyszerű 2D nézet, harci animációk leütéskor, élő bábuk.</li></ul>
+<h2 id="help-2"><span>Telepítés és frissítés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A játék böngészőben fut, és appként a telefon kezdőképernyőjére tehető. Ehhez csak a linkre van szükséged, amit attól kaptál, aki megosztotta veled a játékot.</p>
+<h3>iPhone</h3>
+<ol><li>Nyisd meg a linket Safariban, és várd meg, míg a tábla betölt.</li><li>Koppints a Megosztás gombra (négyzet felfelé mutató nyíllal).</li><li>Válaszd a „Főképernyőhöz adás”, majd a „Hozzáadás” lehetőséget.</li></ol>
+<h3>Android</h3>
+<ol><li>Nyisd meg a linket Chrome-ban.</li><li>Koppints a jobb felső ⋮ menüre, és válaszd az „Alkalmazás telepítése” vagy „Hozzáadás a kezdőképernyőhöz” pontot. Néha a Chrome magától is felajánlja.</li></ol>
+<h3>Számítógép</h3>
+<p>Nyisd meg a linket Chrome-ban vagy Edge-ben. A címsor jobb szélén lévő telepítés ikonnal külön ablakos app is lehet belőle.</p>
+<p>Ezután a játék saját ikonról, teljes képernyőn indul. Az első indításhoz internet kell, utána internet nélkül is működik – kivéve az online játékot.</p>
+<h3>Frissítés</h3>
+<p>Az app magától frissül: amikor internettel elindítod, letölti az új verziót. Ha még a régit látod, zárd be teljesen, és indítsd újra.</p>
+<p>Az ikont ne töröld és ne add hozzá újra: azzal elveszne a mentett játszma, a pontszám, a jelvények és a saját hibáid gyűjteménye.</p>
+<h2 id="help-3"><span>Kezelés alapjai</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>Lépni két koppintással lehet: előbb a bábura, aztán a célmezőre. A kiválasztott bábu felemelkedik, a szabályos célmezőket pedig a tábla jelöli.</p>
+<ul><li><b>Tábla forgatása:</b> húzd az ujjad vagy az egeret a táblán.</li><li><b>Nagyítás:</b> görgővel vagy két ujjal.</li><li><b>Alapnézet:</b> a „⟳ Nézet” gomb visszaállítja a kamerát.</li><li><b>Gyalogátváltozás:</b> amikor a gyalog beér, egy ablakban választhatsz: vezér, bástya, futó vagy huszár.</li><li><b>Visszalépés:</b> a „Vissza” gomb visszavonja az utolsó lépést (gép ellen a gép válaszát is). Online játszmában nem használható.</li></ul>
+<h3>A képernyő részei</h3>
+<ul><li><b>Állapotjelző</b> (felül középen vagy a panel tetején): ki lép, van-e sakk, mi lett az eredmény.</li><li><b>Panel</b> (a „Menü” gombbal jön elő; laptopon az M billentyűvel is, és a gombostű ikonnal rögzíthető, hogy mindig látsszon): játékmód, sakkóra, téma, beállítások, oktató eszközök, lépéslista, leütött bábuk, gombok.</li><li><b>Alsó gombsor:</b> Vissza, Tipp, Nézet, Téma (a témák között léptet), Tanulás, Menü.</li><li><b>Edzői jelzések a tábla bal felső sarkában:</b> megnyitás neve, mattút, fenyegetés, taktikai minta, kérdések.</li><li><b>Jobb felső sarok:</b> a ? gomb (ez a kézikönyv), a sakkóra és a gépi ellenfél megjegyzései.</li></ul>
+<p>A panel gombjai: Új játék, Tanulás, Elemzés, Megosztás, Betöltés, Nézet, Kézikönyv.</p>
+<h2 id="help-4"><span>Játékmódok</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>Három játékmód van: két játékos egy eszközön, gép ellen és online. A panel „Játékmód” részén válthatsz közöttük. Módváltáskor új játszma indul.</p>
+<h3>Két játékos</h3>
+<p>Felváltva léptek ugyanazon az eszközön. Ha a „Tábla forgatása” be van kapcsolva, a tábla mindig a soron következő játékos felé fordul.</p>
+<h3>Gép ellen</h3>
+<p>Választhatsz színt (világos, sötét, véletlen), nehézségi szintet és stílust.</p>
+<div class="tblw"><table><thead><tr><th>Szint</th><th>Név</th><th>Jellemző</th></tr></thead><tbody><tr><td>1</td><td>Újonc</td><td>Sokat hibázik, gyakran véletlenszerűen lép.</td></tr><tr><td>2</td><td>Kezdő</td><td>Egy lépésre néz előre.</td></tr><tr><td>3</td><td>Tanonc</td><td>Két lépésre számol, néha szándékosan hibázik.</td></tr><tr><td>4</td><td>Amatőr</td><td>Ismeri az alapvető taktikákat.</td></tr><tr><td>5</td><td>Klubjátékos</td><td>Három lépésre számol.</td></tr><tr><td>6</td><td>Haladó</td><td>Biztos taktikus, alig hibázik.</td></tr><tr><td>7</td><td>Erős</td><td>Jó pozíciós érzék.</td></tr><tr><td>8</td><td>Versenyző</td><td>Négy lépés mélyen számol.</td></tr><tr><td>9</td><td>Mester</td><td>Nyitókönyvből játszik, öt lépés mélyen számol.</td></tr><tr><td>10</td><td>Nagymester</td><td>A legmagasabb szint: nyitókönyv és a legmélyebb számítás.</td></tr></tbody></table></div>
+<p>A gépi ellenfél stílusa megváltoztatja, hogyan játszik, és játék közben meg is szólal:</p>
+<ul><li><b>Kiegyensúlyozott (gép):</b> nincs különös stílusa.</li><li><b>Merész Lovag:</b> mindig támad, a királyod felé tör, néha túl vakmerő.</li><li><b>Óvatos Szerzetes:</b> biztonságra játszik, erős védelmet épít.</li><li><b>Ravasz Udvari Bolond:</b> kerüli a cseréket, bonyolít, csapdát állít.</li></ul>
+<p>Az <b>Automatikus nehézség</b> kapcsolóval a gép győzelmed után egy szinttel erősebb, vereség után egy szinttel gyengébb lesz.</p>
+<h3>Online – élő játék</h3>
+<p>Mindketten egyszerre vagytok bent, a lépések azonnal átmennek. A két készülék közvetlenül kapcsolódik, ehhez internet kell mindkét oldalon.</p>
+<ol><li>Mindketten: Játékmód → Online, és add meg a neved.</li><li>Az egyik fél: „Élő játék indítása” → a megjelenő kódot vagy linket elküldi a másiknak.</li><li>A másik fél megnyitja a linket, vagy „Csatlakozás kóddal” → beírja a kódot.</li><li>A játszma automatikusan indul. A színt a létrehozó „Te játszol” beállítása dönti el, az órát az ő sakkóra-beállítása.</li></ol>
+<p>Játék közben küldhettek emoji-reakciót (jobb alsó sarok), ajánlhattok döntetlent, feladhatjátok a játszmát, a végén pedig kérhettek visszavágót (színt cserélve). Ha a kapcsolat megszakad, az app magától próbál újracsatlakozni, közben az óra áll.</p>
+<h3>Online – levelezős játék</h3>
+<p>Minden lépés után egy linket küldesz (WhatsApp, iMessage, e-mail). Szerver nem kell hozzá, így mindig működik, és a játszma akár napokig is tarthat.</p>
+<ol><li>„Levelezős játék” → válaszd ki a színedet.</li><li>Lépj, majd a „Küldés…” gombbal küldd el a linket. (Sötéttel azonnal meghívót küldesz.)</li><li>A barátod megnyitja, lép, és visszaküldi. Az app megjegyzi, melyik színnel játszol.</li></ol>
+<p>A táblán egy jelzés figyelmeztet, ha még nem küldted el a lépésed. Ha egy régebbi linket nyitsz meg újra, az app a legfrissebb állást tartja meg.</p>
+<h3>Sakkóra</h3>
+<p>A „Sakkóra” részen választható: nincs, 3+2, 5 perc, 10 perc, 15+10. A „+” utáni szám a lépésenként kapott másodpercek száma. Az óra az első lépés után indul, animáció alatt áll, 20 másodperc alatt pirosra vált. Akinek lejár az ideje, elveszíti a játszmát.</p>
+<h2 id="help-5"><span>Mentés, megosztás, visszajátszás</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A játszmát az app minden lépés után automatikusan menti. Ha bezárod, újraindításkor ott folytatod, ahol abbahagytad. Ugyanígy mentődnek a beállítások, a haladás, a pontszám és a jelvények is – ezek a készüléken tárolódnak, nem a felhőben, ezért eszközök között nem viszik át magukat.</p>
+<h3>Megosztás</h3>
+<p>A „Megosztás” gomb (a panelen vagy a játszma végén) linket készít az aktuális játszmáról, és a telefon megosztási menüjével elküldheted, vagy kimásolhatod. Néha link helyett egy hosszabb játszmakódot kapsz – ezt is ugyanígy elküldheted.</p>
+<h3>Betöltés</h3>
+<p>Ha kaptál egy linket, egyszerűen nyisd meg. Ha kódot kaptál, a „Betöltés” gombbal illeszd be. Ugyanez a mező fogadja a levelezős játszmák linkjeit és az élő játék meghívóit is.</p>
+<h3>Visszajátszás</h3>
+<p>A megosztott játszma visszajátszó módban nyílik meg: a gombokkal lépésenként előre-hátra mehetsz, ugorhatsz az elejére vagy a végére, vagy automatikusan lejátszhatod. A „Folytatom innen” gombbal a kiválasztott állásból két játékos módban folytathatjátok. Kilépéskor a saját félbehagyott játszmád visszatér.</p>
+<h2 id="help-6"><span>Oktató eszközök játék közben</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>Az oktató eszközök a „Tanuló mód” kapcsolóval együtt működnek, és a panel „Oktató eszközök” részén egyenként ki-be kapcsolhatók. Online játszmában a Tipp és a Visszalépés nem elérhető.</p>
+<div class="tblw"><table><thead><tr><th>Eszköz</th><th>Mit csinál</th></tr></thead><tbody><tr><td>Lépésértékelés</td><td>Minden lépésed után ötfokozatú arcskálán minősít (dupla mosolytól dupla szomorú arcig: kiváló, jó, pontatlanság, hiba, nagy hiba). Ha volt jobb lépés, mondatban megmondja, pl. „Jobb lett volna a futóval a h5-ös mezőre lépni”. A „Mutasd” gomb nyíllal megmutatja a táblán.</td></tr><tr><td>Tipp</td><td>A „Tipp” gomb lila jelöléssel és mondatban javasol egy jó lépést.</td></tr><tr><td>Előnymérő</td><td>A tábla bal szélén lévő sáv mutatja, ki áll jobban, és mennyivel.</td></tr><tr><td>Mattút-mutató</td><td>Ha mattot adhatsz, szól, majd fokozatosan súg: előbb a bábut, aztán az első lépést, végül a teljes utat nyilakkal.</td></tr><tr><td>Veszélyjelző</td><td>Mutatja, mit fenyeget az ellenfél, és bekarikázza a védtelen bábuidat.</td></tr><tr><td>Figyelmeztetés</td><td>Nagy hiba előtt rákérdez, biztosan ezt akarod-e lépni, és elmondja, miért veszélyes.</td></tr><tr><td>Mezőuralom</td><td>Színekkel mutatja, melyik mezőt ki támadja.</td></tr><tr><td>Taktikai minták</td><td>Szól és nyíllal mutatja, ha villa, kötés, nyárs, felfedett támadás vagy kettős sakk történik – akár te csinálod, akár az ellenfél.</td></tr><tr><td>Gondolkodj előtte</td><td>Az ellenfél lépése után választós kérdést tesz fel: mit akar az ellenfél? A válasz után megmutatja a valódi fenyegetést. A kérdés kihagyható.</td></tr><tr><td>Megnyitás neve</td><td>A tábla sarkában kiírja, milyen megnyitás fut (pl. Szicíliai védelem).</td></tr><tr><td>Felolvasás</td><td>A magyarázatokat hangosan is felolvassa.</td></tr><tr><td>Hangvezérlés</td><td>A mikrofon gombbal kimondhatod a lépést.</td></tr></tbody></table></div>
+<h3>Felolvasás és hang</h3>
+<p>A felolvasás a készüléken telepített magyar gépi hangot használja. Az app magától a legjobb elérhetőt választja; a hangválasztóban a csillaggal jelöltek a jobb minőségűek, a „Próba” gombbal meghallgathatók. Természetesebb hangot így tölthetsz le:</p>
+<ul><li><b>iPhone:</b> Beállítások → Kisegítő lehetőségek → Felolvasott tartalom → Hangok → Magyar → „Továbbfejlesztett” vagy „Prémium” hang.</li><li><b>Android:</b> Beállítások → Kisegítő lehetőségek → Szövegfelolvasás → Google-motor → magyar hangadatok.</li><li><b>Windows:</b> a Microsoft Edge böngészőben elérhető természetes (Natural) magyar hangok a legélethűbbek.</li></ul>
+<h3>Hangvezérlés</h3>
+<p>Kapcsold be, koppints a bal alsó mikrofon gombra, és mondd ki a lépést. Példák:</p>
+<ul><li>„e4” vagy „gyalog é négy” – gyaloglépés</li><li>„huszár f3” vagy „ló cé 3” – tisztlépés</li><li>„e2 e4” – kiinduló és célmező</li><li>„rövid sánc”, „hosszú sánc”</li><li>„tipp”, „vissza”</li></ul>
+<p>Ha több lépés is szóba jöhet, az app kéri, hogy mondd a kiinduló mezőt is. A hangvezérlés Chrome-ban, Edge-ben és Safariban működik; az első használatkor engedélyezni kell a mikrofont.</p>
+<h2 id="help-7"><span>Tanulóközpont és elemzés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A „Tanulás” gomb nyitja meg a tanulóközpontot, nyolc füllel. Itt mindent a saját tempódban gyakorolhatsz; a félbehagyott játszmád közben megmarad, és kilépéskor visszatér.</p>
+<div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány és 21 megszerezhető jelvény.</td></tr></tbody></table></div>
+<p>A pontszám a gép elleni játszmáidból számolódik, 800-ról indul: erősebb gépet legyőzni többet ér, gyengébbtől kikapni többet von le. A napi sorozat minden olyan nappal nő, amikor játszol vagy gyakorolsz.</p>
+<h3>Játszma elemzése</h3>
+<p>Az „Elemzés” gomb (a panelen vagy a játszma végén) végignézi a teljes játszmát. Grafikonon mutatja, ki hogyan állt, megszámolja mindkét fél kiváló lépéseit és hibáit, és kiemeli a legfontosabb pillanatokat. A „Megnézem” gombbal a táblán is látod: piros nyíl a megtett lépés, zöld nyíl a jobb lehetőség.</p>
+<h2 id="help-8"><span>Látvány és beállítások</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A játék kinézete a panel „Téma” részén váltható, az alsó gombsor „Téma” gombja is végiglépteti őket. A váltás nem szakítja meg a játszmát.</p>
+<div class="tblw"><table><thead><tr><th>Téma</th><th>Kinézet</th></tr></thead><tbody><tr><td>Klasszikus</td><td>Fekete-fehér porcelán bábuk, elegáns tábla.</td></tr><tr><td>Középkori</td><td>Kő és fa, saját formájú lovagi bábuk fegyverekkel, fáklyafény.</td></tr><tr><td>Kristály</td><td>Matt, jégkék kristály és sötét króm bábuk, üvegtábla.</td></tr><tr><td>Neon</td><td>Zöldesfehéren és rózsaszínben izzó bábuk, világító rács.</td></tr><tr><td>Japán kert</td><td>Világos fa és fekete lakk bábuk, papírlámpások, hulló cseresznyevirág.</td></tr><tr><td>Egyiptom</td><td>Arany és lazúrkő bábuk, homokkő tábla, obeliszkek.</td></tr></tbody></table></div>
+<p>Az <b>Egyszerű 2D</b> nézet felülről mutatja a táblát, lapos, jól olvasható korongokkal és animációk nélkül. Ez a legtakarékosabb, és annak is jó, aki a hagyományos sakktábla-nézetet szereti. A „3D nézet” gombbal vagy egy téma kiválasztásával lépsz vissza.</p>
+<h3>Beállítások</h3>
+<ul><li><b>Tanuló mód:</b> lépések, leütések és sakk jelzése; az oktató eszközök is ezzel együtt működnek.</li><li><b>Tábla forgatása:</b> két játékos módban mindig a soron lévő játékos felől nézünk.</li><li><b>Animációk:</b> a bábuk mozgása és a leütések.</li><li><b>Harcjelenet:</b> leütéskor a bábuk megküzdenek egymással – Filmes (közelítő kamerával), Rövid (gyorsabb) vagy Ki (egyszerű leütés).</li><li><b>Hangok:</b> lépések, csaták, sakk és matt hangjai.</li><li><b>Élő bábuk:</b> a bábuk finoman mozognak, néha egy-egy bábu „megmozdul” – a ló felágaskodik, a futó meghajol.</li><li><b>Jelek felülnézetben:</b> ha felülről nézed a táblát, a bábuk fölött megjelenik a jelük. Alapból ki van kapcsolva.</li><li><b>Grafika:</b> Teljes (árnyékokkal, minden effekttel) vagy Könnyített (gyengébb készülékekre).</li></ul>
+<h2 id="help-9"><span>Gyakori kérdések</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p><b>Nem töltődik be a játék, vagy elakad a betöltésnél.</b> Az első indításhoz internet kell. Várj néhány másodpercet; ha hibaüzenet jelenik meg, az „Újra” gombbal próbáld újra.</p>
+<p><b>Akadozik vagy lassú.</b> Kapcsold a Grafikát „Könnyített”-re, vagy válts az „Egyszerű 2D” nézetre. Az Élő bábuk kikapcsolása az akkumulátort is kíméli.</p>
+<p><b>Nem frissült az app.</b> Indítsd el internettel, zárd be teljesen (alulról felhúzva a megnyitott appok közül is), majd indítsd újra. Az ikont ne töröld.</p>
+<p><b>Nincs hang.</b> Nézd meg, hogy a „Hangok” be van-e kapcsolva, és iPhone-on a némító kapcsoló nincs-e lent.</p>
+<p><b>Robotszerű a felolvasás.</b> A felolvasás a készülék gépi hangját használja. Tölts le jobb minőségű magyar hangot (lásd: Felolvasás és hang), és válaszd ki a hangválasztóban.</p>
+<p><b>Nem sikerül csatlakozni az online játékhoz.</b> Mindkét eszközön legyen internet, és ellenőrizd a kódot. Néhány mobilhálózat nem engedi a közvetlen kapcsolatot – wifin általában működik. Ha így sem megy, játsszatok levelezős játszmát: az mindig működik.</p>
+<p><b>Megszakadt az online játszma.</b> Az app magától próbál újracsatlakozni, közben az óra áll. Ha bezártad az appot, újraindításkor is megpróbálja folytatni.</p>
+<p><b>A hangvezérlés nem ért meg.</b> Engedélyezd a mikrofont, és beszélj tagoltan, pl. „huszár ef három”. Ha több bábu is léphet oda, mondd a kiinduló mezőt is.</p>
+<p><b>Másik telefonon nem látom az eredményeimet.</b> A haladás és a mentett játszma készülékenként tárolódik, eszközök között nem szinkronizálódik. Egy játszmát a „Megosztás” gombbal átvihetsz.</p>
+<p><b>Hogyan kezdek új játszmát?</b> Az „Új játék” gombbal a panelen (mobilon: Menü). Online élő játékban ez visszavágót kér az ellenfeletől.</p>
+<h2 id="help-10"><span>Névjegy és licencek</span><button class="top" data-top="1">↑ Tartalom</button></h2>
+<p>A bábuk, táblák, díszletek, mintázatok és hangok saját fejlesztésűek: a játék kódból rajzolja és szintetizálja őket. A klasszikus bábuk a közkincsnek számító Staunton-forma szerint készültek.</p>
+<p>Felhasznált nyílt forráskódú szoftverek: three.js (MIT licenc) és PeerJS (MIT licenc). Betűtípusok: Inter és Cinzel (SIL Open Font License). A részletek az appban, a Menü alján, a „Névjegy és licencek” résznél olvashatók.</p>
+<p>A játék nem gyűjt adatot: a beállítások, a játszmák és a haladás csak a te készülékeden tárolódnak. Online játéknál a lépések és a megadott név közvetlenül a másik játékoshoz mennek.</p></div>
 </div></div>
 
 <div class="modal" id="shareModal"><div class="dialog big">
@@ -1475,7 +1619,7 @@ const sideName = c => (c === WHITE ? 'Világos' : 'Sötét');
 /* ---------- Beállítások (csak kényelmi tárolás) ---------- */
 const SETTINGS_KEY = 'sakk3d.settings.v1';
 const settings = { theme: 'classic', learn: true, autoRotate: true, anim: true, gfx: 'full', mode: 'two', level: 3, side: 'w', sound: true, fight: 'film', labels: false, rate: true, evalBar: true, matePath: true, threat: true, warn: true, control: false, speak: false, voice: '',
-  view: '3d', clock: '0', persona: 'balanced', autoLevel: false, name: '', tactics: true, think: false, idle: true, voiceCtl: false };
+  view: '3d', pinPanel: false, clock: '0', persona: 'balanced', autoLevel: false, name: '', tactics: true, think: false, idle: true, voiceCtl: false };
 try { Object.assign(settings, JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}')); } catch (e) { /* nincs tárolás */ }
 if (settings.gfx !== 'lite') settings.gfx = 'full';
 function saveSettings() { try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) { /* nincs tárolás */ } }
@@ -2243,7 +2387,7 @@ function addMarker(geo, mat, sq, y, rotY) {
 const cam = { theta: 0, phi: 0.74, r: 13, base: 13, zoom: 1, target: new THREE.Vector3(0, -0.15, 0), shake: 0, anim: null };
 let viewW = 1, viewH = 1;
 // A kamera távolságát úgy állítjuk, hogy a teljes tábla (és a hátsó sor bábui) beférjenek
-function fitDistance(phi, topLimit) {
+function fitDistance(phi, topLimit, botLimit) {
   const h = FRAME / 2, pts = [];
   [-1, 1].forEach(sx => [-1, 1].forEach(sz => pts.push(new THREE.Vector3(sx * h, 0, sz * h))));
   pts.push(new THREE.Vector3(-3.5, 1.3, -3.5), new THREE.Vector3(3.5, 1.3, -3.5));
@@ -2253,7 +2397,7 @@ function fitDistance(phi, topLimit) {
     const mid = (lo + hi) / 2, sp = Math.sin(phi);
     camera.position.set(cam.target.x, cam.target.y + mid * Math.cos(phi), cam.target.z + mid * sp);
     camera.lookAt(cam.target); camera.updateMatrixWorld();
-    const ok = pts.every(p => { v.copy(p).project(camera); return Math.abs(v.x) < 0.94 && v.y < topLimit && v.y > -0.93; });
+    const ok = pts.every(p => { v.copy(p).project(camera); return Math.abs(v.x) < 0.94 && v.y < topLimit && v.y > (botLimit || -0.93); });
     if (ok) hi = mid; else lo = mid;
   }
   return hi;
@@ -2264,7 +2408,9 @@ function computeDefault() {
   camera.fov = portrait ? 46 : 40;
   camera.aspect = a; camera.updateProjectionMatrix();
   const mobileUI = getComputedStyle(document.getElementById('pill')).display !== 'none';
-  cam.base = fitDistance(phi, mobileUI ? 0.8 : 0.9);
+  // laptopon / tableten a lebegő alsó gombsor alá ne lógjon a tábla
+  const bar = document.getElementById('bottombar'), floating = getComputedStyle(bar).display !== 'none' && getComputedStyle(document.getElementById('stage')).bottom === '0px';
+  cam.base = fitDistance(phi, mobileUI ? 0.84 : 0.9, floating ? -1 + 2 * (bar.offsetHeight + 24) / viewH : -0.93);
   return phi;
 }
 function resetView(animated) {
@@ -4358,6 +4504,7 @@ canvas.addEventListener('contextmenu', e => e.preventDefault());
 window.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); }
   if (e.key === 'Escape') { select(-1); closeModals(); panel.classList.remove('open'); }
+  if ((e.key === 'm' || e.key === 'M') && !e.ctrlKey && !e.metaKey && !e.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) panel.classList.toggle('open');
 });
 
 /* ---------- Gombok ---------- */
@@ -4413,6 +4560,12 @@ $('voiceHelp').onclick = () => { const t = $('voiceTipText'); t.hidden = !t.hidd
   if (k === 'Speak') { $('voiceRow').hidden = !e.target.checked; if (e.target.checked) { Voice.load(); say('Felolvasás bekapcsolva. Így hangzik egy javaslat: lépj a futóval a h5-ös mezőre.'); } }
 }));
 $('mbMenu').onclick = () => panel.classList.toggle('open');
+function applyPin() { document.body.classList.toggle('pin-panel', !!settings.pinPanel); }
+applyPin();
+$('btnPin').onclick = () => {
+  settings.pinPanel = !settings.pinPanel; saveSettings(); applyPin(); panel.classList.remove('open');
+  toast(settings.pinPanel ? '📌 A menü rögzítve – mindig látszik.' : 'A menü elrejtve – a ☰ Menü gombbal (vagy az M billentyűvel) hozhatod elő.', 2600);
+};
 $('btnClose').onclick = () => panel.classList.remove('open');
 let pendingConfirm = null, pendingNo = null;
 function confirmThen(title, text, fn, yes, no, noFn) {
@@ -4769,6 +4922,14 @@ $('tTactics').addEventListener('change', e => { settings.tactics = e.target.chec
 $('tThink').addEventListener('change', e => { settings.think = e.target.checked; saveSettings(); coachUpdate(); });
 $('tVoiceCtl').addEventListener('change', e => { settings.voiceCtl = e.target.checked; saveSettings(); VoiceCtl.refresh(); if (e.target.checked) toast('Koppints a 🎤 gombra, és mondd ki a lépést – pl. „huszár f3” vagy „e2 e4”.', 3600); });
 $('nameInput').addEventListener('change', e => { settings.name = e.target.value.trim().slice(0, 18); saveSettings(); Clock.shown = ''; Net.sendName(); });
+function openHelp() {
+  closeModals(); panel.classList.remove('open');
+  $('helpModal').classList.add('show');
+  const d = $('helpModal').querySelector('.dialog'); d.scrollTop = 0;
+}
+$('helpBtn').onclick = openHelp; $('btnHelp').onclick = openHelp; $('helpClose').onclick = closeModals;
+document.querySelectorAll('#helpBody [data-top]').forEach(b => { b.onclick = () => { $('helpModal').querySelector('.dialog').scrollTo({ top: 0, behavior: 'smooth' }); }; });
+document.querySelectorAll('#helpToc [data-go]').forEach(b => { b.onclick = () => { const el = document.getElementById(b.dataset.go); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }; });
 $('btnShare').onclick = openShare; $('overShare').onclick = openShare; $('btnImport').onclick = openImport;
 $('shareClose').onclick = closeModals;
 window.addEventListener('hashchange', handleIncomingLink);
