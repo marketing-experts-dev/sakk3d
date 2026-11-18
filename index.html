@@ -130,6 +130,13 @@ body.learn-off #coachOpts,body.learn-off #coachHead{display:none}
 .chip button{border:0;background:var(--ok);color:#06240f;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12.5px;white-space:nowrap}
 #rateBubble{background:var(--panel);border:1px solid var(--panel-border);border-radius:14px;padding:8px 14px;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.35);animation:fade .25s}
 #rateBubble .f{font-size:24px;margin-right:8px;vertical-align:middle;letter-spacing:-3px}
+.chip .chipX,#rateBubble .chipX,#oppSay .chipX{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:var(--muted);
+  font-size:13px;font-weight:600;line-height:26px;text-align:center;cursor:pointer;margin-left:2px}
+.chip .chipX:hover,#rateBubble .chipX:hover,#oppSay .chipX:hover{background:rgba(255,255,255,.2);color:var(--text)}
+#rateBubble .chipX{display:inline-block;margin-left:8px;vertical-align:middle}
+#thinkChip{position:relative;padding-right:40px}
+#oppSay{padding-right:40px}
+#thinkChip .chipX,#oppSay .chipX{position:absolute;top:6px;right:6px}
 #rateBubble.r3,#rateBubble.r4{border-color:rgba(229,72,59,.7)}
 #rateBubble.r0{border-color:rgba(53,196,106,.7)}
 #rateBubble b{color:var(--accent)}
@@ -261,6 +268,7 @@ body.theme-medieval #toast{background:rgba(30,20,10,.92);border-color:rgba(217,1
   body:not(.pin-panel) #bottombar button:hover{background:rgba(255,255,255,.08);color:var(--text)}
   body:not(.pin-panel) #bottombar button:disabled{opacity:.35}
   body:not(.pin-panel) #toast{bottom:96px}
+  body:not(.pin-panel) #coach{max-width:min(calc(50% - 110px),400px)}
   body:not(.pin-panel) #micBtn{bottom:22px}
   body:not(.pin-panel) #emojiBar{bottom:22px}
 }
@@ -332,10 +340,19 @@ body:not(.clock-on) #oppSay{top:60px}
 .chip.think .opts button.no{background:rgba(229,72,59,.3);border-color:var(--bad)}
 .chip.think .skip{align-self:flex-end;background:transparent;color:var(--muted);font-weight:500;padding:2px 6px}
 .chip.net{border-color:rgba(90,176,255,.7)}
-#emojiBar{position:absolute;right:12px;bottom:12px;display:flex;gap:4px;z-index:6;background:var(--panel);border:1px solid var(--panel-border);border-radius:999px;padding:4px}
+#emojiBar{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:6}
+#emojiOpts{display:grid;grid-template-columns:repeat(5,42px);gap:4px;background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.45);animation:fade .18s}
+#emojiOpts[hidden]{display:none}
+#emojiToggle{width:48px;height:48px;border-radius:50%;border:1px solid var(--panel-border);background:var(--panel);font-size:24px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+#emojiToggle.on{border-color:var(--accent)}
+#emojiOpts button.txt{font-size:11.5px;font-weight:800;color:#ffcf6a;border-radius:10px;width:auto;grid-column:span 1;letter-spacing:.02em}
+#emojiOpts button.mate{color:#ff7a6e}
+#emojiPop.txt{font-size:56px;font-weight:900;letter-spacing:.04em;color:#ffcf6a;background:rgba(20,16,10,.82);border:2px solid #ffcf6a;border-radius:22px;padding:10px 28px;text-shadow:0 4px 18px rgba(0,0,0,.6);white-space:nowrap}
+#emojiPop.txt.mate{color:#ff7a6e;border-color:#ff7a6e;background:rgba(40,10,8,.85)}
+#emojiPop .who{display:block;font-size:15px;font-weight:600;color:var(--text);text-align:center;margin-top:4px;letter-spacing:0;text-shadow:0 2px 8px rgba(0,0,0,.8)}
 #emojiBar[hidden],#emojiPop[hidden],#micBtn[hidden]{display:none}
-#emojiBar button{border:0;background:transparent;font-size:20px;width:36px;height:36px;border-radius:50%;cursor:pointer}
-#emojiBar button:active{background:rgba(255,255,255,.12)}
+#emojiOpts button{border:0;background:transparent;font-size:22px;width:42px;height:42px;border-radius:50%;cursor:pointer}
+#emojiOpts button:hover,#emojiOpts button:active{background:rgba(255,255,255,.12)}
 #emojiPop{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-size:84px;z-index:7;pointer-events:none;animation:pop 1.6s ease forwards}
 @keyframes pop{0%{opacity:0;transform:translate(-50%,-30%) scale(.4)}15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}70%{opacity:1;transform:translate(-50%,-60%) scale(1)}100%{opacity:0;transform:translate(-50%,-90%) scale(.9)}}
 #micBtn{position:absolute;left:16px;bottom:16px;width:58px;height:58px;border-radius:50%;border:1px solid var(--panel-border);background:var(--panel);font-size:26px;z-index:6;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4)}
@@ -396,7 +413,13 @@ body.act #emojiBar{display:none}
   <button id="helpBtn" aria-label="Kézikönyv" title="Kézikönyv">?</button>
   <div id="clocks" hidden><div class="clk" id="clkTop"><span class="cn"></span><b>0:00</b></div><div class="clk" id="clkBot"><span class="cn"></span><b>0:00</b></div></div>
   <div id="oppSay" hidden></div>
-  <div id="emojiBar" hidden><button data-e="👍">👍</button><button data-e="😮">😮</button><button data-e="😅">😅</button><button data-e="🔥">🔥</button><button data-e="🤝">🤝</button></div>
+  <div id="emojiBar" hidden>
+    <div id="emojiOpts" hidden>
+      <button data-e="like" title="Tetszik">👍</button><button data-e="wow" title="Hűha">😮</button><button data-e="oops" title="Hoppá">😅</button><button data-e="angry" title="Mérges">😠</button><button data-e="fire" title="Tűz">🔥</button>
+      <button data-e="attack" title="Támadás!">⚔️</button><button data-e="defend" title="Védekezés">🛡️</button><button data-e="gg" title="Szép játszma">🤝</button><button data-e="check" class="txt" title="Sakk!">Sakk!</button><button data-e="mate" class="txt mate" title="Matt!">Matt!</button>
+    </div>
+    <button id="emojiToggle" aria-label="Reakció küldése" title="Reakció küldése">😊</button>
+  </div>
   <div id="emojiPop" hidden></div>
   <button id="micBtn" hidden aria-label="Hangvezérlés">🎤</button>
 </div>
@@ -620,6 +643,7 @@ body.act #emojiBar{display:none}
 <ul><li><b>Tábla forgatása:</b> húzd az ujjad vagy az egeret a táblán.</li><li><b>Nagyítás:</b> görgővel vagy két ujjal.</li><li><b>Alapnézet:</b> a „⟳ Nézet” gomb visszaállítja a kamerát.</li><li><b>Gyalogátváltozás:</b> amikor a gyalog beér, egy ablakban választhatsz: vezér, bástya, futó vagy huszár.</li><li><b>Visszalépés:</b> a „Vissza” gomb visszavonja az utolsó lépést (gép ellen a gép válaszát is). Online játszmában nem használható.</li></ul>
 <h3>A képernyő részei</h3>
 <ul><li><b>Állapotjelző</b> (felül középen vagy a panel tetején): ki lép, van-e sakk, mi lett az eredmény.</li><li><b>Panel</b> (a „Menü” gombbal jön elő; laptopon az M billentyűvel is, és a gombostű ikonnal rögzíthető, hogy mindig látsszon): játékmód, sakkóra, téma, beállítások, oktató eszközök, lépéslista, leütött bábuk, gombok.</li><li><b>Alsó gombsor:</b> Vissza, Tipp, Nézet, Téma (a témák között léptet), Tanulás, Menü.</li><li><b>Edzői jelzések a tábla bal felső sarkában:</b> megnyitás neve, mattút, fenyegetés, taktikai minta, kérdések.</li><li><b>Jobb felső sarok:</b> a ? gomb (ez a kézikönyv), a sakkóra és a gépi ellenfél megjegyzései.</li></ul>
+<p>Minden tanács és üzenet sarkában van egy ✕, amivel bezárhatod. A bezárt jelzés addig nem jön vissza, amíg valaki nem lép.</p>
 <p>A panel gombjai: Új játék, Tanulás, Elemzés, Megosztás, Betöltés, Nézet, Kézikönyv.</p>
 <h2 id="help-4"><span>Játékmódok</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>Három játékmód van: két játékos egy eszközön, gép ellen és online. A panel „Játékmód” részén válthatsz közöttük. Módváltáskor új játszma indul.</p>
@@ -634,7 +658,7 @@ body.act #emojiBar{display:none}
 <h3>Online – élő játék</h3>
 <p>Mindketten egyszerre vagytok bent, a lépések azonnal átmennek. A két készülék közvetlenül kapcsolódik, ehhez internet kell mindkét oldalon.</p>
 <ol><li>Mindketten: Játékmód → Online, és add meg a neved.</li><li>Az egyik fél: „Élő játék indítása” → a megjelenő kódot vagy linket elküldi a másiknak.</li><li>A másik fél megnyitja a linket, vagy „Csatlakozás kóddal” → beírja a kódot.</li><li>A játszma automatikusan indul. A színt a létrehozó „Te játszol” beállítása dönti el, az órát az ő sakkóra-beállítása.</li></ol>
-<p>Játék közben küldhettek emoji-reakciót (jobb alsó sarok), ajánlhattok döntetlent, feladhatjátok a játszmát, a végén pedig kérhettek visszavágót (színt cserélve). Ha a kapcsolat megszakad, az app magától próbál újracsatlakozni, közben az óra áll.</p>
+<p>Játék közben a jobb alsó mosolygós gombbal reakciót küldhettek egymásnak: tetszik, hűha, hoppá, mérges, tűz, támadás, védekezés, szép játszma, valamint „Sakk!” és „Matt!” jelzés. A reakció a másik fél képernyőjén nagyban, a küldő nevével jelenik meg. Ajánlhattok döntetlent is, feladhatjátok a játszmát, a végén pedig kérhettek visszavágót (színt cserélve). Ha a kapcsolat megszakad, az app magától próbál újracsatlakozni, közben az óra áll.</p>
 <h3>Online – levelezős játék</h3>
 <p>Minden lépés után egy linket küldesz (WhatsApp, iMessage, e-mail). Szerver nem kell hozzá, így mindig működik, és a játszma akár napokig is tarthat.</p>
 <ol><li>„Levelezős játék” → válaszd ki a színedet.</li><li>Lépj, majd a „Küldés…” gombbal küldd el a linket. (Sötéttel azonnal meghívót küldesz.)</li><li>A barátod megnyitja, lép, és visszaküldi. Az app megjegyzi, melyik színnel játszol.</li></ol>
@@ -661,6 +685,7 @@ body.act #emojiBar{display:none}
 <p>Ha több lépés is szóba jöhet, az app kéri, hogy mondd a kiinduló mezőt is. A hangvezérlés Chrome-ban, Edge-ben és Safariban működik; az első használatkor engedélyezni kell a mikrofont.</p>
 <h2 id="help-7"><span>Tanulóközpont és elemzés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A „Tanulás” gomb nyitja meg a tanulóközpontot, nyolc füllel. Itt mindent a saját tempódban gyakorolhatsz; a félbehagyott játszmád közben megmarad, és kilépéskor visszatér.</p>
+<p>Ha játszma közben indítasz gyakorlást, az app előbb rákérdez, és a gyakorlás végén a „Vissza a játékhoz” gombbal pontosan oda térsz vissza, ahol abbahagytad. Ha valami a félbehagyott játszmád elvesztésével járna – új játék, módváltás, sakkóra-váltás, online játék indítása vagy egy kapott játszma folytatása –, azt is csak megerősítés után teszi meg.</p>
 <div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány és 21 megszerezhető jelvény.</td></tr></tbody></table></div>
 <p>A pontszám a gép elleni játszmáidból számolódik, 800-ról indul: erősebb gépet legyőzni többet ér, gyengébbtől kikapni többet von le. A napi sorozat minden olyan nappal nő, amikor játszol vagy gyakorolsz.</p>
 <h3>Játszma elemzése</h3>
@@ -668,6 +693,7 @@ body.act #emojiBar{display:none}
 <h2 id="help-8"><span>Látvány és beállítások</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A játék kinézete a panel „Téma” részén váltható, az alsó gombsor „Téma” gombja is végiglépteti őket. A váltás nem szakítja meg a játszmát.</p>
 <div class="tblw"><table><thead><tr><th>Téma</th><th>Kinézet</th></tr></thead><tbody><tr><td>Klasszikus</td><td>Fekete-fehér porcelán bábuk, elegáns tábla.</td></tr><tr><td>Középkori</td><td>Kő és fa, saját formájú lovagi bábuk fegyverekkel, fáklyafény.</td></tr><tr><td>Kristály</td><td>Matt, jégkék kristály és sötét króm bábuk, üvegtábla.</td></tr><tr><td>Neon</td><td>Zöldesfehéren és rózsaszínben izzó bábuk, világító rács.</td></tr><tr><td>Japán kert</td><td>Világos fa és fekete lakk bábuk, papírlámpások, hulló cseresznyevirág.</td></tr><tr><td>Egyiptom</td><td>Arany és lazúrkő bábuk, homokkő tábla, obeliszkek.</td></tr></tbody></table></div>
+<p>Matt esetén a király eldől, tőle hullám indul, és sorban feldönti a vesztes oldal összes bábuját. A győztes képernyőjén a sarkokból konfetti és lufik repülnek ki – ez időre vagy feladással megnyert játszmánál is jár. Ha visszavonod a mattot adó lépést, a bábuk felállnak.</p>
 <p>Az <b>Egyszerű 2D</b> nézet felülről mutatja a táblát, lapos, jól olvasható korongokkal és animációk nélkül. Ez a legtakarékosabb, és annak is jó, aki a hagyományos sakktábla-nézetet szereti. A „3D nézet” gombbal vagy egy téma kiválasztásával lépsz vissza.</p>
 <h3>Beállítások</h3>
 <ul><li><b>Tanuló mód:</b> lépések, leütések és sakk jelzése; az oktató eszközök is ezzel együtt működnek.</li><li><b>Tábla forgatása:</b> két játékos módban mindig a soron lévő játékos felől nézünk.</li><li><b>Animációk:</b> a bábuk mozgása és a leütések.</li><li><b>Harcjelenet:</b> leütéskor a bábuk megküzdenek egymással – Filmes (közelítő kamerával), Rövid (gyorsabb) vagy Ki (egyszerű leütés).</li><li><b>Hangok:</b> lépések, csaták, sakk és matt hangjai.</li><li><b>Élő bábuk:</b> a bábuk finoman mozognak, néha egy-egy bábu „megmozdul” – a ló felágaskodik, a futó meghajol.</li><li><b>Jelek felülnézetben:</b> ha felülről nézed a táblát, a bábuk fölött megjelenik a jelük. Alapból ki van kapcsolva.</li><li><b>Grafika:</b> Teljes (árnyékokkal, minden effekttel) vagy Könnyített (gyengébb készülékekre).</li></ul>
@@ -2409,8 +2435,10 @@ function computeDefault() {
   camera.aspect = a; camera.updateProjectionMatrix();
   const mobileUI = getComputedStyle(document.getElementById('pill')).display !== 'none';
   // laptopon / tableten a lebegő alsó gombsor alá ne lógjon a tábla
-  const bar = document.getElementById('bottombar'), floating = getComputedStyle(bar).display !== 'none' && getComputedStyle(document.getElementById('stage')).bottom === '0px';
-  cam.base = fitDistance(phi, mobileUI ? 0.84 : 0.9, floating ? -1 + 2 * (bar.offsetHeight + 24) / viewH : -0.93);
+  const bar = document.getElementById('bottombar');
+  const floating = !settings.pinPanel && window.matchMedia('(min-width: 821px) and (min-height: 521px)').matches;
+  const bot = floating ? Math.min(-0.55, -1 + 2 * (bar.offsetHeight + 24) / viewH) : -0.93;
+  cam.base = fitDistance(phi, mobileUI ? 0.84 : 0.9, bot);
   return phi;
 }
 function resetView(animated) {
@@ -2986,7 +3014,11 @@ async function mateFinale() {
   Sfx.play('boom', { big: true });
   const humanLost = sideMode() && game.turn === humanColor;
   Sfx.play(humanLost ? 'defeat' : 'fanfare', { delay: 0.5 });
-  await wait(1.1);
+  // a király bukásából hullám indul, és sorban feldönti a vesztes oldal összes bábuját
+  const losers = pieceMeshes.filter(m => m && Math.sign(m.userData.code) === game.turn);
+  celebrateWin(-game.turn);
+  await Promise.all([toppleWave(kp, losers, gold), wait(1.1)]);
+  await wait(0.3);
   if (restore) await restore();
 }
 // Kettéhasítás: az áldozat két fele szétdől, majd darabokra hullik
@@ -3858,6 +3890,7 @@ function drawCoach() {
   } else { tc.hidden = true; tc.innerHTML = ''; }
   if (on) drawTacticOverlay();
   if (!Think.pending() && !Think.answeredHere()) $('thinkChip').hidden = true;
+  applyDismissed();
   dirty = true;
 }
 function updateEvalBar() {
@@ -4010,7 +4043,7 @@ function endActivity(silent) {
 function setAct(title, text, btns) {
   $('actBar').hidden = false; $('actTitle').innerHTML = title; $('actText').innerHTML = text;
   const box = $('actBtns'); box.innerHTML = '';
-  (btns || []).forEach(b => { const el = document.createElement('button'); el.textContent = b[0]; if (b[2]) el.className = 'p'; el.onclick = b[1]; box.appendChild(el); });
+  (btns || []).forEach(b => { const el = document.createElement('button'); el.textContent = b[0] === 'Kilépés' && stash && stash.moves.length ? '↩ Vissza a játékhoz' : b[0]; if (b[2]) el.className = 'p'; el.onclick = b[1]; box.appendChild(el); });
 }
 let progress = { lessons: {}, puzzles: {} };
 try { Object.assign(progress, JSON.parse(localStorage.getItem('sakk3d.progress.v1') || '{}')); } catch (e) { /* nincs tárolás */ }
@@ -4328,6 +4361,7 @@ async function undoOne() {
   prunePiles();
   select(-1);
   busy = true;
+  await raiseFallen();
   const mesh = pieceMeshes[m.to];
   if (settings.anim && mesh) {
     pieceMeshes[m.to] = null; pieceMeshes[m.from] = mesh; mesh.userData.sq = m.from;
@@ -4354,7 +4388,7 @@ function newGame(opt) {
     if (Net.active()) { Net.askRematch(); return; }
     if (Net.kind === 'corr') { Net.corrPrompt(); return; }
   }
-  Think.reset(); tacticOverlay = null; $('tacticChip').hidden = true;
+  Think.reset(); tacticOverlay = null; $('tacticChip').hidden = true; Celebrate.stop();
   cancelAI(); hintMove = null;
   closeModals();
   endActivity(true); stash = null; startFen = null; pc = []; ratings = []; $('rateBubble').hidden = true;
@@ -4884,6 +4918,7 @@ function gameEnded() {
   const st = lastStatus;
   const winner = st.reason === 'checkmate' ? -game.turn : (st.reason === 'time' || st.reason === 'resign') ? -st.loser : 0;
   Clock.running = false;
+  celebrateWin(winner);
   gameEndExtra = Progress.onGameEnd({ winner, reason: st.reason }) || '';
   if (aiMode() && winner) Persona.say(winner === humanColor ? 'lose' : 'win', true);
   saveGame();
@@ -4922,6 +4957,68 @@ $('tTactics').addEventListener('change', e => { settings.tactics = e.target.chec
 $('tThink').addEventListener('change', e => { settings.think = e.target.checked; saveSettings(); coachUpdate(); });
 $('tVoiceCtl').addEventListener('change', e => { settings.voiceCtl = e.target.checked; saveSettings(); VoiceCtl.refresh(); if (e.target.checked) toast('Koppints a 🎤 gombra, és mondd ki a lépést – pl. „huszár f3” vagy „e2 e4”.', 3600); });
 $('nameInput').addEventListener('change', e => { settings.name = e.target.value.trim().slice(0, 18); saveSettings(); Clock.shown = ''; Net.sendName(); });
+/* ---------- Üzenetek bezárása: minden tanács és jelzés sarkában ✕ ---------- */
+const CLOSABLE = ['rateBubble', 'mateChip', 'threatChip', 'openingChip', 'tacticChip', 'thinkChip', 'netChip', 'oppSay'];
+const REDRAWN = ['mateChip', 'threatChip', 'openingChip', 'netChip'];   // ezeket a program újrarajzolja – az állásig zárva maradnak
+const dismissed = {};
+const dismissKey = () => game.history.length + ':' + (activity ? activity.type : '');
+function addCloseBtns() {
+  CLOSABLE.forEach(id => {
+    const el = $(id);
+    if (!el || el.querySelector(':scope > .chipX')) return;
+    const x = document.createElement('button');
+    x.type = 'button'; x.className = 'chipX'; x.textContent = '✕'; x.setAttribute('aria-label', 'Bezárás'); x.title = 'Bezárás';
+    x.addEventListener('click', ev => { ev.stopPropagation(); dismissChip(id); });
+    el.appendChild(x);
+  });
+}
+function dismissChip(id) {
+  dismissed[id] = dismissKey();
+  $(id).hidden = true;
+  if (id === 'rateBubble') clearTimeout(showRating.h);
+  if (id === 'thinkChip' && thinkCur && !thinkCur.answered) { thinkCur.answered = true; drawCoach(); }
+  if (id === 'tacticChip' && tacticOverlay) { tacticOverlay = null; drawCoach(); }
+}
+function applyDismissed() { const k = dismissKey(); REDRAWN.forEach(id => { if (dismissed[id] === k) $(id).hidden = true; }); }
+new MutationObserver(addCloseBtns).observe($('stage'), { childList: true, subtree: true });
+addCloseBtns();
+
+/* ---------- Védelem: játszma közben ne lehessen véletlenül kilépni ---------- */
+// folyamatban lévő játszma = van lépés, nincs vége, és épp nem gyakorlunk (a gyakorlás alatt a játszma a „stash”-ben vár)
+function gameInProgress() { return !activity && !stash && game.history.length > 0 && !lastStatus.over; }
+function stashedInProgress() {
+  if (!stash || !stash.moves.length) return false;
+  const g = loadPosition(stash.fen, stash.moves);
+  return !!g && !g.status().over;
+}
+function pauseGuard(fn) {
+  return function () {
+    const args = arguments;
+    if (!gameInProgress()) return fn.apply(null, args);
+    const live = onlineMode() && Net.kind === 'live';
+    confirmThen('Félbehagyod a játszmát?',
+      'A gyakorlás idejére a játszmád szünetel' + (Clock.on ? ', a sakkóra is megáll' : '') + '. A végén a „Vissza a játékhoz” gombbal pontosan ide térsz vissza.' +
+      (live ? ' Figyelem: online játszmában az ellenfél közben is léphet – a lépése megvárja, amíg visszatérsz.' : ''),
+      () => fn.apply(null, args), 'Igen, gyakorlok', 'Maradok a játékban');
+  };
+}
+function loseGuard(fn, text) {
+  return function () {
+    const args = arguments;
+    if (!gameInProgress() && !stashedInProgress()) return fn.apply(null, args);
+    confirmThen('Elveszik a játszmád?', text || 'A mostani, félbehagyott játszmád helyére új kerül, és a régi elvész.', () => fn.apply(null, args), 'Igen, mehet', 'Mégse');
+  };
+}
+startLesson = pauseGuard(startLesson);
+startPuzzleIdx = pauseGuard(startPuzzleIdx);
+runDemo = pauseGuard(runDemo);
+startTacticPuzzle = pauseGuard(startTacticPuzzle);
+startOpening = pauseGuard(startOpening);
+startEndgame = pauseGuard(startEndgame);
+startMyMistake = pauseGuard(startMyMistake);
+startReplay = pauseGuard(startReplay);
+replayContinue = loseGuard(replayContinue, 'Ha innen folytatod, a félbehagyott saját játszmád helyére ez a megosztott játszma kerül, és a régi elvész.');
+
 function openHelp() {
   closeModals(); panel.classList.remove('open');
   $('helpModal').classList.add('show');
@@ -5147,7 +5244,7 @@ const Net = {
         break;
       case 'rematch!': if (this.role === 'host') this.startGame(-this.hostColor); else toast('Visszavágó indul…', 1500); break;
       case 'rematch-': toast((this.oppName || 'Az ellenfél') + ' most nem kér visszavágót.', 2200); break;
-      case 'emoji': this.popEmoji(d.e); break;
+      case 'emoji': this.popEmoji(REACTIONS[d.k] ? d.k : d.e, this.oppName || 'Ellenfél'); break;
       case 'bye':
         this.connected = false; this.setState((this.oppName || 'Az ellenfél') + ' kilépett a játékból.', 'bad');
         toast((this.oppName || 'Az ellenfél') + ' kilépett.', 2600); break;
@@ -5223,12 +5320,18 @@ const Net = {
     this.send({ t: 'rematch?' }); closeModals(); toast('Visszavágót kértél – várjuk a választ…', 2200);
   },
   sendName() { if (this.connected) this.send({ t: 'name', name: this.myName() }); },
-  popEmoji(e) {
-    if (!/^[\u{1F300}-\u{1FAFF}☀-➿]+$/u.test(e || '')) return;
-    const el = $('emojiPop'); el.textContent = e; el.hidden = false;
+  popEmoji(e, from) {
+    const R = REACTIONS[e] || (/^[\u{1F300}-\u{1FAFF}\u2600-\u27BF\uFE0F]+$/u.test(e || '') ? { i: e } : null);   // régi verzió nyers emojit küld
+    if (!R) return;
+    const el = $('emojiPop');
+    el.className = R.txt ? 'txt' + (e === 'mate' ? ' mate' : '') : '';
+    el.textContent = R.txt || R.i;
+    if (from) { const w = document.createElement('span'); w.className = 'who'; w.textContent = from; el.appendChild(w); }
+    el.hidden = false;
     el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
-    clearTimeout(this.ph); this.ph = setTimeout(() => { el.hidden = true; }, 1600);
-    Sfx.play('chime');
+    clearTimeout(this.ph); this.ph = setTimeout(() => { el.hidden = true; }, R.txt ? 2000 : 1600);
+    Sfx.play(e === 'check' || e === 'mate' ? 'check' : e === 'attack' ? 'clang' : 'chime');
+    if (from && R.say) say(from + ': ' + R.say);
   },
 
   /* ----- meghívó, csatlakozás ----- */
@@ -5292,7 +5395,11 @@ const Net = {
     $('corrLater').onclick = closeModals;
     closeModals(); panel.classList.remove('open'); $('netModal').classList.add('show');
   },
-  corrReceive(p, moves) {
+  corrReceive(p, moves, ok) {
+    if (!ok && !(this.kind === 'corr' && this.corrId === p.id) && (gameInProgress() || stashedInProgress())) {
+      confirmThen('Elveszik a játszmád?', 'Egy levelezős játszmát nyitsz meg. A mostani, félbehagyott játszmád helyére ez kerül, és a régi elvész.', () => this.corrReceive(p, moves, true), 'Megnyitom', 'Mégse');
+      return;
+    }
     const known = this.corrMap()[p.id];
     const g = loadPosition(null, moves);
     if (this.kind === 'corr' && this.corrId === p.id && settings.mode === 'online') {
@@ -5361,6 +5468,7 @@ const Net = {
       const b = $('chipCorrSend'); if (b) b.onclick = () => this.corrOffer();
     } else chip.hidden = true;
     $('emojiBar').hidden = !(live && this.connected && this.started && settings.mode === 'online');
+    applyDismissed();
   },
 
   /* ----- teszteléshez: kapcsolat nélküli csatorna ----- */
@@ -5372,12 +5480,32 @@ const Net = {
     if (role === 'guest') this.send({ t: 'hello', v: 1, name: this.myName(), gid: null, n: 0 });
   }
 };
-$('btnHost').onclick = () => Net.host();
-$('btnJoin').onclick = () => Net.joinPrompt();
-$('btnCorr').onclick = () => Net.corrPrompt();
+$('btnHost').onclick = loseGuard(() => Net.host(), 'Az élő online játék új játszmát indít, a mostani elvész.');
+$('btnJoin').onclick = loseGuard(() => Net.joinPrompt(), 'A csatlakozással új játszma indul, a mostani elvész.');
+$('btnCorr').onclick = loseGuard(() => Net.corrPrompt(), 'A levelezős játék új játszmát indít, a mostani elvész.');
 $('btnLeave').onclick = () => confirmThen('Kilépsz?', 'Az online játszma véget ér ezen az eszközön.', () => Net.leave(), 'Kilépek', 'Maradok');
 $('netClose').onclick = closeModals;
-document.querySelectorAll('#emojiBar button').forEach(b => { b.onclick = () => { Net.send({ t: 'emoji', e: b.dataset.e }); Net.popEmoji(b.dataset.e); }; });
+const REACTIONS = {
+  like: { i: '👍' }, wow: { i: '😮' }, oops: { i: '😅' }, angry: { i: '😠' }, fire: { i: '🔥' },
+  attack: { i: '⚔️', say: 'Támadás!' }, defend: { i: '🛡️', say: 'Védekezem!' }, gg: { i: '🤝', say: 'Szép játszma!' },
+  check: { txt: '♚\uFE0E Sakk!', say: 'Sakk!' }, mate: { txt: '♚\uFE0E Matt!', say: 'Matt!' }
+};
+let lastEmoji = 0;
+function toggleEmojiOpts(show) {
+  const o = $('emojiOpts'), on = show === undefined ? o.hidden : show;
+  o.hidden = !on; $('emojiToggle').classList.toggle('on', on);
+}
+$('emojiToggle').onclick = () => toggleEmojiOpts();
+document.querySelectorAll('#emojiOpts button').forEach(b => {
+  b.onclick = () => {
+    if (Date.now() - lastEmoji < 1200) return;   // ne lehessen elárasztani az ellenfelet
+    lastEmoji = Date.now();
+    const e = b.dataset.e;
+    Net.send({ t: 'emoji', k: e, e: REACTIONS[e].i || '♚' });   // az „e” mezőt a régebbi verziók is értik
+    Net.popEmoji(e);
+    toggleEmojiOpts(false);
+  };
+});
 
 /* ============================================================
    KIEGÉSZÍTŐK 3 – tanulás: taktikai minták, saját hibák, taktikai
@@ -6344,6 +6472,7 @@ function idleReset() {
   idleState.applied = false;
 }
 function idleUpdate(time) {
+  if (pieceMeshes.some(m => m && m.userData.fallen)) { if (idleState.applied) { idleReset(); dirty = true; } return false; }
   const on = settings.idle && !is2D() && settings.anim && window.__sakkReady && !document.hidden;
   if (!on || busy || tweens.length) { if (idleState.applied) { idleReset(); dirty = true; } return false; }
   idleState.applied = true;
@@ -6384,6 +6513,140 @@ function idleUpdate(time) {
   }
   return true;
 }
+
+
+/* ---------- Matt: a vesztes bábuk feldőlnek, a győztesnek konfetti és lufik ---------- */
+// Egyenletesen táguló gyűrű, hogy a bábuk akkor dőljenek, amikor a hullám eléri őket
+function waveRing(pos, color, speed, maxR) {
+  const m = new THREE.Mesh(waveGeo, addMat(color, 0.85, { side: THREE.DoubleSide }));
+  m.position.set(pos.x, 0.035, pos.z); fxGroup.add(m);
+  let t = 0;
+  fx.push({ update(dt) {
+    t += dt; const r = 0.2 + speed * t, k = r / maxR;
+    m.scale.setScalar(r);
+    m.material.opacity = 0.85 * Math.max(0, 1 - k);
+    if (k >= 1) { fxGroup.remove(m); m.material.dispose(); return false; }
+    return true;
+  } });
+}
+async function toppleWave(origin, list, color) {
+  const speed = 6.5;
+  waveRing(origin, color, speed, 12);
+  if (!LITE) setTimeout(() => waveRing(origin, color, speed, 9), 160);
+  let lastThunk = 0;
+  const jobs = list.map(m => {
+    const p = m.position.clone();
+    const dir = new THREE.Vector3(p.x - origin.x, 0, p.z - origin.z);
+    const d = dir.length();
+    if (d < 1e-3) dir.set(1, 0, 0); dir.normalize();
+    const axis = new THREE.Vector3(dir.z, 0, -dir.x);
+    const target = 1.36 + Math.random() * 0.16, delay = d / speed, R = 0.26;
+    // a bábu a talpa szélén billen: a középpontja közben kicsit odébb és feljebb kerül
+    const tip = a => { lean(m, axis, a); m.position.set(p.x + dir.x * R * (1 - Math.cos(a)), p.y + R * Math.sin(a), p.z + dir.z * R * (1 - Math.cos(a))); };
+    m.userData.fallen = true;
+    return wait(delay).then(async () => {
+      if (!m.parent) return;
+      dustPuff(p, TH().dust, LITE ? 3 : 5);
+      if (time - lastThunk > 0.07) { lastThunk = time; Sfx.play('thunk'); }
+      await tween(0.5 + Math.random() * 0.15, k => tip(target * k * k), k => k);
+      await tween(0.28, k => tip(target - 0.14 * Math.sin(Math.PI * k)), k => k);
+    });
+  });
+  await Promise.all(jobs);
+}
+// Visszavonáskor a feldöntött bábuk felállnak
+async function raiseFallen() {
+  Celebrate.stop();
+  const list = pieceMeshes.filter(m => m && m.userData.fallen);
+  if (!list.length) return;
+  const q0 = list.map(m => m.quaternion.clone()), p0 = list.map(m => m.position.clone()), id = new THREE.Quaternion();
+  const home = list.map(m => sqPos(pieceMeshes.indexOf(m)));
+  if (settings.anim) await tween(0.4, k => list.forEach((m, i) => { m.quaternion.slerpQuaternions(q0[i], id, k); m.position.lerpVectors(p0[i], home[i], k); }), easeInOutCubic);
+  list.forEach((m, i) => { m.quaternion.identity(); m.position.copy(home[i]); m.userData.fallen = false; });
+}
+
+// Konfetti és lufik a képernyő sarkaiból (külön vászon a 3D jelenet fölött)
+function celebrateWin(winner) {
+  if (!winner || activity || game._celebrated) return;
+  if (sideMode() && winner !== humanColor) return;   // csak a győztes képernyőjén
+  game._celebrated = true;
+  Celebrate.run();
+}
+const Celebrate = {
+  cv: null, raf: 0,
+  stop() { cancelAnimationFrame(this.raf); if (this.cv) this.cv.style.display = 'none'; },
+  run() {
+    if (!this.cv) {
+      const c = this.cv = document.createElement('canvas');
+      c.id = 'celebrateCv';
+      c.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:70';
+      document.body.appendChild(c);
+    }
+    const c = this.cv, dpr = Math.min(2, window.devicePixelRatio || 1);
+    const W = window.innerWidth, Hh = window.innerHeight;
+    c.width = W * dpr; c.height = Hh * dpr; c.style.display = 'block';
+    const ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const COLS = ['#ff4d6d', '#ffd23f', '#3ec1d3', '#7bd389', '#a66cff', '#ff8c42', '#ffffff', '#4d8bff'];
+    const parts = [], balloons = [], few = LITE ? 0.55 : 1, S = Math.max(W, Hh);
+    const burst = (x, y, ang, spread, n, v0) => {
+      for (let i = 0; i < n * few; i++) {
+        const a = ang + (Math.random() - 0.5) * spread, v = v0 * (0.55 + Math.random() * 0.6);
+        parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, w: 6 + Math.random() * 6, h: 9 + Math.random() * 9, r: Math.random() * 6, vr: (Math.random() - 0.5) * 14,
+          c: COLS[Math.floor(Math.random() * COLS.length)], ph: Math.random() * 6, shape: Math.random() < 0.2 ? 1 : 0, life: 0 });
+      }
+    };
+    const shots = [
+      [0, () => { burst(0, Hh, -Math.PI / 3.1, 0.55, 80, S * 1.25); burst(W, Hh, -Math.PI + Math.PI / 3.1, 0.55, 80, S * 1.25); Sfx.play('whoosh'); }],
+      [0.18, () => { burst(0, 0, Math.PI / 5, 0.6, 40, S * 0.7); burst(W, 0, Math.PI - Math.PI / 5, 0.6, 40, S * 0.7); }],
+      [0.75, () => { burst(0, Hh, -Math.PI / 2.6, 0.5, 60, S * 1.15); burst(W, Hh, -Math.PI + Math.PI / 2.6, 0.5, 60, S * 1.15); Sfx.play('whoosh'); }],
+      [1.5, () => { burst(0, Hh, -Math.PI / 3.4, 0.45, 40, S * 1.05); burst(W, Hh, -Math.PI + Math.PI / 3.4, 0.45, 40, S * 1.05); }]
+    ];
+    const NB = Math.round((W < 600 ? 9 : 14) * few);
+    for (let i = 0; i < NB; i++) {
+      const fromLeft = i % 2 === 0, r = (W < 600 ? 22 : 30) + Math.random() * 14;
+      balloons.push({ x: fromLeft ? Math.random() * W * 0.35 : W - Math.random() * W * 0.35, y: Hh + r * 2 + Math.random() * 80, r, t0: 0.2 + i * 0.16 + Math.random() * 0.2,
+        vy: 120 + Math.random() * 110, sw: 18 + Math.random() * 26, ph: Math.random() * 6, c: COLS[i % 6] });
+    }
+    cancelAnimationFrame(this.raf);
+    let t = 0, last = performance.now(), si = 0;
+    const step = now => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
+      while (si < shots.length && t >= shots[si][0]) shots[si++][1]();
+      ctx.clearRect(0, 0, W, Hh);
+      const g = S * 0.95;
+      for (const p of parts) {
+        p.life += dt;
+        p.vx *= 1 - 1.6 * dt; p.vy = p.vy * (1 - 1.2 * dt) + g * dt * 0.55;
+        p.x += (p.vx + Math.sin(t * 6 + p.ph) * 40) * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+        if (p.y > Hh + 40) continue;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+        const sx = Math.abs(Math.cos(t * 7 + p.ph));   // forgó lapka
+        if (p.shape) { ctx.beginPath(); ctx.arc(0, 0, p.w * 0.45, 0, Math.PI * 2); ctx.fill(); }
+        else ctx.fillRect(-p.w / 2 * sx, -p.h / 2, p.w * sx, p.h);
+        ctx.restore();
+      }
+      let alive = parts.some(p => p.y < Hh + 40) || si < shots.length;
+      for (const b of balloons) {
+        if (t < b.t0) { alive = true; continue; }
+        b.y -= b.vy * dt;
+        const x = b.x + Math.sin((t - b.t0) * 1.6 + b.ph) * b.sw;
+        if (b.y < -b.r * 3) continue;
+        alive = true;
+        ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(x, b.y + b.r * 1.2);
+        ctx.quadraticCurveTo(x - 10 * Math.sin(t * 2 + b.ph), b.y + b.r * 2.2, x + 4, b.y + b.r * 3.2); ctx.stroke();
+        ctx.fillStyle = b.c;
+        ctx.beginPath(); ctx.ellipse(x, b.y, b.r * 0.86, b.r, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(x, b.y + b.r * 0.95); ctx.lineTo(x - 5, b.y + b.r * 1.2); ctx.lineTo(x + 5, b.y + b.r * 1.2); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,.38)';
+        ctx.beginPath(); ctx.ellipse(x - b.r * 0.32, b.y - b.r * 0.38, b.r * 0.18, b.r * 0.3, -0.5, 0, Math.PI * 2); ctx.fill();
+      }
+      if (alive && t < 9) this.raf = requestAnimationFrame(step);
+      else { ctx.clearRect(0, 0, W, Hh); c.style.display = 'none'; }
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+};
 
 
 /* ============================================================
