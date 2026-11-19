@@ -187,6 +187,8 @@ body.learn-off #coachOpts,body.learn-off #coachHead{display:none}
 .hbtn{margin-top:6px}
 #analysisBody .hbtn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 12px;font-weight:600;cursor:pointer}
 .lcard{background:var(--card);border:1px solid var(--panel-border);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.45}
+.lcard ul{margin:6px 0;padding-left:20px}
+.lcard li{margin:3px 0}
 .lcard h4{margin:0 0 4px;font-size:14.5px;color:var(--accent);display:flex;justify-content:space-between;gap:8px}
 .lcard button,.pgrid button{border:1px solid var(--panel-border);background:rgba(255,255,255,.08);border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600;cursor:pointer;margin-top:8px}
 .lcard button.p{background:var(--accent);color:var(--accent-ink);border-color:transparent}
@@ -379,6 +381,10 @@ body:not(.clock-on) #oppSay{top:60px}
 #emojiToggle.on{border-color:var(--accent)}
 #emojiOpts button.txt{font-size:11.5px;font-weight:800;color:#ffcf6a;border-radius:10px;width:auto;grid-column:span 1;letter-spacing:.02em}
 #emojiOpts button.mate{color:#ff7a6e}
+.clk b:empty{display:none}
+.clk.noclock{min-width:0}
+.netname{display:block;margin:10px 0 2px}
+#emojiPop .say{display:block;font-size:13px;font-weight:600;margin-top:2px;opacity:.9}
 #emojiPop.txt{font-size:56px;font-weight:900;letter-spacing:.04em;color:#ffcf6a;background:rgba(20,16,10,.82);border:2px solid #ffcf6a;border-radius:22px;padding:10px 28px;text-shadow:0 4px 18px rgba(0,0,0,.6);white-space:nowrap}
 #emojiPop.txt.mate{color:#ff7a6e;border-color:#ff7a6e;background:rgba(40,10,8,.85)}
 #emojiPop .who{display:block;font-size:15px;font-weight:600;color:var(--text);text-align:center;margin-top:4px;letter-spacing:0;text-shadow:0 2px 8px rgba(0,0,0,.8)}
@@ -449,7 +455,7 @@ body.act #emojiBar{display:none}
   <div id="emojiBar" hidden>
     <div id="emojiOpts" hidden>
       <button data-e="like" title="Tetszik">👍</button><button data-e="wow" title="Hűha">😮</button><button data-e="oops" title="Hoppá">😅</button><button data-e="angry" title="Mérges">😠</button><button data-e="fire" title="Tűz">🔥</button>
-      <button data-e="attack" title="Támadás!">⚔️</button><button data-e="defend" title="Védekezés">🛡️</button><button data-e="gg" title="Szép játszma">🤝</button><button data-e="check" class="txt" title="Sakk!">Sakk!</button><button data-e="mate" class="txt mate" title="Matt!">Matt!</button>
+      <button data-e="attack" title="Támadás!">⚔️</button><button data-e="defend" title="Védekezés">🛡️</button><button data-e="gg" title="Szép játszma">🤝</button><button data-e="laugh" title="Hahaha">😂</button><button data-e="think" title="Gondolkodom">🤔</button><button data-e="sleepy" title="Lépsz már?">😴</button><button data-e="monkey" title="Ezt nem láttam!">🙈</button><button data-e="boom" title="Ez kemény volt!">🤯</button><button data-e="party" title="Juhú!">🥳</button><button data-e="snail" title="Csigatempó!">🐌</button><button data-e="ghost" title="Búú!">👻</button><button data-e="pray" title="Kegyelem!">🙏</button><button data-e="cool" title="Minden a tervem szerint">😎</button><button data-e="check" class="txt" title="Sakk!">Sakk!</button><button data-e="mate" class="txt mate" title="Matt!">Matt!</button>
     </div>
     <button id="emojiToggle" aria-label="Reakció küldése" title="Reakció küldése">😊</button>
   </div>
@@ -658,7 +664,7 @@ body.act #emojiBar{display:none}
   <div id="helpToc"><button data-go="help-1">Áttekintés</button><button data-go="help-2">Telepítés és frissítés</button><button data-go="help-3">Kezelés alapjai</button><button data-go="help-4">Játékmódok</button><button data-go="help-5">Mentés, megosztás, visszajátszás</button><button data-go="help-6">Oktató eszközök játék közben</button><button data-go="help-7">Tanulóközpont és elemzés</button><button data-go="help-8">Látvány és beállítások</button><button data-go="help-9">Gyakori kérdések</button><button data-go="help-10">Névjegy és licencek</button></div>
   <div id="helpBody"><h2 id="help-1"><span>Áttekintés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A Sakk 3D egy háromdimenziós sakkjáték beépített oktatóval, amely böngészőben fut, és appként telepíthető. Laptopon, iPhone-on és Androidon is működik, internet nélkül is – kivéve az online játékot.</p>
-<ul><li><b>Játék:</b> két játékos egy eszközön, gép ellen 10 szinten és négy játékstílusban, online barátokkal (élő vagy levelezős formában), sakkórával.</li><li><b>Tanulás játék közben:</b> lépésértékelés, tippek, mattút, fenyegetés- és taktikajelzés, figyelmeztetés hibás lépés előtt, felolvasás.</li><li><b>Tanulóközpont:</b> szabályok 3D bemutatókkal, leckék, mattfeladványok, taktikai feladványok, megnyitás- és végjáték-tréner, saját hibák gyűjteménye, pontszám és jelvények.</li><li><b>Látvány:</b> hat 3D téma, egyszerű 2D nézet, harci animációk leütéskor, élő bábuk.</li></ul>
+<ul><li><b>Játék:</b> két játékos egy eszközön, gép ellen 10 szinten és négy játékstílusban, online barátokkal (élő vagy levelezős formában), sakkórával.</li><li><b>Tanulás játék közben:</b> lépésértékelés, tippek, mattút, fenyegetés- és taktikajelzés, figyelmeztetés hibás lépés előtt, felolvasás.</li><li><b>Tanulóközpont:</b> szabályok 3D bemutatókkal, leckék, mattfeladványok, kihívások, taktikai feladványok, megnyitás- és végjáték-tréner, saját hibák gyűjteménye, pontszám és jelvények.</li><li><b>Látvány:</b> hat 3D téma, egyszerű 2D nézet, harci animációk leütéskor, élő bábuk.</li></ul>
 <h2 id="help-2"><span>Telepítés és frissítés</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A játék böngészőben fut, és appként a telefon kezdőképernyőjére tehető. Ehhez csak a linkre van szükséged, amit attól kaptál, aki megosztotta veled a játékot.</p>
 <h3>iPhone</h3>
@@ -690,8 +696,9 @@ body.act #emojiBar{display:none}
 <p>Az <b>Automatikus nehézség</b> kapcsolóval a gép győzelmed után egy szinttel erősebb, vereség után egy szinttel gyengébb lesz.</p>
 <h3>Online – élő játék</h3>
 <p>Mindketten egyszerre vagytok bent, a lépések azonnal átmennek. A két készülék közvetlenül kapcsolódik, ehhez internet kell mindkét oldalon.</p>
-<ol><li>Mindketten: Játékmód → Online, és add meg a neved.</li><li>Az egyik fél: „Élő játék indítása” → a megjelenő kódot vagy linket elküldi a másiknak.</li><li>A másik fél megnyitja a linket, vagy „Csatlakozás kóddal” → beírja a kódot.</li><li>A játszma automatikusan indul. A színt a létrehozó „Te játszol” beállítása dönti el, az órát az ő sakkóra-beállítása.</li></ol>
-<p>Játék közben a jobb alsó mosolygós gombbal reakciót küldhettek egymásnak: tetszik, hűha, hoppá, mérges, tűz, támadás, védekezés, szép játszma, valamint „Sakk!” és „Matt!” jelzés. A reakció a másik fél képernyőjén nagyban, a küldő nevével jelenik meg. Ajánlhattok döntetlent is, feladhatjátok a játszmát, a végén pedig kérhettek visszavágót (színt cserélve). Ha a kapcsolat megszakad, az app magától próbál újracsatlakozni, közben az óra áll.</p>
+<ol><li>Mindketten: Játékmód → Online. Ha még nincs neved, az app induláskor vagy csatlakozáskor megkérdezi – ezt látja a másik játékos. Később az Online résznél bármikor átírhatod, akár emojival együtt.</li><li>Az egyik fél: „Élő játék indítása” → a megjelenő kódot vagy linket elküldi a másiknak.</li><li>A másik fél megnyitja a linket, vagy „Csatlakozás kóddal” → beírja a kódot.</li><li>A játszma automatikusan indul. A színt a létrehozó „Te játszol” beállítása dönti el, az órát az ő sakkóra-beállítása.</li></ol>
+<p>Online játszma közben a jobb felső sarokban mindkettőtök neve látszik (sakkórával együtt, ha van), és kiemelve, hogy ki lép.</p>
+<p>Játék közben a jobb alsó mosolygós gombbal reakciót küldhettek egymásnak: tetszik, hűha, hoppá, mérges, tűz, támadás, védekezés, szép játszma, és viccesebbek is – 😂 Hahaha!, 🤔 Gondolkodom…, 😴 Lépsz már?, 🙈 Ezt nem láttam!, 🤯 Ez kemény volt!, 🥳 Juhú!, 🐌 Csigatempó!, 👻 Búú!, 🙏 Kegyelem!, 😎 Minden a tervem szerint –, valamint „Sakk!” és „Matt!” jelzés. A reakció a másik fél képernyőjén nagyban, a küldő nevével jelenik meg. Ajánlhattok döntetlent is, feladhatjátok a játszmát, a végén pedig kérhettek visszavágót (színt cserélve). Ha a kapcsolat megszakad, az app magától próbál újracsatlakozni, közben az óra áll.</p>
 <h3>Online – levelezős játék</h3>
 <p>Minden lépés után egy linket küldesz (WhatsApp, iMessage, e-mail). Szerver nem kell hozzá, így mindig működik, és a játszma akár napokig is tarthat.</p>
 <ol><li>„Levelezős játék” → válaszd ki a színedet.</li><li>Lépj, majd a „Küldés…” gombbal küldd el a linket. (Sötéttel azonnal meghívót küldesz.)</li><li>A barátod megnyitja, lép, és visszaküldi. Az app megjegyzi, melyik színnel játszol.</li></ol>
@@ -720,7 +727,11 @@ body.act #emojiBar{display:none}
 <p>A „Tanulás” gomb nyitja meg a tanulóközpontot, nyolc füllel. Itt mindent a saját tempódban gyakorolhatsz; a félbehagyott játszmád közben megmarad, és kilépéskor visszatér.</p>
 <p>Ha játszma közben indítasz gyakorlást, az app előbb rákérdez, és a gyakorlás végén a „Vissza a játékhoz” gombbal pontosan oda térsz vissza, ahol abbahagytad. Ha valami a félbehagyott játszmád elvesztésével járna – új játék, módváltás, sakkóra-váltás, online játék indítása vagy egy kapott játszma folytatása –, azt is csak megerősítés után teszi meg.</p>
 <p>A feladat leírása a tábla bal felső sarkában jelenik meg; elforgatott telefonon a tábla mellé, külön sávba kerül, így nem takarja el. A 🔊 gombbal felolvastathatod; ha a hangot bekapcsoltad, minden új feladatot magától is felolvas. A ✕ gombbal bezárhatod, ha nagyobb táblát szeretnél. Ilyenkor egy kis „📋 Feladat” gomb marad a helyén, amivel újra megnyithatod. Ha megoldod a feladatot, az eredmény magától előjön.</p>
-<div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány, 21 megszerezhető jelvény, és a játszmáidból összesített hőtérkép.</td></tr></tbody></table></div>
+<div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>A tábla és a kezdőállás, minden bábu lépése és értéke, a sakk (és hogyan lehet elhárítani), a matt, a patt, a döntetlen minden fajtája, a sáncolás, az en passant, a gyalogátváltozás, a játszma vége és a lépések jelölése. A legtöbbhöz 3D bemutató is tartozik.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>47 mattfeladvány egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod. Alul a 🎯 Kihívások: itt neked kell megmenekülnöd (lásd lent).</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány, 21 megszerezhető jelvény, és a játszmáidból összesített hőtérkép.</td></tr></tbody></table></div>
+<h3>Kihívások</h3>
+<p>A Feladványok fül alján két új fajta feladat vár. Itt nem te adsz mattot – neked kell megmenekülnöd.</p>
+<ul><li><b>🛡️ Védd ki a mattot!</b> Az ellenfél a következő lépésben mattot adna. Találj olyan lépést, amely után két lépésen belül sem tud mattot adni: elzárhatod az útját, leütheted a támadót, vagy menekülőmezőt nyithatsz a királynak. Több jó megoldás is lehet. Ha rossz lépést teszel, az ellenfél megmutatja a mattot, az „Újra” gombbal pedig újrakezdheted.</li><li><b>🤝 Mentsd meg patt-tal!</b> Vesztes állásban vagy, de egy ügyes lépéssel kikényszerítheted a pattot, vagyis a döntetlent. Tipp: keress olyan sakkot, amire az ellenfélnek csak egy válasza van.</li></ul>
+<p>A 💡 Tipp gomb a védekezésnél piros nyíllal mutatja meg a fenyegetést.</p>
 <p>A pontszám a gép elleni játszmáidból számolódik, 800-ról indul: erősebb gépet legyőzni többet ér, gyengébbtől kikapni többet von le. A napi sorozat minden olyan nappal nő, amikor játszol vagy gyakorolsz.</p>
 <h3>Játszma elemzése</h3>
 <p>Az „Elemzés” gomb (a panelen vagy a játszma végén) végignézi a teljes játszmát. Grafikonon mutatja, ki hogyan állt, megszámolja mindkét fél kiváló lépéseit és hibáit, és kiemeli a legfontosabb pillanatokat. A „Megnézem” gombbal a táblán is látod: piros nyíl a megtett lépés, zöld nyíl a jobb lehetőség.</p>
@@ -3693,7 +3704,7 @@ const MATE_V = 100000;
 const FACES = ['😊😊', '😊', '😐', '🙁', '🙁🙁'];
 const FACE_NAME = ['Kiváló', 'Jó', 'Pontatlanság', 'Hiba', 'Nagy hiba'];
 const ACC = { 1: 'gyalogot', 2: 'huszárt', 3: 'futót', 4: 'bástyát', 5: 'vezért', 6: 'királyt' };
-const PUZZLES = [["3rk2r/1R5p/p2B2p1/P3b3/P7/4N3/2P3P1/5RK1 w - - 0 35",1,"b7e7"],["8/1R5R/5pk1/6r1/p3PKp1/P5P1/2P4P/8 w - - 7 55",1,"b7g7"],["r1b1kbnr/2p1p1pp/2p5/1N3pN1/p7/P3B3/1PP1PPPP/2KR1B1R w - - 2 12",1,"b5c7"],["rnbqkbnr/1ppppp1p/8/p5N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 5",1,"c4f7"],["rnb2k2/1p2p1p1/p3P2p/8/2B1Pn2/4K2P/PPP2PPR/R2Q4 w - - 0 21",1,"d1d8"],["r3kb1r/ppp2ppp/8/3p4/2nPpPnq/P3P3/QPPN3P/R1B2KNR b kq - 6 13",1,"h4f2"],["r1b2rk1/ppp2ppp/3p4/8/1PP2p1q/P1n3PP/1Bn1PK2/R4BNR b - - 0 19",1,"h4g3"],["2kr3r/ppp2p1p/2n2p2/3q4/1bp2P2/1P2K1PP/P2NP3/R1BQ1R2 b - - 0 13",1,"b4c5"],["r4rk1/ppp1qppp/5n2/2b5/3p2b1/1P1p4/P1PN1PPP/RQ3KR1 b - - 1 17",1,"e7e2"],["1rb2b1r/pp3pp1/n3k3/2pq2B1/2Q1P1n1/N4N2/PPP2PPP/2KR1B1R w - - 7 14",1,"c4d5"],["r1b1k1nr/pp3p1p/2p1p2p/3p4/P7/5P1q/2PNP2b/R1BQK3 b Qkq - 0 15",1,"h2g3"],["r3kbnr/ppp2ppp/2np4/8/7q/N1P3pB/P2PP2P/1RBQK3 b kq - 0 11",1,"g3g2"],["rnbqkbnr/1ppp1p1p/8/p3p1NQ/4P3/8/PPPP1PPP/RNB1KB1R w KQkq - 0 5",1,"h5f7"],["N3kb1r/1p3p1p/6p1/3Qn3/1q3PnP/4P1K1/PPP3P1/1RBR4 w - - 0 20",1,"d5d8"],["8/1R2R3/5p1k/6r1/p3PKp1/P5P1/2P4P/8 w - - 5 54",2,"e7h7 h6g6 b7g7"],["r1bq1rk1/ppp2ppp/3p4/8/1PP2p2/P1n4P/1Bn1PKP1/R4BNR b - - 3 18",2,"d8h4 f2f3 c2d4"],["1rbq1b1r/pp3pp1/n3k3/1Qp3B1/4P1n1/N4N2/PPP2PPP/2KR1B1R w - - 5 13",2,"b5c4 d8d5 c4d5"],["r1bqkr2/ppp2ppp/5n2/4p3/2p3P1/1P3K1B/P1n1PP1P/RN4NR b q - 3 12",2,"c2e1 f3g3 f6e4"],["r1br4/1p2kppp/8/1pp3PP/1P1Qp3/8/P1n4q/2BK2R1 b - - 7 27",2,"d8d4 c1d2 h2d2"],["r3kb1r/ppp1pppp/2n1b3/2K5/P5P1/1P6/2P1Pn1P/R1B2BNR b kq - 2 12",2,"f2e4 c5b5 a7a6"],["r1b1kb1r/ppppqppp/8/8/3pnP2/P2P4/1PP1K1PP/RNBQ1B1R b kq - 0 8",2,"e4d2 e2d2 e7e3"],["rnbqkbnr/ppppp1p1/7p/5P2/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",2,"d1h5 g7g6 h5g6"],["r1b1kb1r/1pp2ppp/2n2q2/1p1p4/3pn3/1PP5/P1Q1PPPP/R1B1KBNR b KQkq - 3 10",2,"f6f2 e1d1 f2f1"],["3rkb1r/R1p1ppp1/1pq1b3/5n1p/8/1n1PBNPP/4PP2/1N1K1B1R b k - 0 18",2,"f5e3 f2e3 c6c1"],["r2qk1B1/1bp1p3/ppnp2p1/3P4/4P1Q1/2N5/PPP2P1P/2R1K2R w K - 3 15",2,"g4g6 e8f8 g6f7"],["rnbqkb1r/3pp3/1pp5/p1P1Nppp/8/4P3/PPP1BPPP/R1BQK2R w KQkq g6 0 10",2,"e2h5 h8h5 d1h5"],["rnbqkb1r/pp3ppp/2pp4/4p3/6n1/P2BPP2/1PPP3P/RNBQK1NR b KQkq - 0 6",2,"d8h4 e1f1 h4f2"],["r1b1k1nr/ppp2ppp/2n5/3pp2q/1b3P2/7P/P1PPP1P1/1RBQKBNR b Kkq f3 0 7",2,"h5h4 g2g3 h4g3"],["r3kb1r/1pp2pp1/3p1n2/1p5p/P1P4P/BK3P1N/4q1P1/7Q b kq - 1 27",3,"b5c4 b3b4 f6d5 b4b5 c4c3"],["r1bqkr2/ppp2ppp/5n2/4p3/2p3P1/nP2K2B/P3PP1P/RN4NR b q - 1 11",3,"a3c2 e3f3 c2e1 f3e3 d8d4"],["r1b3r1/1p2kppp/8/1pp3PP/1P2p3/8/PQn4q/2BK2R1 b - - 5 26",3,"g8d8 b2d4 d8d4 c1d2 h2d2"],["r3kb1r/ppp1pppp/2n5/3K1b2/P5P1/1P6/2P1Pn1P/R1B2BNR b kq g3 0 11",3,"f5e6 d5c5 f2e4 c5b5 a7a6"],["3rkb1r/R1p1ppp1/1pq1b3/5n1p/8/1n1PBNPP/2p1PP2/1N1QKB1R b Kk - 0 17",3,"c2d1q e1d1 f5e3 f2e3 c6c1"],["r2q2B1/1bpkp3/ppnp2p1/3P4/4P3/2N5/PPP2P1P/2RQK2R w K - 1 14",3,"d1g4 d7e8 g4g6 e8f8 g6f7"],["rnq1kb1r/pbppnp2/8/1B2p1Np/3PP3/2N2Q2/PPP2PPP/R1B1K2R w KQkq - 3 8",3,"f3f7 e8d8 g5e6 d7e6 f7e8"],["N1Q2bnr/4pp2/p4q1p/3kB1p1/3P2b1/8/PPP1PPPP/R3KBNR w KQ - 2 17",3,"e2e4 d5e4 f1d3 e4d5 c2c4"],["r4bnr/pp1kp1p1/1P6/4Pp1p/4Q3/P3BN2/1PP2PPP/R3K2R w KQ - 0 17",3,"e4a4 d7d8 a1d1 d8c8 a4e8"],["1r2kbnr/1pp2ppp/p2q4/3pp3/P7/1P2KN1P/1B2PPP1/1b1Q1B1R b k - 1 14",3,"d6h6 f3g5 h6g5 f2f4 g5f4"]];
+const PUZZLES = [["3rk2r/1R5p/p2B2p1/P3b3/P7/4N3/2P3P1/5RK1 w - - 0 35",1,"b7e7"],["8/1R5R/5pk1/6r1/p3PKp1/P5P1/2P4P/8 w - - 7 55",1,"b7g7"],["r1b1kbnr/2p1p1pp/2p5/1N3pN1/p7/P3B3/1PP1PPPP/2KR1B1R w - - 2 12",1,"b5c7"],["rnbqkbnr/1ppppp1p/8/p5N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 5",1,"c4f7"],["rnb2k2/1p2p1p1/p3P2p/8/2B1Pn2/4K2P/PPP2PPR/R2Q4 w - - 0 21",1,"d1d8"],["r3kb1r/ppp2ppp/8/3p4/2nPpPnq/P3P3/QPPN3P/R1B2KNR b kq - 6 13",1,"h4f2"],["r1b2rk1/ppp2ppp/3p4/8/1PP2p1q/P1n3PP/1Bn1PK2/R4BNR b - - 0 19",1,"h4g3"],["2kr3r/ppp2p1p/2n2p2/3q4/1bp2P2/1P2K1PP/P2NP3/R1BQ1R2 b - - 0 13",1,"b4c5"],["r4rk1/ppp1qppp/5n2/2b5/3p2b1/1P1p4/P1PN1PPP/RQ3KR1 b - - 1 17",1,"e7e2"],["1rb2b1r/pp3pp1/n3k3/2pq2B1/2Q1P1n1/N4N2/PPP2PPP/2KR1B1R w - - 7 14",1,"c4d5"],["r1b1k1nr/pp3p1p/2p1p2p/3p4/P7/5P1q/2PNP2b/R1BQK3 b Qkq - 0 15",1,"h2g3"],["r3kbnr/ppp2ppp/2np4/8/7q/N1P3pB/P2PP2P/1RBQK3 b kq - 0 11",1,"g3g2"],["rnbqkbnr/1ppp1p1p/8/p3p1NQ/4P3/8/PPPP1PPP/RNB1KB1R w KQkq - 0 5",1,"h5f7"],["N3kb1r/1p3p1p/6p1/3Qn3/1q3PnP/4P1K1/PPP3P1/1RBR4 w - - 0 20",1,"d5d8"],["8/1R2R3/5p1k/6r1/p3PKp1/P5P1/2P4P/8 w - - 5 54",2,"e7h7 h6g6 b7g7"],["r1bq1rk1/ppp2ppp/3p4/8/1PP2p2/P1n4P/1Bn1PKP1/R4BNR b - - 3 18",2,"d8h4 f2f3 c2d4"],["1rbq1b1r/pp3pp1/n3k3/1Qp3B1/4P1n1/N4N2/PPP2PPP/2KR1B1R w - - 5 13",2,"b5c4 d8d5 c4d5"],["r1bqkr2/ppp2ppp/5n2/4p3/2p3P1/1P3K1B/P1n1PP1P/RN4NR b q - 3 12",2,"c2e1 f3g3 f6e4"],["r1br4/1p2kppp/8/1pp3PP/1P1Qp3/8/P1n4q/2BK2R1 b - - 7 27",2,"d8d4 c1d2 h2d2"],["r3kb1r/ppp1pppp/2n1b3/2K5/P5P1/1P6/2P1Pn1P/R1B2BNR b kq - 2 12",2,"f2e4 c5b5 a7a6"],["r1b1kb1r/ppppqppp/8/8/3pnP2/P2P4/1PP1K1PP/RNBQ1B1R b kq - 0 8",2,"e4d2 e2d2 e7e3"],["rnbqkbnr/ppppp1p1/7p/5P2/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",2,"d1h5 g7g6 h5g6"],["r1b1kb1r/1pp2ppp/2n2q2/1p1p4/3pn3/1PP5/P1Q1PPPP/R1B1KBNR b KQkq - 3 10",2,"f6f2 e1d1 f2f1"],["3rkb1r/R1p1ppp1/1pq1b3/5n1p/8/1n1PBNPP/4PP2/1N1K1B1R b k - 0 18",2,"f5e3 f2e3 c6c1"],["r2qk1B1/1bp1p3/ppnp2p1/3P4/4P1Q1/2N5/PPP2P1P/2R1K2R w K - 3 15",2,"g4g6 e8f8 g6f7"],["rnbqkb1r/3pp3/1pp5/p1P1Nppp/8/4P3/PPP1BPPP/R1BQK2R w KQkq g6 0 10",2,"e2h5 h8h5 d1h5"],["rnbqkb1r/pp3ppp/2pp4/4p3/6n1/P2BPP2/1PPP3P/RNBQK1NR b KQkq - 0 6",2,"d8h4 e1f1 h4f2"],["r1b1k1nr/ppp2ppp/2n5/3pp2q/1b3P2/7P/P1PPP1P1/1RBQKBNR b Kkq f3 0 7",2,"h5h4 g2g3 h4g3"],["r3kb1r/1pp2pp1/3p1n2/1p5p/P1P4P/BK3P1N/4q1P1/7Q b kq - 1 27",3,"b5c4 b3b4 f6d5 b4b5 c4c3"],["r1bqkr2/ppp2ppp/5n2/4p3/2p3P1/nP2K2B/P3PP1P/RN4NR b q - 1 11",3,"a3c2 e3f3 c2e1 f3e3 d8d4"],["r1b3r1/1p2kppp/8/1pp3PP/1P2p3/8/PQn4q/2BK2R1 b - - 5 26",3,"g8d8 b2d4 d8d4 c1d2 h2d2"],["r3kb1r/ppp1pppp/2n5/3K1b2/P5P1/1P6/2P1Pn1P/R1B2BNR b kq g3 0 11",3,"f5e6 d5c5 f2e4 c5b5 a7a6"],["3rkb1r/R1p1ppp1/1pq1b3/5n1p/8/1n1PBNPP/2p1PP2/1N1QKB1R b Kk - 0 17",3,"c2d1q e1d1 f5e3 f2e3 c6c1"],["r2q2B1/1bpkp3/ppnp2p1/3P4/4P3/2N5/PPP2P1P/2RQK2R w K - 1 14",3,"d1g4 d7e8 g4g6 e8f8 g6f7"],["rnq1kb1r/pbppnp2/8/1B2p1Np/3PP3/2N2Q2/PPP2PPP/R1B1K2R w KQkq - 3 8",3,"f3f7 e8d8 g5e6 d7e6 f7e8"],["N1Q2bnr/4pp2/p4q1p/3kB1p1/3P2b1/8/PPP1PPPP/R3KBNR w KQ - 2 17",3,"e2e4 d5e4 f1d3 e4d5 c2c4"],["r4bnr/pp1kp1p1/1P6/4Pp1p/4Q3/P3BN2/1PP2PPP/R3K2R w KQ - 0 17",3,"e4a4 d7d8 a1d1 d8c8 a4e8"],["1r2kbnr/1pp2ppp/p2q4/3pp3/P7/1P2KN1P/1B2PPP1/1b1Q1B1R b k - 1 14",3,"d6h6 f3g5 h6g5 f2f4 g5f4"],["r1bq1b1r/1p2k1p1/n7/p2QBP1B/4N3/6NP/PPP2PP1/R3K2R w KQ - 1 18",1,"d5f7"],["1k3rnr/3R4/1pQ2p2/p6p/4P3/5N2/PPP2PPP/2K4R w - h6 0 21",1,"c6b7"],["r1bqkbnr/ppppp3/5pp1/7B/1n1PP3/2N5/PPP2PPP/R1BQK1NR w KQkq - 0 6",1,"h5g6"],["r1bq1b1r/1p1k2p1/n7/p2nBP1B/3QN3/6NP/PPP2PP1/R3K2R w KQ - 3 17",2,"d4d5 d7e7 d5f7"],["1k3rnr/3R3p/1pn1Qp2/p7/4P3/5N2/PPP2PPP/2K4R w - - 2 20",2,"e6c6 a5a4 c6b7"],["rnbk1b2/1p1ppp1r/6pp/4B2n/p1QPP3/5N2/PPP2PPP/R3KB1R w KQ - 6 13",2,"c4c7 d8e8 c7c8"],["5rnr/2k4p/1pn1Qp2/p7/4P3/5N2/PPP2PPP/2KR3R w - a6 0 19",3,"d1d7 c7b8 e6c6 g8e7 c6b7"],["2b1k2r/p1pn1ppp/4p3/8/P5n1/3P4/q3PP1P/1rQK1BNR b k - 5 20",3,"g4f2 d1e1 f2d3 e2d3 b1c1"],["r4rk1/pRp1nppp/1b2pq2/2npN3/6b1/N7/2PPPPPP/2BQKB1R b - - 4 12",3,"f6f2 e1f2 c5e4 f2e1 b6f2"]];
 let startFen = null;            // null: szokásos kezdőállás
 let activity = null;            // lecke / feladvány / bemutató / visszanézés
 let stash = null;               // az elmentett játszma, amíg egy tanulófeladat fut
@@ -4205,18 +4216,23 @@ function afterActivityMove(m, color) {
 
 /* ---------- Szabálytár bemutatókkal ---------- */
 const RULES = [
-  { t: 'A játék célja', x: 'A cél az ellenfél királyának <b>mattot adni</b>: úgy megtámadni, hogy ne tudjon elmenekülni. Világos kezd, a felek felváltva lépnek. Egy mezőn egy bábu állhat; az ellenfél bábuját úgy ütöd le, hogy a helyére lépsz.' },
-  { t: '♖ A bástya', x: PIECE_HELP[4], demo: { free: true, steps: [{ fen: '8/8/8/8/3R4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A bástya egyenesen lép: előre, hátra és oldalra, akárhány mezőt.' }, { move: 'd4d8' }, { move: 'd8h8', cap: 'Más bábut nem ugorhat át.' }] } },
-  { t: '♗ A futó', x: PIECE_HELP[3], demo: { free: true, steps: [{ fen: '8/8/8/8/3B4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A futó átlósan lép, akárhány mezőt – mindig ugyanolyan színű mezőn marad.' }, { move: 'd4g7' }, { move: 'g7h8' }] } },
-  { t: '♕ A vezér', x: PIECE_HELP[5], demo: { free: true, steps: [{ fen: '8/8/8/8/3Q4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A vezér a bástya és a futó együtt: egyenesen és átlósan is léphet.' }, { move: 'd4d8' }, { move: 'd8h4' }] } },
-  { t: '♘ A huszár', x: PIECE_HELP[2], demo: { free: true, steps: [{ fen: '8/8/8/4p3/3N4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A huszár L alakban ugrik: kettőt egy irányba, egyet oldalra.' }, { move: 'd4e6', cap: 'Az egyetlen bábu, amely átugorhat másokat.' }, { move: 'e6g7' }] } },
-  { t: '♔ A király', x: PIECE_HELP[6], demo: { free: true, steps: [{ fen: '8/8/8/8/3K4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A király minden irányban egy mezőt léphet.' }, { move: 'd4e5' }, { move: 'e5e6' }] } },
-  { t: '♙ A gyalog', x: PIECE_HELP[1], demo: { free: true, steps: [{ fen: '8/8/8/4p3/8/8/3P4/8 w - - 0 1', sel: 'd2', cap: 'A gyalog előre lép; a kezdősorból kettőt is léphet.' }, { move: 'd2d4' }, { sel: 'd4', cap: 'Ütni viszont csak átlósan tud.' }, { move: 'd4e5' }] } },
-  { t: 'Sáncolás', x: 'Egyetlen lépésben a király kettőt lép a bástya felé, a bástya pedig átugorja. Feltételek: sem a király, sem az a bástya nem lépett még; nincs köztük bábu; a király nincs sakkban, és nem halad át támadott mezőn.', demo: { steps: [{ fen: 'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1', sel: 'e1', cap: 'A király két mezőt léphet a bástya felé – ez a sáncolás.' }, { move: 'e1g1', cap: 'Rövid sánc: a király g1-re, a bástya f1-re kerül.' }, { move: 'e8c8', cap: 'Hosszú sánc: a király c8-ra, a bástya d8-ra.' }] } },
-  { t: 'En passant (menet közbeni ütés)', x: 'Ha az ellenfél gyalogja a kezdősorból kettőt lépve a te gyalogod mellé ér, leütheted úgy, mintha csak egyet lépett volna – de csak azonnal, a következő lépésben.', demo: { steps: [{ fen: '4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1', cap: 'A sötét gyalog kettőt lép, a világos gyalog mellé.' }, { move: 'd7d5' }, { sel: 'e5', cap: 'A világos gyalog most „menet közben” leütheti.' }, { move: 'e5d6' }] } },
-  { t: 'Átváltozás', x: 'Ha a gyalog eléri az utolsó sort, kötelező átváltoznia vezérré, bástyává, futóvá vagy huszárrá – szinte mindig a vezér a legjobb.', demo: { steps: [{ fen: '4k3/1P6/8/8/8/8/8/4K3 w - - 0 1', sel: 'b7', cap: 'A gyalog az utolsó sor előtt áll.' }, { move: 'b7b8q', cap: 'Belép, és vezérré változik.' }] } },
-  { t: 'Sakk, matt és patt', x: '<b>Sakk:</b> a király támadás alatt áll, ezt azonnal meg kell szüntetni. <b>Matt:</b> a király sakkban van, és nincs menekvés – vége a játszmának. <b>Patt:</b> a soron lévő fél nincs sakkban, de nincs szabályos lépése – döntetlen.', demo: { steps: [{ fen: '4k3/8/8/8/8/8/3R4/4K3 w - - 0 1', cap: 'Sakk: a bástya megtámadja a királyt.' }, { move: 'd2e2', wait: 2200 }, { fen: '6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1', cap: 'Matt: a király sakkban van, és nem tud elmenekülni.' }, { move: 'd1d8', wait: 2500 }, { fen: '7k/8/6K1/5Q2/8/8/8/8 w - - 0 1', cap: 'Patt: a sötét király nincs sakkban, de nem tud lépni – döntetlen.' }, { move: 'f5f7', wait: 2500 }] } },
-  { t: 'Döntetlen', x: 'A játszma döntetlen, ha: patt alakul ki; ugyanaz az állás háromszor megismétlődik; 50 lépésen át nincs ütés és gyaloglépés; vagy egyik félnek sincs elég bábuja a matthoz (például király a király ellen).' }
+  { t: 'A játék célja és a tábla', x: 'A sakkot két fél, <b>világos</b> és <b>sötét</b> játssza egy 8×8-as, 64 mezős táblán. A vízszintes <b>sorokat</b> 1-től 8-ig, a függőleges <b>vonalakat</b> a-tól h-ig jelöljük, így minden mezőnek neve van (pl. e4).<ul><li>A tábla jobb alsó sarkában mindig <b>világos mező</b> van.</li><li>Kezdéskor a második (sötétnél a hetedik) sorban állnak a gyalogok, mögöttük a sarkokban a bástyák, mellettük a huszárok, aztán a futók. A <b>vezér a saját színű mezőjére</b> kerül (világos vezér a világos d1-re), mellette a király.</li><li><b>Világos kezd</b>, utána felváltva lépnek. Passzolni nem lehet: aki soron van, annak lépnie kell.</li><li>Egy mezőn csak egy bábu állhat. <b>Ütni</b> úgy lehet, hogy az ellenfél bábujának helyére lépsz – az a bábu lekerül a tábláról. Saját bábut nem lehet leütni.</li></ul>A cél az ellenfél királyának <b>mattot adni</b>: úgy megtámadni, hogy semmilyen lépéssel ne tudja elhárítani.', demo: { steps: [{ fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', cap: 'Ez a kezdőállás. A világos vezér a világos d1-en, a sötét vezér a sötét d8-on áll.' }, { sel: 'e2', cap: 'Világos kezd. A gyalog az első lépésnél kettőt is léphet.' }, { move: 'e2e4' }, { move: 'e7e5', cap: 'Aztán sötét lép – és így tovább, felváltva.' }] } },
+  { t: '♖ A bástya', x: PIECE_HELP[4] + ' A bástyák a nyílt (gyalog nélküli) vonalakon és a hetedik soron a legerősebbek. Értéke kb. <b>5 gyalog</b>.', demo: { free: true, steps: [{ fen: '8/8/8/8/3R4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A bástya egyenesen lép: előre, hátra és oldalra, akárhány mezőt.' }, { move: 'd4d8' }, { move: 'd8h8', cap: 'Más bábut nem ugorhat át.' }] } },
+  { t: '♗ A futó', x: PIECE_HELP[3] + ' Mindkét félnek van egy világos- és egy sötétmezős futója; a kettő együtt (a „futópár”) nagyon erős. Értéke kb. <b>3 gyalog</b>.', demo: { free: true, steps: [{ fen: '8/8/8/8/3B4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A futó átlósan lép, akárhány mezőt – mindig ugyanolyan színű mezőn marad.' }, { move: 'd4g7' }, { move: 'g7h8' }] } },
+  { t: '♕ A vezér', x: PIECE_HELP[5] + ' Olyan, mintha egy bástya és egy futó lenne egyben. Értéke kb. <b>9 gyalog</b> – vigyázz rá, ne add oda olcsón!', demo: { free: true, steps: [{ fen: '8/8/8/8/3Q4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A vezér a bástya és a futó együtt: egyenesen és átlósan is léphet.' }, { move: 'd4d8' }, { move: 'd8h4' }] } },
+  { t: '♘ A huszár', x: PIECE_HELP[2] + ' Mindig ellenkező színű mezőre érkezik. A tábla közepéről 8 mezőt támad, a sarokból csak 2-t – ezért mondják: „huszár a szélen, szégyen”. Értéke kb. <b>3 gyalog</b>.', demo: { free: true, steps: [{ fen: '8/8/8/4p3/3N4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A huszár L alakban ugrik: kettőt egy irányba, egyet oldalra.' }, { move: 'd4e6', cap: 'Az egyetlen bábu, amely átugorhat másokat.' }, { move: 'e6g7' }] } },
+  { t: '♔ A király', x: PIECE_HELP[6] + '<ul><li>A király soha nem léphet olyan mezőre, amelyet az ellenfél támad – ezért a két király sem kerülhet egymás mellé.</li><li>A királyt nem lehet leütni: ha menekülés nélkül támadják, az a matt, és vége a játszmának.</li><li>Megnyitásban jobb biztonságba helyezni (sáncolni), a végjátékban viszont aktív, erős bábu.</li></ul>', demo: { free: true, steps: [{ fen: '8/8/8/8/3K4/8/8/8 w - - 0 1', sel: 'd4', cap: 'A király minden irányban egy mezőt léphet.' }, { move: 'd4e5' }, { move: 'e5e6' }] } },
+  { t: '♙ A gyalog', x: PIECE_HELP[1] + '<ul><li>A gyalog <b>csak előre</b> mehet, visszafelé soha.</li><li>Ha közvetlenül előtte bármilyen bábu áll, nem tud továbblépni – ütni viszont csak átlósan, egy mezőt előre tud.</li><li>A kezdősorából eldöntheted, hogy egyet vagy kettőt lép.</li></ul>Értéke <b>1</b> – ez a bábuk „mértékegysége”.', demo: { free: true, steps: [{ fen: '8/8/8/4p3/8/8/3P4/8 w - - 0 1', sel: 'd2', cap: 'A gyalog előre lép; a kezdősorból kettőt is léphet.' }, { move: 'd2d4' }, { sel: 'd4', cap: 'Ütni viszont csak átlósan tud.' }, { move: 'd4e5' }] } },
+  { t: 'A bábuk értéke', x: 'Hogy megérje-e egy csere, abban segít a bábuk hozzávetőleges értéke (gyalogban mérve):<ul><li>♙ gyalog: <b>1</b></li><li>♘ huszár és ♗ futó: <b>3</b></li><li>♖ bástya: <b>5</b></li><li>♕ vezér: <b>9</b></li><li>♔ király: felbecsülhetetlen – az ő elvesztése a játszma vége.</li></ul>Ha például huszárt adsz egy bástyáért, nyertél kb. 2 gyalognyi értéket. Ez csak hüvelykujjszabály: egy jól álló bábu többet ér, egy beszorult kevesebbet.' },
+  { t: 'Sakk', x: 'Ha egy bábu a királyt támadja, a király <b>sakkban</b> van. Ezt a következő lépéssel <b>kötelező megszüntetni</b>, háromféleképpen lehet:<ul><li><b>Ellépni</b> a királlyal egy nem támadott mezőre.</li><li><b>Közbelépni</b>: egy saját bábut a támadó és a király közé állítani. (Huszár sakkja ellen ez nem működik, mert a huszár átugorja.)</li><li><b>Leütni</b> a sakkot adó bábut.</li></ul>Olyan lépést sem szabad tenni, amely után a saját királyod támadás alá kerül. Az app ilyen szabálytalan lépést nem is enged: mindig csak a szabályos lépéseket mutatja.', demo: { steps: [{ fen: '4r1k1/8/8/8/8/8/3B4/4K3 w - - 0 1', cap: 'Sakk! A sötét bástya az e-vonalon támadja a világos királyt.' }, { sel: 'e1', cap: '1. Ellépés: a király a jelölt mezők valamelyikére léphet. Az e2 nem jó, azt is támadja a bástya.' }, { sel: 'd2', cap: '2. Közbelépés: a futó beállhat az e3-ra, a bástya és a király közé.' }, { move: 'd2e3', wait: 1800 }, { fen: '4r1k1/8/8/8/Q7/8/8/4K3 w - - 0 1', cap: '3. Leütés: itt a vezér egyszerűen leütheti a sakkot adó bástyát.' }, { move: 'a4e8', wait: 1800 }] } },
+  { t: 'Matt', x: 'A <b>matt</b> (sakk-matt) azt jelenti: a király sakkban van, és a fenti három mód közül egyikkel sem lehet elhárítani. Ekkor a játszma azonnal véget ér, és aki mattot adott, az <b>nyert</b>. A királyt a valóságban nem ütik le – a matt maga a győzelem.<br>Gyakori mattképek: az <b>alapsori matt</b> (a király a saját gyalogjai mögé szorul), és a <b>király + vezér</b> matt, ahol a saját király segít elzárni a menekülőmezőket.', demo: { steps: [{ fen: '6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1', cap: 'Alapsori matt: a sötét királyt a saját gyalogjai zárják be.' }, { move: 'd1d8', wait: 2600 }, { fen: 'k7/8/1K6/8/8/8/8/6Q1 w - - 0 1', cap: 'Király és vezér együtt: a világos király elzárja az a7-et és a b7-et…' }, { move: 'g1g8', cap: '…a vezér pedig sakkot ad az utolsó sorban. Nincs menekvés – matt.', wait: 2600 }] } },
+  { t: 'Patt', x: 'A <b>patt</b> azt jelenti: a soron lévő fél <b>nincs sakkban</b>, de <b>egyetlen szabályos lépése sincs</b> – a királya csak támadott mezőre léphetne, a többi bábuja pedig nem tud mozdulni (vagy nincs is). Ilyenkor a játszma azonnal <b>döntetlen</b>, akármennyi bábuja is van a másik félnek.<ul><li>A <b>nyerő félnek</b> ez csapda: ha nagy előnyben vagy, mindig nézd meg, marad-e lépése az ellenfélnek. Ha nem marad, és nincs sakkban, akkor pattot adtál, és elúszott a győzelem.</li><li>A <b>vesztésre álló félnek</b> viszont mentőöv: néha szándékosan patt felé lehet terelni a játszmát.</li><li>A különbség a mattól: <b>mattnál</b> a király sakkban van, <b>pattnál</b> nincs.</li></ul>', demo: { steps: [{ fen: '7k/8/6K1/5Q2/8/8/8/8 w - - 0 1', cap: 'Világos nagy előnyben van, de figyelmetlenül lép…' }, { move: 'f5f7', cap: 'Patt! A sötét király nincs sakkban, de a g8, g7 és h7 mind támadott, más bábuja pedig nincs – döntetlen.', wait: 3200 }, { fen: 'k7/P7/1K6/8/8/8/8/8 b - - 0 1', cap: 'Egy másik patt: sötét lépne, de a b8-at a gyalog, a b7-et a király támadja. Nincs sakk, nincs lépés – döntetlen.' }] } },
+  { t: 'Döntetlen', x: 'A játszma <b>döntetlen</b> (remi), ha:<ul><li><b>Patt</b> alakul ki (lásd fent).</li><li><b>Háromszoros ismétlés:</b> ugyanaz az állás – ugyanazokkal a bábukkal ugyanott, ugyanazzal a féllel soron – háromszor előfordul, akár nem is egymás után. Ide tartozik az <b>örökös sakk</b> is, amikor valaki újra és újra sakkot ad, és a másik nem tud kitérni előle.</li><li><b>50 lépéses szabály:</b> 50 lépésen át (mindkét fél 50-et lépett) nem volt sem ütés, sem gyaloglépés.</li><li><b>Kevés anyag:</b> egyik félnek sincs annyi bábuja, amivel mattot lehetne adni – például csak a két király maradt, vagy király és egy futó, illetve király és egy huszár áll a király ellen.</li><li><b>Megegyezés:</b> a két játékos megegyezik a döntetlenben (online játékban a „Döntetlent ajánlok” gombbal).</li></ul>Ezeket az app magától felismeri, és kiírja a döntetlen okát.' },
+  { t: 'Sáncolás', x: 'A sáncolás az egyetlen lépés, amelyben két bábu mozdul egyszerre: a király kettőt lép a bástya felé, a bástya pedig átugorja, és a király mellé áll.<ul><li><b>Rövid sánc</b> (királyszárnyon): a király g1-re, a bástya f1-re kerül (sötétnél g8 és f8).</li><li><b>Hosszú sánc</b> (vezérszárnyon): a király c1-re, a bástya d1-re kerül (sötétnél c8 és d8).</li></ul>Feltételek:<ul><li>sem a király, sem az a bástya nem lépett még a játszmában;</li><li>nincs köztük semmilyen bábu;</li><li>a király éppen nincs sakkban, nem halad át támadott mezőn, és nem érkezik támadott mezőre (a bástyára ez nem vonatkozik).</li></ul>Az appban a <b>királyt kell két mezővel</b> a bástya felé léptetni, a bástya magától átugrik.', demo: { steps: [{ fen: 'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1', sel: 'e1', cap: 'A király két mezőt léphet a bástya felé – ez a sáncolás.' }, { move: 'e1g1', cap: 'Rövid sánc: a király g1-re, a bástya f1-re kerül.' }, { move: 'e8c8', cap: 'Hosszú sánc: a király c8-ra, a bástya d8-ra.' }] } },
+  { t: 'En passant (menet közbeni ütés)', x: 'Különleges gyalogütés. Ha az ellenfél gyalogja a kezdősorából <b>kettőt lép</b>, és így közvetlenül a te gyalogod <b>mellé</b> érkezik, a te gyalogod leütheti úgy, mintha csak egyet lépett volna: átlósan arra a mezőre lépsz, amelyet az ő gyalogja átugrott, és az ő gyalogja lekerül.<ul><li>Csak gyalog üthet így gyalogot.</li><li>Csak <b>azonnal</b>, a következő lépésben lehet – később már nem.</li><li>Nem kötelező, ha más lépést szeretnél.</li></ul>', demo: { steps: [{ fen: '4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1', cap: 'A sötét gyalog kettőt lép, a világos gyalog mellé.' }, { move: 'd7d5' }, { sel: 'e5', cap: 'A világos gyalog most „menet közben” leütheti: a d6-ra lép, a d5-ös gyalog pedig lekerül.' }, { move: 'e5d6' }] } },
+  { t: 'Gyalogátváltozás', x: 'Ha a gyalog eléri az utolsó sort (világosnál a 8., sötétnél az 1. sort), <b>kötelezően átváltozik</b> egy általad választott bábuvá: vezérré, bástyává, futóvá vagy huszárrá. Királlyá vagy gyaloggá nem lehet.<ul><li>Bármelyiket választhatod, akkor is, ha az a bábu még megvan – így lehet <b>két vagy több vezéred</b> is.</li><li>Szinte mindig a <b>vezér</b> a legjobb. Ritkán a huszár jobb (ha azonnal sakkot ad vagy villát csinál), vagy a bástya (ha a vezér pattot adna).</li><li>Az app egy kis ablakban kérdezi meg, mivé változzon.</li></ul>', demo: { steps: [{ fen: '4k3/1P6/8/8/8/8/8/4K3 w - - 0 1', sel: 'b7', cap: 'A gyalog az utolsó sor előtt áll.' }, { move: 'b7b8q', cap: 'Belép, és vezérré változik.' }] } },
+  { t: 'A játszma vége', x: 'A játszma így érhet véget:<ul><li><b>Matt</b> – aki mattot ad, nyer.</li><li><b>Feladás</b> – ha valaki reménytelennek látja az állását, feladhatja, ekkor az ellenfele nyer (online játékban a „Feladom” gombbal).</li><li><b>Időtúllépés</b> – sakkórás játszmában akinek lejár az ideje, az veszít.</li><li><b>Döntetlen</b> – patt, ismétlés, 50 lépés, kevés anyag vagy megegyezés miatt (lásd fent).</li></ul>A végén az app kiírja az eredményt és az okát, és felajánlja a játszma elemzését.' },
+  { t: 'Lépések jelölése', x: 'Az app a lépéseket rövid jelöléssel írja ki – így olvasd:<ul><li>A <b>mező</b> neve a vonal betűje és a sor száma, pl. <b>e4</b>.</li><li>A bábuk betűi: <b>K</b> király, <b>V</b> vezér, <b>B</b> bástya, <b>F</b> futó, <b>H</b> huszár. A gyalognak nincs betűje: az <b>e4</b> azt jelenti, hogy egy gyalog lépett az e4-re.</li><li><b>Hf3</b>: huszár lép az f3-ra. <b>x</b> = ütés: <b>Fxc6</b> a futó leüt valamit a c6-on, <b>exd5</b> az e-gyalog üt a d5-ön.</li><li><b>+</b> = sakk, <b>#</b> = matt, <b>O-O</b> = rövid sánc, <b>O-O-O</b> = hosszú sánc, <b>=V</b> = átváltozás vezérré (pl. b8=V).</li><li>A lépéspárok számozottak: <b>1. e4 e5</b> – világos és sötét első lépése; a <b>3…</b> sötét 3. lépését jelöli.</li></ul>' }
 ];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function runDemo(i) {
@@ -4243,7 +4259,7 @@ function openLearn(tab) {
   setSeg('learnTabs', 'tab', learnTab);
   const body = $('learnBody'); let h = '';
   if (learnTab === 'rules') {
-    RULES.forEach((r, i) => { h += '<div class="lcard"><h4>' + r.t + '</h4>' + r.x + (r.demo ? '<br><button class="p" data-demo="' + i + '">▶ Mutasd a táblán</button>' : '') + '</div>'; });
+    RULES.forEach((r, i) => { h += '<div class="lcard"><h4>' + r.t + '</h4>' + r.x + (r.demo ? (/<\/ul>$/.test(r.x) ? '' : '<br>') + '<button class="p" data-demo="' + i + '">▶ Mutasd a táblán</button>' : '') + '</div>'; });
   } else if (learnTab === 'lessons') {
     LESSONS.forEach((L, i) => { const s = progress.lessons[i] || 0; h += '<div class="lcard"><h4><span>' + (i + 1) + '. ' + L.t + '</span><span>' + '★'.repeat(s) + '☆'.repeat(3 - s) + '</span></h4>' + L.x + '<br><button class="p" data-lesson="' + i + '">' + (s ? 'Újra' : 'Kezdés') + '</button></div>'; });
   } else if (learnTab === 'puzzles') {
@@ -4255,6 +4271,7 @@ function openLearn(tab) {
       h += '</div></div>';
     });
     h += '<div class="lcard">Megoldva: <b>' + solved + ' / ' + PUZZLES.length + '</b></div>';
+    h += challengeCards();
   } else h = extraLearnTab(learnTab);
   body.innerHTML = h;
   bindExtraLearnTab(body);
@@ -4713,7 +4730,7 @@ const Clock = {
   tick() {
     const now = performance.now(), el = Math.min(1, (now - (this.last || now)) / 1000);
     this.last = now;
-    if (this.paused() || document.hidden) { if (this.on) this.render(); return; }
+    if (this.paused() || document.hidden) { if (this.on || onlineMode()) this.render(); return; }
     const c = game.turn;
     this.t[c] -= el;
     if (this.t[c] <= 0) { this.t[c] = 0; this.flag(c); }
@@ -4741,21 +4758,21 @@ const Clock = {
     return m + ':' + (r < 10 ? '0' : '') + r;
   },
   render() {
-    const box = $('clocks'), show = this.on && !activity;
+    const box = $('clocks'), show = (this.on || onlineMode()) && !activity;   // online játékban a nevek óra nélkül is látszanak
     if (box.hidden === show) box.hidden = !show;
     document.body.classList.toggle('clock-on', show);
     if (!show) return;
     const bottom = sideMode() ? humanColor : (Math.cos(cam.theta) >= 0 ? WHITE : BLACK);
     const name = c => (sideMode() ? (c === humanColor ? (settings.name || 'Te') : onlineMode() ? (Net.oppName || 'Ellenfél') : PERSONAS[settings.persona].name) : sideName(c));
-    const key = [bottom, this.fmt(this.t[WHITE]), this.fmt(this.t[BLACK]), game.turn, this.running, lastStatus.over, forcedResult && forcedResult.loser].join('|');
+    const key = [this.on, settings.name, onlineMode() && Net.oppName, bottom, this.fmt(this.t[WHITE]), this.fmt(this.t[BLACK]), game.turn, this.running, lastStatus.over, forcedResult && forcedResult.loser].join('|');
     if (key === this.shown) return;
     this.shown = key;
     [['clkBot', bottom], ['clkTop', -bottom]].forEach(([id, c]) => {
       const el = $(id), t = this.t[c];
       el.querySelector('.cn').textContent = (c === WHITE ? '⚪ ' : '⚫ ') + name(c);
-      el.querySelector('b').textContent = this.fmt(t);
+      el.querySelector('b').textContent = this.on ? this.fmt(t) : ''; el.classList.toggle('noclock', !this.on);
       el.classList.toggle('on', !lastStatus.over && game.turn === c && (this.running || game.history.length > 0));
-      el.classList.toggle('low', t < 20);
+      el.classList.toggle('low', this.on && t < 20);
       el.classList.toggle('flag', !!(forcedResult && forcedResult.reason === 'time' && forcedResult.loser === c));
     });
   }
@@ -5077,6 +5094,7 @@ startOpening = pauseGuard(startOpening);
 startEndgame = pauseGuard(startEndgame);
 startMyMistake = pauseGuard(startMyMistake);
 startReplay = pauseGuard(startReplay);
+startChallenge = pauseGuard(startChallenge);
 replayContinue = loseGuard(replayContinue, 'Ha innen folytatod, a félbehagyott saját játszmád helyére ez a megosztott játszma kerül, és a régi elvész.');
 
 function openHelp() {
@@ -5094,7 +5112,7 @@ window.addEventListener('hashchange', handleIncomingLink);
 function featureExports() {
   return {
     Clock, Net, Persona, Tactics, Mistakes, Progress, VoiceCtl, Heat, progress: () => progress, saveGame, restoreSavedGame, encodePayload, decodePayload, importText, handlePayload,
-    startReplay, replayStep, setView, applyVisual, startEndgame, startOpening, startMyMistake, startTacticPuzzle, thinkState: () => thinkCur,
+    startReplay, replayStep, setView, applyVisual, startEndgame, startOpening, startMyMistake, startTacticPuzzle, startChallenge, thinkState: () => thinkCur,
     status: () => lastStatus, forced: () => forcedResult, humanColor: () => humanColor, setHuman: c => { humanColor = c; }, vt: () => VT, idle: () => idleState,
     chans: () => ({ live: liveChan.cbs.size, w: !!liveChan.w, task: taskChan.cbs.size }), PERSONAS, OPENING_LINES, ENDGAMES, TACTIC_PUZZLES, BADGES, parseSpoken: t => VoiceCtl.parse(t), progress: () => progress
   };
@@ -5386,6 +5404,7 @@ const Net = {
     const el = $('emojiPop');
     el.className = R.txt ? 'txt' + (e === 'mate' ? ' mate' : '') : '';
     el.textContent = R.txt || R.i;
+    if (R.say && !R.txt) { const w = document.createElement('span'); w.className = 'say'; w.textContent = R.say; el.appendChild(w); }
     if (from) { const w = document.createElement('span'); w.className = 'who'; w.textContent = from; el.appendChild(w); }
     el.hidden = false;
     el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
@@ -5410,11 +5429,11 @@ const Net = {
   joinPrompt(code) {
     $('netTitle').textContent = 'Csatlakozás';
     $('netBody').innerHTML = '<p>Írd be a barátodtól kapott kódot:</p><input id="joinCode" maxlength="8" placeholder="pl. K7P2QX" autocapitalize="characters" autocomplete="off" style="font-size:22px;letter-spacing:.15em;text-transform:uppercase;width:100%">'
-      + (settings.name ? '' : '<p class="mini" style="margin-top:10px">Tipp: a nevedet az Online résznél adhatod meg.</p>')
+      + nameFieldHtml()
       + '<div class="btns"><button class="btn" id="joinCancel">Mégse</button><button class="btn primary" id="joinGo">Csatlakozom</button></div>';
     if (code) $('joinCode').value = code;
     $('joinCancel').onclick = closeModals;
-    $('joinGo').onclick = () => { const c = $('joinCode').value; closeModals(); this.join(c); };
+    $('joinGo').onclick = () => { const c = $('joinCode').value; readNameField(); closeModals(); this.join(c); };
     closeModals(); panel.classList.remove('open'); $('netModal').classList.add('show');
     setTimeout(() => $('joinCode').focus(), 60);
   },
@@ -5425,8 +5444,8 @@ const Net = {
   corrPrompt() {
     $('netTitle').textContent = 'Levelezős játszma';
     $('netBody').innerHTML = '<p>Minden lépés után küldesz egy linket (pl. WhatsAppon vagy iMessage-en). A barátod megnyitja, lép, és visszaküldi. Így akár napokig is tarthat egy parti.</p><p>Milyen színnel játszol?</p>'
-      + '<div class="btns"><button class="btn" data-cc="1">⚪ Világos</button><button class="btn" data-cc="-1">⚫ Sötét</button><button class="btn wide" data-cc="0">🎲 Véletlen</button></div>';
-    $('netBody').querySelectorAll('[data-cc]').forEach(b => { b.onclick = () => { closeModals(); let c = +b.dataset.cc; if (!c) c = Math.random() < 0.5 ? WHITE : BLACK; this.corrStart(c); }; });
+      + nameFieldHtml() + '<div class="btns"><button class="btn" data-cc="1">⚪ Világos</button><button class="btn" data-cc="-1">⚫ Sötét</button><button class="btn wide" data-cc="0">🎲 Véletlen</button></div>';
+    $('netBody').querySelectorAll('[data-cc]').forEach(b => { b.onclick = () => { readNameField(); closeModals(); let c = +b.dataset.cc; if (!c) c = Math.random() < 0.5 ? WHITE : BLACK; this.corrStart(c); }; });
     closeModals(); panel.classList.remove('open'); $('netModal').classList.add('show');
   },
   corrStart(color) {
@@ -5442,13 +5461,15 @@ const Net = {
   },
   corrPayload() { return { k: 'c', id: this.corrId, m: historyUci().join('.'), n: this.myName(), w: whiteBlackNames() }; },
   corrOffer(invite) {
-    const { code, url } = linkFor(this.corrPayload());
+    let { code, url } = linkFor(this.corrPayload());
     const over = lastStatus.over;
     $('netTitle').textContent = invite ? 'Meghívó levelezős játszmára' : over ? 'A játszma véget ért' : 'Küldd el a lépésed';
     $('netBody').innerHTML = '<p>' + (invite ? 'Te sötéttel játszol, a barátod kezd. Küldd el neki ezt a linket.' : over ? 'Küldd el a záró lépést, hogy a barátod is lássa az eredményt.' : 'Megléptél: <b>' + (game.sanList[game.sanList.length - 1] || '') + '</b>. Küldd el a barátodnak, hogy válaszolhasson.') + '</p>'
+      + (settings.name ? '' : nameFieldHtml())
       + '<div class="linkbox">' + (url || code) + '</div>' + (url ? '' : '<p class="mini" style="margin-top:0">Ebben a nézetben link helyett kódot adok: a barátod a 📥 Betöltés gombbal nyithatja meg.</p>')
       + '<div class="btns"><button class="btn primary" id="corrSend">📤 Küldés…</button><button class="btn" id="corrLater">Később</button></div>';
     $('corrSend').onclick = async () => {
+      if ($('netNameInp')) { readNameField(); const L = linkFor(this.corrPayload()); url = L.url; code = L.code; }
       const r = await sendText('Sakk 3D – a te lépésed!', (invite ? 'Gyere, játsszunk levelezős sakkot! ' : over ? 'Vége a partinak! ' : 'Megléptem: ' + (game.sanList[game.sanList.length - 1] || '') + '. Te jössz! ') + (url ? '' : 'Kód (Sakk 3D → Betöltés): ' + code), url);
       if (r === 'shared' || r === 'copied') { this.corrSent = true; closeModals(); this.renderBox(); saveGame(); }
     };
@@ -5540,14 +5561,35 @@ const Net = {
     if (role === 'guest') this.send({ t: 'hello', v: 1, name: this.myName(), gid: null, n: 0 });
   }
 };
-$('btnHost').onclick = loseGuard(() => Net.host(), 'Az élő online játék új játszmát indít, a mostani elvész.');
+$('btnHost').onclick = loseGuard(() => askNameThen(() => Net.host()), 'Az élő online játék új játszmát indít, a mostani elvész.');
 $('btnJoin').onclick = loseGuard(() => Net.joinPrompt(), 'A csatlakozással új játszma indul, a mostani elvész.');
 $('btnCorr').onclick = loseGuard(() => Net.corrPrompt(), 'A levelezős játék új játszmát indít, a mostani elvész.');
 $('btnLeave').onclick = () => confirmThen('Kilépsz?', 'Az online játszma véget ér ezen az eszközön.', () => Net.leave(), 'Kilépek', 'Maradok');
 $('netClose').onclick = closeModals;
+// A név megadása az online ablakokban – ezt látja az ellenfél
+function nameFieldHtml() { return '<label class="fld netname"><span>A neved – ezt látja az ellenfeled</span><input id="netNameInp" maxlength="18" placeholder="pl. Tati" autocomplete="nickname" value="' + (settings.name || '').replace(/"/g, '&quot;') + '"></label>'; }
+function readNameField() {
+  const el = $('netNameInp'); if (!el) return;
+  const v = el.value.trim().slice(0, 18);
+  if (v !== settings.name) { settings.name = v; saveSettings(); $('nameInput').value = v; Clock.shown = ''; Net.sendName(); }
+}
+function askNameThen(fn) {
+  if (settings.name) { fn(); return; }
+  $('netTitle').textContent = 'Hogy hívjanak?';
+  $('netBody').innerHTML = '<p>Add meg a neved, hogy a barátod lássa, kivel játszik. Bármikor átírhatod az Online résznél.</p>' + nameFieldHtml()
+    + '<div class="btns"><button class="btn" id="nameSkip">Kihagyom</button><button class="btn primary" id="nameGo">Tovább</button></div>';
+  const go = () => { readNameField(); closeModals(); fn(); };
+  $('nameGo').onclick = go; $('nameSkip').onclick = () => { closeModals(); fn(); };
+  $('netNameInp').onkeydown = e => { if (e.key === 'Enter') go(); };
+  closeModals(); panel.classList.remove('open'); $('netModal').classList.add('show');
+  setTimeout(() => $('netNameInp').focus(), 60);
+}
 const REACTIONS = {
   like: { i: '👍' }, wow: { i: '😮' }, oops: { i: '😅' }, angry: { i: '😠' }, fire: { i: '🔥' },
   attack: { i: '⚔️', say: 'Támadás!' }, defend: { i: '🛡️', say: 'Védekezem!' }, gg: { i: '🤝', say: 'Szép játszma!' },
+  laugh: { i: '😂', say: 'Hahaha!' }, think: { i: '🤔', say: 'Hmm, gondolkodom…' }, sleepy: { i: '😴', say: 'Lépsz már?' }, monkey: { i: '🙈', say: 'Ezt nem láttam!' },
+  boom: { i: '🤯', say: 'Ez kemény volt!' }, party: { i: '🥳', say: 'Juhú!' }, snail: { i: '🐌', say: 'Csigatempó!' }, ghost: { i: '👻', say: 'Búú!' },
+  pray: { i: '🙏', say: 'Kegyelem!' }, cool: { i: '😎', say: 'Nyugi, minden a tervem szerint.' },
   check: { txt: '♚\uFE0E Sakk!', say: 'Sakk!' }, mate: { txt: '♚\uFE0E Matt!', say: 'Matt!' }
 };
 let lastEmoji = 0;
@@ -5923,6 +5965,7 @@ function extraActivityMove(a, m, color) {
     setTimeout(async () => { if (activity !== a) return; await undoOne(); a.locked = false; }, 700);
     return;
   }
+  if (a.type === 'chal') { chalAfter(a, m, color); return; }
   if (a.type === 'endgame') { endgameAfter(a, m, color); return; }
   if (a.type === 'opening') { openingAfter(a, m, color); return; }
 }
@@ -6130,6 +6173,7 @@ function bindExtraLearnTab(body) {
   body.querySelectorAll('[data-open]').forEach(b => { b.onclick = () => startOpening(+b.dataset.open); });
   body.querySelectorAll('[data-eg]').forEach(b => { b.onclick = () => startEndgame(+b.dataset.eg); });
   body.querySelectorAll('[data-mine]').forEach(b => { b.onclick = () => startMyMistake(+b.dataset.mine); });
+  body.querySelectorAll('[data-chal]').forEach(b => { b.onclick = () => startChallenge(+b.dataset.chal); });
   const hc = body.querySelector('#heatCum'); if (hc) bindHeatPanel(hc, heatCumView(), 'cum', () => openLearn('progress'));
 }
 
@@ -6379,6 +6423,111 @@ function heatMarkers(H) {
     addMarker(MGEO.plane, heatMat(o.c, 0.2 + 0.68 * o.v), q, 0.006);
     if (o.t) { const sp = new THREE.Sprite(heatNum(o.t)); sp.position.copy(sqPos(q)); sp.position.y = 0.12; sp.scale.setScalar(0.42); sp.renderOrder = 3; markersGroup.add(sp); }
   });
+}
+
+/* ============================================================
+   KIHÍVÁSOK: védd ki a mattot · mentsd meg patt-tal
+   (az állásokat a szabálymotorral ellenőriztük)
+   ============================================================ */
+const CHALLENGES = [
+  { k: 'defend', t: 'Védd ki a mattot! – alapsor', fen: '4r1k1/5ppp/8/8/8/8/R4PPP/6K1 w - - 0 1', x: 'Sötét bástyája a következő lépésben mattot adna az alapsoron. Találj védekezést!' },
+  { k: 'defend', t: 'Védd ki a mattot! – h2', fen: 'r5k1/5ppp/3b4/8/7q/4P3/PP3PPP/RNBQ1RK1 w - - 0 1', x: 'Sötét vezére és futója együtt a h2-es mezőt célozza. Ha nem teszel semmit, matt. Mit lépsz?' },
+  { k: 'defend', t: 'Védd ki a mattot! – g2', fen: '6k1/5ppp/8/8/5nq1/4P3/PP1Q1PPP/5RK1 w - - 0 1', x: 'A sötét vezér a huszár támogatásával a g2-n adna mattot. Csak kevés lépés segít – keresd meg!' },
+  { k: 'patt', t: 'Mentsd meg patt-tal! – őrült bástya', fen: 'k7/p7/8/6q1/8/7p/7P/1R5K w - - 0 1', sol: ['b1b8'], x: 'Sötétnek vezére van, neked csak egy bástyád – ez vesztes állás. Vagy mégsem? A királyod már nem tud lépni… Szerezz döntetlent!' },
+  { k: 'patt', t: 'Mentsd meg patt-tal! – vezéráldozat', fen: '7k/6pp/8/3Q4/4b3/p7/P6r/K7 w - - 0 1', sol: ['d5g8'], x: 'Sötét bástyája és futója a királyod körül mindent leköt. Egyetlen merész lépés döntetlent ment. Melyik?' }
+];
+if (!progress.chal || typeof progress.chal !== 'object') progress.chal = {};
+const chalMated = g => g.inCheck(g.turn) && !g.legalMoves().length;
+function chalMate1(g) { for (const m of g.legalMoves()) { const st = g.makeRaw(m); const r = chalMated(g); g.unmakeRaw(m, st); if (r) return m; } return null; }
+// tud-e a soron lévő fél legfeljebb 2 lépésben mattot adni?
+function chalMate2(g) {
+  if (chalMate1(g)) return true;
+  for (const m of g.legalMoves()) {
+    const st = g.makeRaw(m), rs = g.legalMoves(); let ok = rs.length > 0;
+    if (ok) for (const r of rs) { const s2 = g.makeRaw(r); const mm = chalMate1(g); g.unmakeRaw(r, s2); if (!mm) { ok = false; break; } }
+    g.unmakeRaw(m, st); if (ok) return true;
+  }
+  return false;
+}
+function chalThreat(fen) {   // mivel adna mattot az ellenfél, ha most passzolnánk?
+  const p = fen.split(' '); p[1] = p[1] === 'w' ? 'b' : 'w'; p[3] = '-';
+  return chalMate1(new E.Chess(p.join(' ')));
+}
+function challengeCards() {
+  let h = '<div class="lcard"><h4><span>🎯 Kihívások</span><span style="font-weight:400;font-size:12px">' + CHALLENGES.filter((c, i) => progress.chal[i]).length + ' / ' + CHALLENGES.length + '</span></h4>Itt nem te adsz mattot – neked kell megmenekülnöd.<div class="pgrid" style="margin-top:4px">';
+  CHALLENGES.forEach((c, i) => { h += '<button data-chal="' + i + '" class="' + (progress.chal[i] ? 'done' : '') + '" title="' + c.t + '">' + (c.k === 'defend' ? '🛡️' : '🤝') + ' ' + (i + 1) + (progress.chal[i] ? ' ✓' : '') + '</button>'; });
+  return h + '</div><p class="mini" style="margin:8px 0 0">🛡️ Védd ki a mattot · 🤝 Mentsd meg patt-tal (döntetlen a vesztes állásból)</p></div>';
+}
+function startChallenge(i) {
+  const c = CHALLENGES[i]; if (!c) return;
+  if (!beginActivity({ type: 'chal', i, tries: 0 })) return;
+  setBoard(c.fen); activity.human = game.turn;
+  rotateCamTo(game.turn === WHITE ? 0 : Math.PI, undefined, true);
+  chalBar();
+}
+function chalBar(msg) {
+  const a = activity, c = CHALLENGES[a.i];
+  setAct('🎯 ' + c.t, msg || c.x, [['💡 Tipp', chalHint], ['Lista', () => { endActivity(); openLearn('puzzles'); }], ['Kilépés', () => endActivity()]]);
+}
+function chalHint() {
+  const a = activity; if (!a || busy || a.locked) return;
+  const c = CHALLENGES[a.i]; clearArrows();
+  if (c.k === 'defend') {
+    const th = chalThreat(c.fen);
+    if (th) addArrow(th.from, th.to, 0xe5483b, 0.85);
+    chalBar('A piros nyíl a fenyegetés: ezzel adna mattot. Megakadályozhatod, ha elzárod az útját, leüted a támadót, vagy menekülőmezőt nyitsz a királynak.');
+  } else {
+    chalBar('Ha a királyod nem tud lépni és más bábud sincs, patt lesz. Keress olyan sakkot, amire az ellenfélnek csak egy válasza van: leütni a bábudat!');
+  }
+  say(actPlain($('actText').innerHTML));
+}
+function chalWin(a, text) {
+  progress.chal[a.i] = 1; saveProgress(); markDay(); Progress.check();
+  Sfx.play('fanfare'); cheer(); a.locked = true;
+  const nx = (a.i + 1) % CHALLENGES.length;
+  setAct('Megmenekültél! 🎉', text, [['Következő', () => relaunch(() => startChallenge(nx)), true], ['Lista', () => { endActivity(); openLearn('puzzles'); }], ['Kilépés', () => endActivity()]]);
+  say('Megmenekültél!');
+}
+function chalAfter(a, m, color) {
+  const c = CHALLENGES[a.i];
+  if (color !== a.human) {   // az ellenfél (kényszer)lépése után
+    if (c.k === 'patt' && lastStatus.over && lastStatus.reason === 'stalemate') chalWin(a, 'Patt! Az ellenfél kénytelen volt leütni a bábudat, és utána neked nincs szabályos lépésed, de sakkban sem vagy – döntetlen. Így lehet egy elveszettnek tűnő játszmát megmenteni.');
+    return;
+  }
+  a.locked = true;
+  if (c.k === 'defend') {
+    const g = new E.Chess(game.fen());
+    if (!chalMate2(g)) {
+      const th = chalThreat(c.fen);
+      chalWin(a, 'Ez megvédi a királyt: az ellenfél most már két lépésen belül sem tud mattot adni.' + (th ? ' A fenyegetés ez volt: ' + moveSentence(th, 'inf') + ' (piros nyíl).' : ''));
+      if (th) addArrow(th.from, th.to, 0xe5483b, 0.8);
+      return;
+    }
+    a.tries++;
+    const mm = chalMate1(g);
+    if (mm) {
+      setTimeout(async () => {
+        if (activity !== a) return;
+        await doMove(mm);
+        chalBar('Matt! Ez a lépés nem védett. A fenyegetés ez volt: ' + moveSentence(mm, 'inf') + '. Nyomd meg az Újra gombot, és próbáld másképp!');
+        setAct('🎯 ' + c.t, $('actText').innerHTML, [['↶ Újra', () => relaunch(() => startChallenge(a.i)), true], ['💡 Tipp', () => { relaunch(() => startChallenge(a.i)); setTimeout(chalHint, 200); }], ['Kilépés', () => endActivity()]]);
+        Sfx.play('illegal');
+      }, 500);
+    } else {
+      Sfx.play('illegal'); toast('Ez nem elég: két lépésen belül így is matt lenne. Próbáld újra!' + (a.tries >= 2 ? ' (A 💡 Tipp segít.)' : ''), 2600);
+      setTimeout(async () => { if (activity !== a) return; await undoOne(); a.locked = false; }, 700);
+    }
+    return;
+  }
+  // patt: a megoldás után az ellenfél egyetlen lehetséges lépése következik
+  if (c.sol.indexOf(E.uci(m)) >= 0) {
+    const rs = game.legalMoves();
+    setTimeout(() => { if (activity === a && rs[0]) doMove(rs[0]); }, 700);
+    return;
+  }
+  a.tries++;
+  Sfx.play('illegal'); toast('Ezzel nem lesz döntetlen – az ellenfél nyerne. Próbáld újra!' + (a.tries >= 2 ? ' (A 💡 Tipp segít.)' : ''), 2600);
+  setTimeout(async () => { if (activity !== a) return; await undoOne(); a.locked = false; }, 700);
 }
 
 /* ============================================================

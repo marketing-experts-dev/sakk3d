@@ -1,6 +1,6 @@
 /* Sakk 3D – offline gyorsítótár. Új verzió feltöltésekor elég az index.html-t cserélni:
    az oldal online állapotban mindig a legfrissebbet tölti le, offline a tároltat használja. */
-const CACHE = 'sakk3d-v19';
+const CACHE = 'sakk3d-v21';
 const CORE = ['./', './index.html', './three.min.js', './peerjs.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
