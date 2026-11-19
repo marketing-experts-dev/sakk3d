@@ -169,6 +169,23 @@ body.learn-off #coachOpts,body.learn-off #coachHead{display:none}
 .dlg-head h3{margin:0}
 .dlg-head .x{border:0;background:var(--card);width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
 #learnBody{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.hseg{margin:6px 0}
+.hseg button{padding:6px 4px;font-size:12.5px}
+.hwrap{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-top:8px}
+.hgridw{position:relative;width:min(100%,250px);padding:0 0 16px 14px;flex:none}
+.hgrid{display:grid;grid-template-columns:repeat(8,1fr);aspect-ratio:1;border-radius:6px;overflow:hidden;border:1px solid var(--panel-border)}
+.hgrid>div{position:relative;display:flex;align-items:center;justify-content:center}
+.hgrid>.l{background:#e8e2d6}.hgrid>.d{background:#a39887}
+.hgrid i{position:absolute;inset:0}
+.hgrid span{position:relative;font-size:10.5px;font-weight:700;color:#fff;text-shadow:0 0 3px #000,0 0 2px #000}
+.hfiles{position:absolute;left:14px;right:0;bottom:0;display:grid;grid-template-columns:repeat(8,1fr);text-align:center;font-size:10px;color:var(--muted)}
+.hranks{position:absolute;left:0;top:0;bottom:16px;display:grid;grid-template-rows:repeat(8,1fr);align-items:center;font-size:10px;color:var(--muted)}
+.htips{flex:1;min-width:210px;font-size:13px;line-height:1.45}
+.htips p{margin:0 0 7px}
+.hdot{display:inline-block;width:11px;height:11px;border-radius:3px;margin:0 5px -1px 0;vertical-align:baseline}
+.hdot+*{margin-left:0}
+.hbtn{margin-top:6px}
+#analysisBody .hbtn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 12px;font-weight:600;cursor:pointer}
 .lcard{background:var(--card);border:1px solid var(--panel-border);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.45}
 .lcard h4{margin:0 0 4px;font-size:14.5px;color:var(--accent);display:flex;justify-content:space-between;gap:8px}
 .lcard button,.pgrid button{border:1px solid var(--panel-border);background:rgba(255,255,255,.08);border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600;cursor:pointer;margin-top:8px}
@@ -703,10 +720,15 @@ body.act #emojiBar{display:none}
 <p>A „Tanulás” gomb nyitja meg a tanulóközpontot, nyolc füllel. Itt mindent a saját tempódban gyakorolhatsz; a félbehagyott játszmád közben megmarad, és kilépéskor visszatér.</p>
 <p>Ha játszma közben indítasz gyakorlást, az app előbb rákérdez, és a gyakorlás végén a „Vissza a játékhoz” gombbal pontosan oda térsz vissza, ahol abbahagytad. Ha valami a félbehagyott játszmád elvesztésével járna – új játék, módváltás, sakkóra-váltás, online játék indítása vagy egy kapott játszma folytatása –, azt is csak megerősítés után teszi meg.</p>
 <p>A feladat leírása a tábla bal felső sarkában jelenik meg; elforgatott telefonon a tábla mellé, külön sávba kerül, így nem takarja el. A 🔊 gombbal felolvastathatod; ha a hangot bekapcsoltad, minden új feladatot magától is felolvas. A ✕ gombbal bezárhatod, ha nagyobb táblát szeretnél. Ilyenkor egy kis „📋 Feladat” gomb marad a helyén, amivel újra megnyithatod. Ha megoldod a feladatot, az eredmény magától előjön.</p>
-<div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány és 21 megszerezhető jelvény.</td></tr></tbody></table></div>
+<div class="tblw"><table><thead><tr><th>Fül</th><th>Mit találsz benne</th></tr></thead><tbody><tr><td>Szabályok</td><td>Minden bábu lépése és a különleges szabályok (sánc, en passant, gyalogátváltozás, sakk, matt, patt), mindegyikhez 3D bemutatóval.</td></tr><tr><td>Leckék</td><td>Rövid, egymásra épülő feladatok, háromcsillagos értékeléssel.</td></tr><tr><td>Feladványok</td><td>Mattfeladványok egy, kettő és három lépésben, plusz egy napi feladvány. A gép védekezik, rossz lépés után újra próbálhatod.</td></tr><tr><td>Taktika</td><td>A villa, kötés, nyárs és felfedett támadás magyarázata, mindegyikhez feladványokkal. Azt is mutatja, hányszor csináltad már ezeket valódi játszmában.</td></tr><tr><td>Megnyitás</td><td>Hét megnyitás főváltozata (pl. Olasz játék, Szicíliai védelem). A gép a könyv szerint felel, te a saját lépéseidet játszod, és minden lépésnél megtudod, miért jó. Ha letérsz a főváltozatról, megmutatja a helyeset.</td></tr><tr><td>Végjáték</td><td>Öt gyakorlat: vezérmatt, bástyamatt, létramatt, gyalog a beérésig, négyzetszabály. A gép itt a lehető legjobban védekezik.</td></tr><tr><td>Saját hibák</td><td>Minden komolyabb hibád állását az app elmenti, és itt feladványként újra megoldhatod. Két helyes megoldás után kipipálja.</td></tr><tr><td>Haladás</td><td>Pontszám, győzelmek és vereségek, napi sorozat, előrelátási arány, 21 megszerezhető jelvény, és a játszmáidból összesített hőtérkép.</td></tr></tbody></table></div>
 <p>A pontszám a gép elleni játszmáidból számolódik, 800-ról indul: erősebb gépet legyőzni többet ér, gyengébbtől kikapni többet von le. A napi sorozat minden olyan nappal nő, amikor játszol vagy gyakorolsz.</p>
 <h3>Játszma elemzése</h3>
 <p>Az „Elemzés” gomb (a panelen vagy a játszma végén) végignézi a teljes játszmát. Grafikonon mutatja, ki hogyan állt, megszámolja mindkét fél kiváló lépéseit és hibáit, és kiemeli a legfontosabb pillanatokat. A „Megnézem” gombbal a táblán is látod: piros nyíl a megtett lépés, zöld nyíl a jobb lehetőség.</p>
+<h3>Hőtérkép</h3>
+<p>Az elemzés alján hőtérkép mutatja, mi történt a táblán. Két nézet közül választhatsz:</p>
+<ul><li><b>👣 Hová léptek:</b> minél erősebb egy mező színe, annál többször léptek oda. A szám a lépések száma.</li><li><b>🛡️ Mezőuralom:</b> azt mutatja, melyik fél hányszor tartotta támadás alatt az egyes mezőket. A „Mindkettő” nézetben a kék mező világosé, a narancs sötété volt.</li></ul>
+<p>Választhatsz, hogy világos, sötét vagy mindkét fél adatait lásd. Mellette rövid összegzést és tippeket kapsz: mennyit léptetek a centrumba, ki uralta a középső mezőket, ki nyert több teret az ellenfél térfelén, és ha a huszárok sokat álltak a szélen. A „Megnézem a 3D táblán” gomb magára a táblára festi a térképet, a „Vissza” gomb visszavisz az elemzéshez.</p>
+<p>A Tanulás ablak Haladás fülén ugyanez összesítve is megvan: a gép elleni és online játszmáidból (legalább 10 lépés után) gyűlik, mindig a saját oldaladról nézve, vagyis alul a te alapsorod van. Itt már a szokásaid látszanak, nem egyetlen játszma véletlenei.</p>
 <h2 id="help-8"><span>Látvány és beállítások</span><button class="top" data-top="1">↑ Tartalom</button></h2>
 <p>A játék kinézete a panel „Téma” részén váltható, az alsó gombsor „Téma” gombja is végiglépteti őket. A váltás nem szakítja meg a játszmát.</p>
 <div class="tblw"><table><thead><tr><th>Téma</th><th>Kinézet</th></tr></thead><tbody><tr><td>Klasszikus</td><td>Fekete-fehér porcelán bábuk, elegáns tábla.</td></tr><tr><td>Középkori</td><td>Kő és fa, saját formájú lovagi bábuk fegyverekkel, fáklyafény.</td></tr><tr><td>Kristály</td><td>Matt, jégkék kristály és sötét króm bábuk, üvegtábla.</td></tr><tr><td>Neon</td><td>Zöldesfehéren és rózsaszínben izzó bábuk, világító rács.</td></tr><tr><td>Japán kert</td><td>Világos fa és fekete lakk bábuk, papírlámpások, hulló cseresznyevirág.</td></tr><tr><td>Egyiptom</td><td>Arany és lazúrkő bábuk, homokkő tábla, obeliszkek.</td></tr></tbody></table></div>
@@ -3452,6 +3474,7 @@ function refreshMarkers() {
     addMarker(MGEO.plane, MK.check, sq, 0.004).material = STAGE_STAR;
     const sp = new THREE.Sprite(starMat); sp.position.copy(sqPos(sq)); sp.position.y = 0.45; sp.scale.setScalar(0.55); markersGroup.add(sp);
   });
+  if (activity && activity.heat) heatMarkers(activity.heat);
   if (selected < 0) return;
   addMarker(MGEO.plane, MK.selected, selected, 0.006);
   if (!settings.learn && !activity) return;
@@ -4074,7 +4097,7 @@ function setAct(title, text, btns) {
   $('actTitle').innerHTML = title; $('actText').innerHTML = text;
   $('actPillTxt').textContent = actPlain(String(title).replace(/<span[\s\S]*?<\/span>/g, '')) || 'Feladat';
   actShow();
-  if (activity && actUI.read !== activity && activity.type !== 'demo' && activity.type !== 'replay' && activity.type !== 'review') { actUI.read = activity; setTimeout(() => actRead(false), 350); }   // új feladat: felolvassuk, ha a hang be van kapcsolva
+  if (activity && actUI.read !== activity && activity.type !== 'demo' && activity.type !== 'replay' && activity.type !== 'review' && activity.type !== 'heat') { actUI.read = activity; setTimeout(() => actRead(false), 350); }   // új feladat: felolvassuk, ha a hang be van kapcsolva
   const box = $('actBtns'); box.innerHTML = '';
   (btns || []).forEach(b => { const el = document.createElement('button'); el.textContent = b[0] === 'Kilépés' && stash && stash.moves.length ? '↩ Vissza a játékhoz' : b[0]; if (b[2]) el.className = 'p'; el.onclick = b[1]; box.appendChild(el); });
 }
@@ -4287,8 +4310,12 @@ async function runAnalysis() {
     const white = (o.k % 2 === 0) === firstWhite;
     h += '<div class="mist"><span>' + FACES[o.r.idx] + ' <b>' + (Math.floor(o.k / 2) + 1) + (white ? '. ' : '… ') + sans[o.k] + '</b> (' + (white ? 'világos' : 'sötét') + ') – jobb lett volna ' + o.r.bestSent + ' <b>(' + o.r.bestSan + ')</b></span><button data-rev="' + o.k + '">Megnézem</button></div>';
   });
+  h += '<h4 style="margin:14px 0 4px">🔥 Hőtérkép</h4><div id="heatAna"></div>';
   body.innerHTML = h;
   body.querySelectorAll('[data-rev]').forEach(b => { b.onclick = () => reviewMove(+b.dataset.rev, moves, sans); });
+  const hv = heatGameView();
+  if (sideMode() && heatState.ana.side === 'both' && !heatState.ana.touched) heatState.ana.side = humanColor === WHITE ? 'a' : 'b';
+  bindHeatPanel($('heatAna'), hv, 'ana', runAnalysis);
   renderMoves();
 }
 function reviewMove(k, moves, sans, fromGame) {
@@ -4320,7 +4347,7 @@ function select(sq) {
 }
 function onSquare(sq) {
   if (busy || lastStatus.over || sq < 0) return;
-  if (activity && (activity.type === 'demo' || activity.type === 'review' || activity.type === 'replay' || activity.locked || (activity.human !== undefined && game.turn !== activity.human))) return;
+  if (activity && (activity.type === 'demo' || activity.type === 'heat' || activity.type === 'review' || activity.type === 'replay' || activity.locked || (activity.human !== undefined && game.turn !== activity.human))) return;
   if (oppTurn()) { toast(onlineMode() ? oppLabel() + ' következik…' : 'A gép következik – egy pillanat…', 1400); return; }
   const v = game.board[sq];
   const own = v && (v > 0 ? WHITE : BLACK) === game.turn;
@@ -5066,7 +5093,7 @@ window.addEventListener('hashchange', handleIncomingLink);
 
 function featureExports() {
   return {
-    Clock, Net, Persona, Tactics, Mistakes, Progress, VoiceCtl, saveGame, restoreSavedGame, encodePayload, decodePayload, importText, handlePayload,
+    Clock, Net, Persona, Tactics, Mistakes, Progress, VoiceCtl, Heat, progress: () => progress, saveGame, restoreSavedGame, encodePayload, decodePayload, importText, handlePayload,
     startReplay, replayStep, setView, applyVisual, startEndgame, startOpening, startMyMistake, startTacticPuzzle, thinkState: () => thinkCur,
     status: () => lastStatus, forced: () => forcedResult, humanColor: () => humanColor, setHuman: c => { humanColor = c; }, vt: () => VT, idle: () => idleState,
     chans: () => ({ live: liveChan.cbs.size, w: !!liveChan.w, task: taskChan.cbs.size }), PERSONAS, OPENING_LINES, ENDGAMES, TACTIC_PUZZLES, BADGES, parseSpoken: t => VoiceCtl.parse(t), progress: () => progress
@@ -6029,6 +6056,7 @@ const Progress = {
       if (o.winner === humanColor) p.stats.w++; else if (o.winner) p.stats.l++; else p.stats.d++;
     }
     if (mode === 'online' && Net.kind) e('online');
+    if (mode === 'ai' || mode === 'online') Heat.addGame();
     if (mode === 'ai' && game.history.length >= 4) {
       const L = settings.level, opp = 500 + 150 * (L - 1);
       const score = o.winner === humanColor ? 1 : o.winner ? 0 : 0.5;
@@ -6088,6 +6116,8 @@ function extraLearnTab(tab) {
     h += '<div class="statrow"><div><b>' + p.rating + '</b>pontszám</div><div><b>' + s.w + '</b>győzelem</div><div><b>' + s.l + '</b>vereség</div><div><b>' + s.d + '</b>döntetlen</div></div>';
     h += '<div class="statrow"><div><b>' + p.streak.days + '</b>napos sorozat</div><div><b>' + p.streak.best + '</b>leghosszabb</div><div><b>' + Object.keys(p.puzzles).length + '</b>matt-feladvány</div><div><b>' + (th.n ? Math.round(th.ok / th.n * 100) + '%' : '–') + '</b>előrelátás</div></div>';
     h += '<p class="mini" style="margin:2px 0 4px">A pontszám a gép elleni játszmáidból számolódik (Élő-szerűen): erősebb gépet legyőzni többet ér.</p>';
+    h += '<h4 style="margin:6px 0 2px">🔥 Hőtérkép a játszmáidból</h4>';
+    h += heatCumView() ? '<div class="lcard" id="heatCum"></div>' : '<div class="lcard">Néhány befejezett játszma után (gép ellen vagy online) itt látod, hová szoktál lépni, és ki uralja a táblát – összesítve, a saját oldaladról nézve.</div>';
     const nGot = BADGES.filter(b => p.badges[b.id]).length;
     h += '<h4 style="margin:6px 0 2px">Jelvények (' + nGot + ' / ' + BADGES.length + ')</h4><div class="badges">';
     BADGES.forEach(b => { h += '<div class="badge' + (p.badges[b.id] ? ' got' : '') + '"><span class="bi">' + b.i + '</span><b>' + b.n + '</b>' + b.d + '</div>'; });
@@ -6100,6 +6130,7 @@ function bindExtraLearnTab(body) {
   body.querySelectorAll('[data-open]').forEach(b => { b.onclick = () => startOpening(+b.dataset.open); });
   body.querySelectorAll('[data-eg]').forEach(b => { b.onclick = () => startEndgame(+b.dataset.eg); });
   body.querySelectorAll('[data-mine]').forEach(b => { b.onclick = () => startMyMistake(+b.dataset.mine); });
+  const hc = body.querySelector('#heatCum'); if (hc) bindHeatPanel(hc, heatCumView(), 'cum', () => openLearn('progress'));
 }
 
 /* ---------- Hangvezérlés: kimondott lépés ---------- */
@@ -6186,6 +6217,169 @@ const VoiceCtl = {
   }
 };
 $('micBtn').onclick = () => VoiceCtl.toggle();
+
+/* ============================================================
+   HŐTÉRKÉP: hová léptek a bábuk, és ki melyik mezőt uralta
+   ============================================================ */
+const HEAT_COL = { a: 0x3fa9ff, b: 0xff7a2f, both: 0xff4466 };
+const heatHex = c => '#' + c.toString(16).padStart(6, '0');
+const heatSide = () => ({ mv: new Array(64).fill(0), ctl: new Array(64).fill(0), n: 0, kn: 0, knRim: 0 });
+// Egy játszma végigjátszása: célmezők, huszárlépések és minden lépés utáni mezőuralom
+function heatOfGame(fen, moves) {
+  const g = new E.Chess(fen || undefined), S = { [WHITE]: heatSide(), [BLACK]: heatSide() };
+  let plies = 0;
+  for (const u of moves) {
+    const m = g.moveFromUci(u); if (!m) break;
+    const s = S[g.turn];
+    s.mv[m.to]++; s.n++;
+    if (Math.abs(g.board[m.from]) === N) { s.kn++; const f = E.fileOf(m.to), r = E.rankOf(m.to); if (f === 0 || f === 7 || r === 0 || r === 7) s.knRim++; }
+    g.move(m); plies++;
+    for (let q = 0; q < 64; q++) { if (g.isAttacked(q, WHITE)) S[WHITE].ctl[q]++; if (g.isAttacked(q, BLACK)) S[BLACK].ctl[q]++; }
+  }
+  return { S, plies };
+}
+// Az aktuális játszma nézete (a = világos, b = sötét)
+function heatGameView() {
+  const r = heatOfGame(startFen, historyUci());
+  return { a: r.S[WHITE], b: r.S[BLACK], P: Math.max(1, r.plies), flip: sideMode() && humanColor === BLACK, cum: false,
+    nm: { a: { n: 'Világos', mv: 'Világos lépéseinek', kn: 'Világos huszárlépéseinek', lep: 'világos hányszor lépett', tart: 'tartotta világos' }, b: { n: 'Sötét', mv: 'Sötét lépéseinek', kn: 'Sötét huszárlépéseinek', lep: 'sötét hányszor lépett', tart: 'tartotta sötét' } } };
+}
+// Az összesített (több játszmás) nézet – mindig a saját oldaladról nézve: alul a te alapsorod
+function heatCumView() {
+  const h = progress.heat; if (!h || !h.g) return null;
+  return { a: h.a, b: h.b, P: h.g, flip: false, cum: true,
+    nm: { a: { n: 'Te', mv: 'A lépéseid', kn: 'A huszárlépéseid', lep: 'hányszor léptél', tart: 'tartottad' }, b: { n: 'Ellenfeleid', mv: 'Az ellenfeleid lépéseinek', kn: 'Az ellenfeleid huszárlépéseinek', lep: 'az ellenfeleid hányszor léptek', tart: 'tartották az ellenfeleid' } } };
+}
+const Heat = {
+  addGame() {
+    const moves = historyUci(); if (moves.length < 10 || !sideMode()) return;
+    const r = heatOfGame(startFen, moves), me = humanColor, nq = q => (me === WHITE ? q : q ^ 56);
+    const h = progress.heat || (progress.heat = { g: 0, a: heatSide(), b: heatSide() });
+    [['a', r.S[me]], ['b', r.S[-me]]].forEach(([k, s]) => {
+      const d = h[k];
+      for (let q = 0; q < 64; q++) { d.mv[nq(q)] += s.mv[q]; d.ctl[nq(q)] = Math.round((d.ctl[nq(q)] + s.ctl[q] / Math.max(1, r.plies)) * 1000) / 1000; }
+      d.n += s.n; d.kn += s.kn; d.knRim += s.knRim;
+    });
+    h.g++;
+  }
+};
+// Mezőnkénti érték 0..1 között, színnel és a kiírt számmal
+function heatVals(V, mode, side) {
+  if (mode === 'mv') {
+    const arr = side === 'both' ? V.a.mv.map((x, i) => x + V.b.mv[i]) : V[side].mv;
+    const mx = Math.max(1, ...arr);
+    return arr.map(x => ({ v: x / mx, c: HEAT_COL[side], t: x ? String(x) : '' }));
+  }
+  if (side === 'both') return V.a.ctl.map((x, i) => { const d = (x - V.b.ctl[i]) / V.P; return { v: Math.min(1, Math.abs(d) * 1.4), c: d >= 0 ? HEAT_COL.a : HEAT_COL.b, t: '' }; });
+  return V[side].ctl.map(x => ({ v: Math.min(1, x / V.P), c: HEAT_COL[side], t: '' }));
+}
+function heatLegend(V, mode, side) {
+  const dot = c => '<span class="hdot" style="background:' + heatHex(c) + '"></span>';
+  if (mode === 'mv') return side === 'both' ? dot(HEAT_COL.both) + 'A szín és a szám azt mutatja, hányszor léptek az adott mezőre (mindkét fél együtt).' : dot(HEAT_COL[side]) + 'A szín és a szám azt mutatja, ' + V.nm[side].lep + ' az adott mezőre.';
+  if (side === 'both') return dot(HEAT_COL.a) + V.nm.a.n + ' ' + dot(HEAT_COL.b) + V.nm.b.n + ' – a szín azt mutatja, melyik fél tartotta többször támadás alatt a mezőt.';
+  return dot(HEAT_COL[side]) + 'Minél erősebb a szín, annál többször ' + V.nm[side].tart + ' támadás alatt a mezőt.';
+}
+const pct = x => Math.round(x * 100) + '%';
+const fmt1 = x => (Math.round(x * 10) / 10).toString().replace('.', ',');
+// Szöveges tanulságok
+function heatTips(V) {
+  const out = [], CENTER4 = ['d4', 'e4', 'd5', 'e5'].map(E.parseSq);
+  const inCenter = q => { const f = E.fileOf(q), r = E.rankOf(q); return f >= 2 && f <= 5 && r >= 2 && r <= 5; };
+  const sum = (arr, fn) => arr.reduce((t, x, q) => t + (fn(q) ? x : 0), 0);
+  const top = s => { let b = -1, bq = 0; s.mv.forEach((x, q) => { if (x > b) { b = x; bq = q; } }); return b >= 2 ? E.sqName(bq) + ' (' + b + '×)' : null; };
+  const A = V.a, B = V.b, nA = V.nm.a, nB = V.nm.b;
+  if (A.n + B.n < 6) return ['Ehhez még kevés lépés történt – játssz egy kicsit tovább!'];
+  if (top(A) || top(B)) out.push('<b>Leggyakoribb célmező</b> – ' + nA.n + ': ' + (top(A) || 'nincs ismétlődő') + ', ' + nB.n + ': ' + (top(B) || 'nincs ismétlődő') + '.');
+  const cA = A.n ? sum(A.mv, inCenter) / A.n : 0, cB = B.n ? sum(B.mv, inCenter) / B.n : 0;
+  out.push('<b>Lépések a centrumba</b> (c3–f6) – ' + nA.n + ': ' + pct(cA) + ', ' + nB.n + ': ' + pct(cB) + '.');
+  const ccA = sum(A.ctl, q => CENTER4.includes(q)) / V.P, ccB = sum(B.ctl, q => CENTER4.includes(q)) / V.P;
+  out.push('<b>Centrumuralom</b> – a 4 középső mezőből (d4, e4, d5, e5) átlagosan ennyit tartott támadás alatt: ' + nA.n + ' ' + fmt1(ccA) + ', ' + nB.n + ' ' + fmt1(ccB) + '.');
+  const spA = sum(A.ctl, q => E.rankOf(q) >= 4) / V.P, spB = sum(B.ctl, q => E.rankOf(q) <= 3) / V.P;
+  out.push('<b>Támadott mezők az ellenfél térfelén</b> (átlag) – ' + nA.n + ': ' + fmt1(spA) + ', ' + nB.n + ': ' + fmt1(spB) + '.');
+  [[A, nA], [B, nB]].forEach(([s, nm]) => {
+    if (s.n < 10) return;
+    const ks = sum(s.mv, q => E.fileOf(q) >= 4) / s.n;
+    if (ks >= 0.68) out.push(nm.mv + ' ' + pct(ks) + '-a a királyszárnyon (e–h vonal) volt.');
+    else if (ks <= 0.32) out.push(nm.mv + ' ' + pct(1 - ks) + '-a a vezérszárnyon (a–d vonal) volt.');
+  });
+  // tanácsok – összesítésnél csak neked, egy játszmánál mindkét félnek
+  const me = V.cum ? [[A, nA, cA, ccA, spA, ccB, spB]] : [[A, nA, cA, ccA, spA, ccB, spB], [B, nB, cB, ccB, spB, ccA, spA]];
+  me.forEach(([s, nm, c, cc, sp, occ, osp]) => {
+    const who = V.cum ? '' : ' (' + nm.n.toLowerCase() + ')';
+    if (s.kn >= 4 && s.knRim / s.kn >= 0.4) out.push('💡 ' + nm.kn + ' ' + pct(s.knRim / s.kn) + '-a a tábla szélére ment. A szélen álló huszár feleannyi mezőt támad, mint középen – „huszár a szélen, szégyen”.');
+    if (s.n >= 10 && c < 0.25) out.push('💡 Kevés lépés ment a centrumba' + who + '. A középső mezőkről a bábuk több irányba hatnak – próbálj oda fejlődni.');
+    if (V.P >= (V.cum ? 1 : 16) && cc + 0.4 < occ) out.push('💡 A centrumot inkább az ellenfél uralta' + who + '. Egy gyalog a d4/e4 (sötéttel d5/e5) mezőn és a huszárok c3/f3 (c6/f6) felé sokat segít.');
+    if (V.P >= (V.cum ? 1 : 16) && sp + 2 < osp) out.push('💡 Az ellenfél több helyet foglalt' + who + ': az ő bábui jobban betörtek a térfeledre. Érdemes előbbre hozni a gyalogokat és aktívabb mezőkre állítani a bábukat.');
+  });
+  return out;
+}
+// Kis 2D előnézet a felugró ablakban
+function heatGridHtml(V, mode, side) {
+  const vals = heatVals(V, mode, side);
+  let h = '<div class="hgridw"><div class="hgrid">';
+  for (let row = 0; row < 8; row++) for (let col = 0; col < 8; col++) {
+    const r = V.flip ? row : 7 - row, f = V.flip ? 7 - col : col, q = r * 8 + f, o = vals[q];
+    const a = o.v < 0.03 ? 0 : 0.18 + 0.72 * o.v;
+    h += '<div class="' + ((r + f) % 2 ? 'l' : 'd') + '" title="' + E.sqName(q) + '"><i style="background:' + heatHex(o.c) + ';opacity:' + a.toFixed(2) + '"></i><span>' + o.t + '</span></div>';
+  }
+  h += '</div><div class="hfiles">' + [...Array(8)].map((x, i) => '<span>' + 'abcdefgh'[V.flip ? 7 - i : i] + '</span>').join('') + '</div>';
+  h += '<div class="hranks">' + [...Array(8)].map((x, i) => '<span>' + (V.flip ? i + 1 : 8 - i) + '</span>').join('') + '</div></div>';
+  return h;
+}
+const heatState = { ana: { mode: 'mv', side: 'both' }, cum: { mode: 'mv', side: 'a' } };
+function heatPanelHtml(V, where) {
+  const st = heatState[where], segB = (k, v, t) => '<button data-h' + k + '="' + v + '" class="' + (st[k === 'm' ? 'mode' : 'side'] === v ? 'on' : '') + '">' + t + '</button>';
+  let h = '<div class="seg hseg">' + segB('m', 'mv', '👣 Hová léptek') + segB('m', 'ctl', '🛡️ Mezőuralom') + '</div>';
+  h += '<div class="seg hseg">' + segB('s', 'a', V.nm.a.n) + segB('s', 'b', V.nm.b.n) + segB('s', 'both', 'Mindkettő') + '</div>';
+  h += '<div class="hwrap">' + heatGridHtml(V, st.mode, st.side) + '<div class="htips"><p class="hleg">' + heatLegend(V, st.mode, st.side) + '</p>';
+  h += heatTips(V).map(t => '<p>' + t + '</p>').join('') + '</div></div>';
+  h += '<button class="p hbtn" data-h3d="1">🔍 Megnézem a 3D táblán</button>';
+  return h;
+}
+function bindHeatPanel(box, V, where, back) {
+  const draw = () => {
+    box.innerHTML = heatPanelHtml(V, where);
+    box.querySelectorAll('[data-hm]').forEach(b => { b.onclick = () => { heatState[where].mode = b.dataset.hm; draw(); }; });
+    box.querySelectorAll('[data-hs]').forEach(b => { b.onclick = () => { heatState[where].side = b.dataset.hs; heatState[where].touched = true; draw(); }; });
+    box.querySelector('[data-h3d]').onclick = () => heatShow(V, where, back);
+  };
+  draw();
+}
+// A 3D táblán: üres tábla, a mezők kiszínezve
+function heatShow(V, where, back) {
+  if (!beginActivity({ type: 'heat', noStatus: true, heat: { V, where, back } })) return;
+  game = new E.Chess('8/8/8/8/8/8/8/8 w - - 0 1');
+  clearBoardFx(); select(-1); syncPieces(true); refreshUI();
+  rotateCamTo(V.flip ? Math.PI : 0, undefined, true);
+  heatBar();
+}
+function heatBar() {
+  const a = activity; if (!a || !a.heat) return;
+  const H = a.heat, st = heatState[H.where], V = H.V;
+  const set = (k, v) => () => { st[k] = v; if (k === 'side') st.touched = true; refreshMarkers(); heatBar(); };
+  setAct('🔥 Hőtérkép' + (V.cum ? ' – ' + V.P + ' játszmád' : ''), heatLegend(V, st.mode, st.side) + (V.cum ? '<br><span class="mini">A saját oldaladról nézve: alul a te alapsorod.</span>' : ''),
+    [['👣 Hová léptek', set('mode', 'mv'), st.mode === 'mv'], ['🛡️ Mezőuralom', set('mode', 'ctl'), st.mode === 'ctl'],
+      [V.nm.a.n, set('side', 'a'), st.side === 'a'], [V.nm.b.n, set('side', 'b'), st.side === 'b'], ['Mindkettő', set('side', 'both'), st.side === 'both'],
+      ['↩ Vissza', () => { endActivity(); H.back(); }]]);
+}
+const heatMats = {}, heatTxt = {};
+function heatMat(c, a) { const k = c + ':' + Math.round(a * 20); return heatMats[k] || (heatMats[k] = basic(c, Math.round(a * 20) / 20)); }
+function heatNum(t) {
+  if (heatTxt[t]) return heatTxt[t];
+  const cv = document.createElement('canvas'); cv.width = cv.height = 64;
+  const x = cv.getContext('2d'); x.font = 'bold 34px system-ui, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.lineWidth = 6; x.strokeStyle = 'rgba(0,0,0,.65)'; x.strokeText(t, 32, 34); x.fillStyle = '#fff'; x.fillText(t, 32, 34);
+  const tx = new THREE.CanvasTexture(cv);
+  return (heatTxt[t] = new THREE.SpriteMaterial({ map: tx, transparent: true, depthWrite: false, depthTest: false, toneMapped: false }));
+}
+function heatMarkers(H) {
+  const st = heatState[H.where];
+  heatVals(H.V, st.mode, st.side).forEach((o, q) => {
+    if (o.v < 0.03) return;
+    addMarker(MGEO.plane, heatMat(o.c, 0.2 + 0.68 * o.v), q, 0.006);
+    if (o.t) { const sp = new THREE.Sprite(heatNum(o.t)); sp.position.copy(sqPos(q)); sp.position.y = 0.12; sp.scale.setScalar(0.42); sp.renderOrder = 3; markersGroup.add(sp); }
+  });
+}
 
 /* ============================================================
    KIEGÉSZÍTŐK 4 – látvány: új témák (Kristály, Neon, Japán kert,
